@@ -1,0 +1,3 @@
+C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/DoodleJump.dir
+C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/rebuild_cache.dir
