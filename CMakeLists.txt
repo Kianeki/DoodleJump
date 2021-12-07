@@ -1,6 +1,25 @@
-cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required(VERSION 3.12)
 project(DoodleJump)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(DoodleJump main.cpp)
+
+SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake/Modules")
+find_package(SFML 2 COMPONENTS system window graphics)
+
+#file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})
+
+SET(SRC main.cpp)
+
+INCLUDE_DIRECTORIES(${SFML_INCLUDE_DIR})
+
+add_executable(DoodleJump ${SRC})
+
+TARGET_LINK_LIBRARIES(DoodleJump ${SFML_LIBRARIES})
+
+INSTALL(TARGETS DoodleJump DESTINATION ${PROJECT_SOURCE_DIR}/bin)
+
+if(WIN32)
+    file(GLOB BINARY_DEP_DLLS "${SFML_INCLUDE_DIR}/../bin/*.dll")
+    file(COPY ${BINARY_DEP_DLLS} DESTINATION ${CMAKE_BINARY_DIR})
+endif()

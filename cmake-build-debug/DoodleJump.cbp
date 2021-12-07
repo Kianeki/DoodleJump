@@ -5,13 +5,33 @@
 		<Option title="DoodleJump"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\cmake\;CMake Files\cmake\Modules\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
 					<Build command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/local">
+				<Option working_dir="C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 install/local"/>
+					<CompileFile command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install">
+				<Option working_dir="C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 install"/>
 					<CompileFile command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -34,6 +54,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="C:/SFML/include"/>
 					<Add directory="C:/mingw32/bin/../lib/gcc/i686-w64-mingw32/6.1.0/include/c++"/>
 					<Add directory="C:/mingw32/bin/../lib/gcc/i686-w64-mingw32/6.1.0/include/c++/i686-w64-mingw32"/>
 					<Add directory="C:/mingw32/bin/../lib/gcc/i686-w64-mingw32/6.1.0/include/c++/backward"/>
@@ -55,6 +76,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="C:/SFML/include"/>
 					<Add directory="C:/mingw32/bin/../lib/gcc/i686-w64-mingw32/6.1.0/include/c++"/>
 					<Add directory="C:/mingw32/bin/../lib/gcc/i686-w64-mingw32/6.1.0/include/c++/i686-w64-mingw32"/>
 					<Add directory="C:/mingw32/bin/../lib/gcc/i686-w64-mingw32/6.1.0/include/c++/backward"/>
@@ -79,12 +101,35 @@
 					<DistClean command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
+			<Target title="list_install_components">
+				<Option working_dir="C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 list_install_components"/>
+					<CompileFile command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/strip">
+				<Option working_dir="C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 install/strip"/>
+					<CompileFile command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
 		</Build>
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/main.cpp">
 			<Option target="DoodleJump"/>
 		</Unit>
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/cmake/Modules/FindSFML.cmake">
+			<Option virtualFolder="CMake Files\cmake\Modules\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

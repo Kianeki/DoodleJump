@@ -77,6 +77,7 @@ include CMakeFiles/DoodleJump.dir/progress.make
 include CMakeFiles/DoodleJump.dir/flags.make
 
 CMakeFiles/DoodleJump.dir/main.cpp.obj: CMakeFiles/DoodleJump.dir/flags.make
+CMakeFiles/DoodleJump.dir/main.cpp.obj: CMakeFiles/DoodleJump.dir/includes_CXX.rsp
 CMakeFiles/DoodleJump.dir/main.cpp.obj: ../main.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Kiani\CLionProjects\DoodleJump\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/DoodleJump.dir/main.cpp.obj"
 	C:\mingw32\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\DoodleJump.dir\main.cpp.obj -c C:\Users\Kiani\CLionProjects\DoodleJump\main.cpp
@@ -98,6 +99,9 @@ DoodleJump_EXTERNAL_OBJECTS =
 
 DoodleJump.exe: CMakeFiles/DoodleJump.dir/main.cpp.obj
 DoodleJump.exe: CMakeFiles/DoodleJump.dir/build.make
+DoodleJump.exe: C:/SFML/lib/libsfml-system-d.a
+DoodleJump.exe: C:/SFML/lib/libsfml-window-d.a
+DoodleJump.exe: C:/SFML/lib/libsfml-graphics-d.a
 DoodleJump.exe: CMakeFiles/DoodleJump.dir/linklibs.rsp
 DoodleJump.exe: CMakeFiles/DoodleJump.dir/objects1.rsp
 DoodleJump.exe: CMakeFiles/DoodleJump.dir/link.txt
