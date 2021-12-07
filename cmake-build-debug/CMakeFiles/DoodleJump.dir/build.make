@@ -90,14 +90,126 @@ CMakeFiles/DoodleJump.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DoodleJump.dir/main.cpp.s"
 	C:\mingw32\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Kiani\CLionProjects\DoodleJump\main.cpp -o CMakeFiles\DoodleJump.dir\main.cpp.s
 
+CMakeFiles/DoodleJump.dir/Game.cpp.obj: CMakeFiles/DoodleJump.dir/flags.make
+CMakeFiles/DoodleJump.dir/Game.cpp.obj: CMakeFiles/DoodleJump.dir/includes_CXX.rsp
+CMakeFiles/DoodleJump.dir/Game.cpp.obj: ../Game.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Kiani\CLionProjects\DoodleJump\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/DoodleJump.dir/Game.cpp.obj"
+	C:\mingw32\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\DoodleJump.dir\Game.cpp.obj -c C:\Users\Kiani\CLionProjects\DoodleJump\Game.cpp
+
+CMakeFiles/DoodleJump.dir/Game.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DoodleJump.dir/Game.cpp.i"
+	C:\mingw32\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Kiani\CLionProjects\DoodleJump\Game.cpp > CMakeFiles\DoodleJump.dir\Game.cpp.i
+
+CMakeFiles/DoodleJump.dir/Game.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DoodleJump.dir/Game.cpp.s"
+	C:\mingw32\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Kiani\CLionProjects\DoodleJump\Game.cpp -o CMakeFiles\DoodleJump.dir\Game.cpp.s
+
+CMakeFiles/DoodleJump.dir/Stopwatch.cpp.obj: CMakeFiles/DoodleJump.dir/flags.make
+CMakeFiles/DoodleJump.dir/Stopwatch.cpp.obj: CMakeFiles/DoodleJump.dir/includes_CXX.rsp
+CMakeFiles/DoodleJump.dir/Stopwatch.cpp.obj: ../Stopwatch.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Kiani\CLionProjects\DoodleJump\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/DoodleJump.dir/Stopwatch.cpp.obj"
+	C:\mingw32\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\DoodleJump.dir\Stopwatch.cpp.obj -c C:\Users\Kiani\CLionProjects\DoodleJump\Stopwatch.cpp
+
+CMakeFiles/DoodleJump.dir/Stopwatch.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DoodleJump.dir/Stopwatch.cpp.i"
+	C:\mingw32\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Kiani\CLionProjects\DoodleJump\Stopwatch.cpp > CMakeFiles\DoodleJump.dir\Stopwatch.cpp.i
+
+CMakeFiles/DoodleJump.dir/Stopwatch.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DoodleJump.dir/Stopwatch.cpp.s"
+	C:\mingw32\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Kiani\CLionProjects\DoodleJump\Stopwatch.cpp -o CMakeFiles\DoodleJump.dir\Stopwatch.cpp.s
+
+CMakeFiles/DoodleJump.dir/Camera.cpp.obj: CMakeFiles/DoodleJump.dir/flags.make
+CMakeFiles/DoodleJump.dir/Camera.cpp.obj: CMakeFiles/DoodleJump.dir/includes_CXX.rsp
+CMakeFiles/DoodleJump.dir/Camera.cpp.obj: ../Camera.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Kiani\CLionProjects\DoodleJump\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/DoodleJump.dir/Camera.cpp.obj"
+	C:\mingw32\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\DoodleJump.dir\Camera.cpp.obj -c C:\Users\Kiani\CLionProjects\DoodleJump\Camera.cpp
+
+CMakeFiles/DoodleJump.dir/Camera.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DoodleJump.dir/Camera.cpp.i"
+	C:\mingw32\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Kiani\CLionProjects\DoodleJump\Camera.cpp > CMakeFiles\DoodleJump.dir\Camera.cpp.i
+
+CMakeFiles/DoodleJump.dir/Camera.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DoodleJump.dir/Camera.cpp.s"
+	C:\mingw32\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Kiani\CLionProjects\DoodleJump\Camera.cpp -o CMakeFiles\DoodleJump.dir\Camera.cpp.s
+
+CMakeFiles/DoodleJump.dir/Random.cpp.obj: CMakeFiles/DoodleJump.dir/flags.make
+CMakeFiles/DoodleJump.dir/Random.cpp.obj: CMakeFiles/DoodleJump.dir/includes_CXX.rsp
+CMakeFiles/DoodleJump.dir/Random.cpp.obj: ../Random.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Kiani\CLionProjects\DoodleJump\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/DoodleJump.dir/Random.cpp.obj"
+	C:\mingw32\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\DoodleJump.dir\Random.cpp.obj -c C:\Users\Kiani\CLionProjects\DoodleJump\Random.cpp
+
+CMakeFiles/DoodleJump.dir/Random.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DoodleJump.dir/Random.cpp.i"
+	C:\mingw32\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Kiani\CLionProjects\DoodleJump\Random.cpp > CMakeFiles\DoodleJump.dir\Random.cpp.i
+
+CMakeFiles/DoodleJump.dir/Random.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DoodleJump.dir/Random.cpp.s"
+	C:\mingw32\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Kiani\CLionProjects\DoodleJump\Random.cpp -o CMakeFiles\DoodleJump.dir\Random.cpp.s
+
+CMakeFiles/DoodleJump.dir/World.cpp.obj: CMakeFiles/DoodleJump.dir/flags.make
+CMakeFiles/DoodleJump.dir/World.cpp.obj: CMakeFiles/DoodleJump.dir/includes_CXX.rsp
+CMakeFiles/DoodleJump.dir/World.cpp.obj: ../World.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Kiani\CLionProjects\DoodleJump\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/DoodleJump.dir/World.cpp.obj"
+	C:\mingw32\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\DoodleJump.dir\World.cpp.obj -c C:\Users\Kiani\CLionProjects\DoodleJump\World.cpp
+
+CMakeFiles/DoodleJump.dir/World.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DoodleJump.dir/World.cpp.i"
+	C:\mingw32\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Kiani\CLionProjects\DoodleJump\World.cpp > CMakeFiles\DoodleJump.dir\World.cpp.i
+
+CMakeFiles/DoodleJump.dir/World.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DoodleJump.dir/World.cpp.s"
+	C:\mingw32\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Kiani\CLionProjects\DoodleJump\World.cpp -o CMakeFiles\DoodleJump.dir\World.cpp.s
+
+CMakeFiles/DoodleJump.dir/BGTile.cpp.obj: CMakeFiles/DoodleJump.dir/flags.make
+CMakeFiles/DoodleJump.dir/BGTile.cpp.obj: CMakeFiles/DoodleJump.dir/includes_CXX.rsp
+CMakeFiles/DoodleJump.dir/BGTile.cpp.obj: ../BGTile.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Kiani\CLionProjects\DoodleJump\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/DoodleJump.dir/BGTile.cpp.obj"
+	C:\mingw32\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\DoodleJump.dir\BGTile.cpp.obj -c C:\Users\Kiani\CLionProjects\DoodleJump\BGTile.cpp
+
+CMakeFiles/DoodleJump.dir/BGTile.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DoodleJump.dir/BGTile.cpp.i"
+	C:\mingw32\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Kiani\CLionProjects\DoodleJump\BGTile.cpp > CMakeFiles\DoodleJump.dir\BGTile.cpp.i
+
+CMakeFiles/DoodleJump.dir/BGTile.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DoodleJump.dir/BGTile.cpp.s"
+	C:\mingw32\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Kiani\CLionProjects\DoodleJump\BGTile.cpp -o CMakeFiles\DoodleJump.dir\BGTile.cpp.s
+
+CMakeFiles/DoodleJump.dir/Bonus.cpp.obj: CMakeFiles/DoodleJump.dir/flags.make
+CMakeFiles/DoodleJump.dir/Bonus.cpp.obj: CMakeFiles/DoodleJump.dir/includes_CXX.rsp
+CMakeFiles/DoodleJump.dir/Bonus.cpp.obj: ../Bonus.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Kiani\CLionProjects\DoodleJump\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/DoodleJump.dir/Bonus.cpp.obj"
+	C:\mingw32\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\DoodleJump.dir\Bonus.cpp.obj -c C:\Users\Kiani\CLionProjects\DoodleJump\Bonus.cpp
+
+CMakeFiles/DoodleJump.dir/Bonus.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DoodleJump.dir/Bonus.cpp.i"
+	C:\mingw32\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Kiani\CLionProjects\DoodleJump\Bonus.cpp > CMakeFiles\DoodleJump.dir\Bonus.cpp.i
+
+CMakeFiles/DoodleJump.dir/Bonus.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DoodleJump.dir/Bonus.cpp.s"
+	C:\mingw32\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Kiani\CLionProjects\DoodleJump\Bonus.cpp -o CMakeFiles\DoodleJump.dir\Bonus.cpp.s
+
 # Object files for target DoodleJump
 DoodleJump_OBJECTS = \
-"CMakeFiles/DoodleJump.dir/main.cpp.obj"
+"CMakeFiles/DoodleJump.dir/main.cpp.obj" \
+"CMakeFiles/DoodleJump.dir/Game.cpp.obj" \
+"CMakeFiles/DoodleJump.dir/Stopwatch.cpp.obj" \
+"CMakeFiles/DoodleJump.dir/Camera.cpp.obj" \
+"CMakeFiles/DoodleJump.dir/Random.cpp.obj" \
+"CMakeFiles/DoodleJump.dir/World.cpp.obj" \
+"CMakeFiles/DoodleJump.dir/BGTile.cpp.obj" \
+"CMakeFiles/DoodleJump.dir/Bonus.cpp.obj"
 
 # External object files for target DoodleJump
 DoodleJump_EXTERNAL_OBJECTS =
 
 DoodleJump.exe: CMakeFiles/DoodleJump.dir/main.cpp.obj
+DoodleJump.exe: CMakeFiles/DoodleJump.dir/Game.cpp.obj
+DoodleJump.exe: CMakeFiles/DoodleJump.dir/Stopwatch.cpp.obj
+DoodleJump.exe: CMakeFiles/DoodleJump.dir/Camera.cpp.obj
+DoodleJump.exe: CMakeFiles/DoodleJump.dir/Random.cpp.obj
+DoodleJump.exe: CMakeFiles/DoodleJump.dir/World.cpp.obj
+DoodleJump.exe: CMakeFiles/DoodleJump.dir/BGTile.cpp.obj
+DoodleJump.exe: CMakeFiles/DoodleJump.dir/Bonus.cpp.obj
 DoodleJump.exe: CMakeFiles/DoodleJump.dir/build.make
 DoodleJump.exe: C:/SFML/lib/libsfml-system-d.a
 DoodleJump.exe: C:/SFML/lib/libsfml-window-d.a
@@ -105,7 +217,7 @@ DoodleJump.exe: C:/SFML/lib/libsfml-graphics-d.a
 DoodleJump.exe: CMakeFiles/DoodleJump.dir/linklibs.rsp
 DoodleJump.exe: CMakeFiles/DoodleJump.dir/objects1.rsp
 DoodleJump.exe: CMakeFiles/DoodleJump.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Kiani\CLionProjects\DoodleJump\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable DoodleJump.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Kiani\CLionProjects\DoodleJump\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable DoodleJump.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\DoodleJump.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

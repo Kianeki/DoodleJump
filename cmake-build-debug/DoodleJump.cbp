@@ -122,6 +122,48 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/BGTile.cpp">
+			<Option target="DoodleJump"/>
+		</Unit>
+		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/BGTile.h">
+			<Option target="DoodleJump"/>
+		</Unit>
+		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Bonus.cpp">
+			<Option target="DoodleJump"/>
+		</Unit>
+		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Bonus.h">
+			<Option target="DoodleJump"/>
+		</Unit>
+		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Camera.cpp">
+			<Option target="DoodleJump"/>
+		</Unit>
+		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Camera.h">
+			<Option target="DoodleJump"/>
+		</Unit>
+		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Game.cpp">
+			<Option target="DoodleJump"/>
+		</Unit>
+		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Game.h">
+			<Option target="DoodleJump"/>
+		</Unit>
+		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Random.cpp">
+			<Option target="DoodleJump"/>
+		</Unit>
+		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Random.h">
+			<Option target="DoodleJump"/>
+		</Unit>
+		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Stopwatch.cpp">
+			<Option target="DoodleJump"/>
+		</Unit>
+		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Stopwatch.h">
+			<Option target="DoodleJump"/>
+		</Unit>
+		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/World.cpp">
+			<Option target="DoodleJump"/>
+		</Unit>
+		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/World.h">
+			<Option target="DoodleJump"/>
+		</Unit>
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/main.cpp">
 			<Option target="DoodleJump"/>
 		</Unit>

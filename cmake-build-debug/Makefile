@@ -188,6 +188,195 @@ DoodleJump/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/build
 .PHONY : DoodleJump/fast
 
+BGTile.obj: BGTile.cpp.obj
+
+.PHONY : BGTile.obj
+
+# target to build an object file
+BGTile.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/BGTile.cpp.obj
+.PHONY : BGTile.cpp.obj
+
+BGTile.i: BGTile.cpp.i
+
+.PHONY : BGTile.i
+
+# target to preprocess a source file
+BGTile.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/BGTile.cpp.i
+.PHONY : BGTile.cpp.i
+
+BGTile.s: BGTile.cpp.s
+
+.PHONY : BGTile.s
+
+# target to generate assembly for a file
+BGTile.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/BGTile.cpp.s
+.PHONY : BGTile.cpp.s
+
+Bonus.obj: Bonus.cpp.obj
+
+.PHONY : Bonus.obj
+
+# target to build an object file
+Bonus.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Bonus.cpp.obj
+.PHONY : Bonus.cpp.obj
+
+Bonus.i: Bonus.cpp.i
+
+.PHONY : Bonus.i
+
+# target to preprocess a source file
+Bonus.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Bonus.cpp.i
+.PHONY : Bonus.cpp.i
+
+Bonus.s: Bonus.cpp.s
+
+.PHONY : Bonus.s
+
+# target to generate assembly for a file
+Bonus.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Bonus.cpp.s
+.PHONY : Bonus.cpp.s
+
+Camera.obj: Camera.cpp.obj
+
+.PHONY : Camera.obj
+
+# target to build an object file
+Camera.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Camera.cpp.obj
+.PHONY : Camera.cpp.obj
+
+Camera.i: Camera.cpp.i
+
+.PHONY : Camera.i
+
+# target to preprocess a source file
+Camera.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Camera.cpp.i
+.PHONY : Camera.cpp.i
+
+Camera.s: Camera.cpp.s
+
+.PHONY : Camera.s
+
+# target to generate assembly for a file
+Camera.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Camera.cpp.s
+.PHONY : Camera.cpp.s
+
+Game.obj: Game.cpp.obj
+
+.PHONY : Game.obj
+
+# target to build an object file
+Game.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Game.cpp.obj
+.PHONY : Game.cpp.obj
+
+Game.i: Game.cpp.i
+
+.PHONY : Game.i
+
+# target to preprocess a source file
+Game.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Game.cpp.i
+.PHONY : Game.cpp.i
+
+Game.s: Game.cpp.s
+
+.PHONY : Game.s
+
+# target to generate assembly for a file
+Game.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Game.cpp.s
+.PHONY : Game.cpp.s
+
+Random.obj: Random.cpp.obj
+
+.PHONY : Random.obj
+
+# target to build an object file
+Random.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Random.cpp.obj
+.PHONY : Random.cpp.obj
+
+Random.i: Random.cpp.i
+
+.PHONY : Random.i
+
+# target to preprocess a source file
+Random.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Random.cpp.i
+.PHONY : Random.cpp.i
+
+Random.s: Random.cpp.s
+
+.PHONY : Random.s
+
+# target to generate assembly for a file
+Random.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Random.cpp.s
+.PHONY : Random.cpp.s
+
+Stopwatch.obj: Stopwatch.cpp.obj
+
+.PHONY : Stopwatch.obj
+
+# target to build an object file
+Stopwatch.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Stopwatch.cpp.obj
+.PHONY : Stopwatch.cpp.obj
+
+Stopwatch.i: Stopwatch.cpp.i
+
+.PHONY : Stopwatch.i
+
+# target to preprocess a source file
+Stopwatch.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Stopwatch.cpp.i
+.PHONY : Stopwatch.cpp.i
+
+Stopwatch.s: Stopwatch.cpp.s
+
+.PHONY : Stopwatch.s
+
+# target to generate assembly for a file
+Stopwatch.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Stopwatch.cpp.s
+.PHONY : Stopwatch.cpp.s
+
+World.obj: World.cpp.obj
+
+.PHONY : World.obj
+
+# target to build an object file
+World.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/World.cpp.obj
+.PHONY : World.cpp.obj
+
+World.i: World.cpp.i
+
+.PHONY : World.i
+
+# target to preprocess a source file
+World.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/World.cpp.i
+.PHONY : World.cpp.i
+
+World.s: World.cpp.s
+
+.PHONY : World.s
+
+# target to generate assembly for a file
+World.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/World.cpp.s
+.PHONY : World.cpp.s
+
 main.obj: main.cpp.obj
 
 .PHONY : main.obj
@@ -228,6 +417,27 @@ help:
 	@echo ... list_install_components
 	@echo ... rebuild_cache
 	@echo ... DoodleJump
+	@echo ... BGTile.obj
+	@echo ... BGTile.i
+	@echo ... BGTile.s
+	@echo ... Bonus.obj
+	@echo ... Bonus.i
+	@echo ... Bonus.s
+	@echo ... Camera.obj
+	@echo ... Camera.i
+	@echo ... Camera.s
+	@echo ... Game.obj
+	@echo ... Game.i
+	@echo ... Game.s
+	@echo ... Random.obj
+	@echo ... Random.i
+	@echo ... Random.s
+	@echo ... Stopwatch.obj
+	@echo ... Stopwatch.i
+	@echo ... Stopwatch.s
+	@echo ... World.obj
+	@echo ... World.i
+	@echo ... World.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

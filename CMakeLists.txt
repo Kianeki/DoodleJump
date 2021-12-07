@@ -9,7 +9,7 @@ find_package(SFML 2 COMPONENTS system window graphics)
 
 #file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})
 
-SET(SRC main.cpp)
+SET(SRC main.cpp Game.cpp Game.h Stopwatch.cpp Stopwatch.h Camera.cpp Camera.h Random.cpp Random.h World.cpp World.h BGTile.cpp BGTile.h Bonus.cpp Bonus.h)
 
 INCLUDE_DIRECTORIES(${SFML_INCLUDE_DIR})
 
