@@ -2,6 +2,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/DoodleJump.dir/BGTile.cpp.obj"
   "CMakeFiles/DoodleJump.dir/Bonus.cpp.obj"
   "CMakeFiles/DoodleJump.dir/Camera.cpp.obj"
+  "CMakeFiles/DoodleJump.dir/Entity.cpp.obj"
   "CMakeFiles/DoodleJump.dir/Game.cpp.obj"
   "CMakeFiles/DoodleJump.dir/Random.cpp.obj"
   "CMakeFiles/DoodleJump.dir/Stopwatch.cpp.obj"

@@ -269,6 +269,33 @@ Camera.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Camera.cpp.s
 .PHONY : Camera.cpp.s
 
+Entity.obj: Entity.cpp.obj
+
+.PHONY : Entity.obj
+
+# target to build an object file
+Entity.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Entity.cpp.obj
+.PHONY : Entity.cpp.obj
+
+Entity.i: Entity.cpp.i
+
+.PHONY : Entity.i
+
+# target to preprocess a source file
+Entity.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Entity.cpp.i
+.PHONY : Entity.cpp.i
+
+Entity.s: Entity.cpp.s
+
+.PHONY : Entity.s
+
+# target to generate assembly for a file
+Entity.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Entity.cpp.s
+.PHONY : Entity.cpp.s
+
 Game.obj: Game.cpp.obj
 
 .PHONY : Game.obj
@@ -426,6 +453,9 @@ help:
 	@echo ... Camera.obj
 	@echo ... Camera.i
 	@echo ... Camera.s
+	@echo ... Entity.obj
+	@echo ... Entity.i
+	@echo ... Entity.s
 	@echo ... Game.obj
 	@echo ... Game.i
 	@echo ... Game.s

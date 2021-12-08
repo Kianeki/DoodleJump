@@ -140,6 +140,12 @@
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Camera.h">
 			<Option target="DoodleJump"/>
 		</Unit>
+		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Entity.cpp">
+			<Option target="DoodleJump"/>
+		</Unit>
+		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Entity.h">
+			<Option target="DoodleJump"/>
+		</Unit>
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Game.cpp">
 			<Option target="DoodleJump"/>
 		</Unit>
