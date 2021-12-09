@@ -22,7 +22,7 @@ private:
     void processEvents();
     void update();
     void render();
-    void drawEntities(std::list<std::shared_ptr<Entity>> entities);
+    void drawEntities(const std::list<std::unique_ptr<Entity>>& entities);
 };
 
 

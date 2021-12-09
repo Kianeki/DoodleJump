@@ -43,22 +43,24 @@ void Game::processEvents() {
 
 void Game::update() {
     std::pair<float,float> playerMovement{0,0};
-    playerMovement.second+=0.001;
+    playerMovement.second+=0.005;
     world.movePlayer(playerMovement);
     camera.updateMaxHeight(world.player); // update the max height according to the player, should always be centered
+    camera.checkView(world.entities); // check if platforms are in view, delete if out of view
 }
 
 void Game::render() {
     mainWindow.clear();
-    drawEntities(camera.getEntitiesinView(world.entities));
+//    camera.checkView(world.entities);
+    drawEntities(world.entities);
     std::pair<float,float> playerPos = world.player->getScaledPosition(); //actual player in the logic world
     player.setPosition(playerPos.first,playerPos.second);
     mainWindow.draw(player);
     mainWindow.display();
 }
 
-void Game::drawEntities(std::list<std::shared_ptr<Entity>> entities) {
-    for(auto entity : entities){
+void Game::drawEntities(const std::list<std::unique_ptr<Entity>>& entities) {
+    for(const auto& entity : entities){
         sf::RectangleShape platform;
         platform.setFillColor(sf::Color::White);
         platform.setSize(sf::Vector2f(150.f,25.f));

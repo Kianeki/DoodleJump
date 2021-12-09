@@ -11,11 +11,12 @@
 class World {
 public:
     World();
-    std::list<std::shared_ptr<Entity>> entities;
+    std::list<std::unique_ptr<Entity>> entities;
     std::unique_ptr<Entity> player;
 public:
     void generatePlatforms();
     void movePlayer(std::pair<float,float> pos); //moves x and y coordinate by an amount
+    std::list<std::unique_ptr<Entity>>& getEntities();
 };
 
 

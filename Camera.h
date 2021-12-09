@@ -22,12 +22,12 @@ public:
 public:
     void updateMaxHeight(std::unique_ptr<Entity>& player);
     void setWindowSize(int windowWidth, int windowheight);
-    std::list<std::shared_ptr<Entity>> getEntitiesinView(std::list<std::shared_ptr<Entity>>& entities);
+    void checkView(std::list<std::unique_ptr<Entity>>& entities); //puts all entities in view in "entitiesInView" (except for player)
 private:
-    std::list<std::shared_ptr<Entity>> entitiesInView;
+//    std::list<std::shared_ptr<Entity>> entitiesInView;
 
-private:
-    void checkView(std::list<std::shared_ptr<Entity>>& entities); //puts all entities in view in "entitiesInView" (except for player)
+
+
 };
 
 
