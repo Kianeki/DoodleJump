@@ -20,9 +20,9 @@ public:
     float lowerBound=-1;
     std::pair<int,int> windowSize;
 public:
-    void updateMaxHeight(std::unique_ptr<Entity>& player);
+    void updateMaxHeight(std::unique_ptr<Player>& player);
     void setWindowSize(int windowWidth, int windowheight);
-    void checkView(std::list<std::unique_ptr<Entity>>& entities); //puts all entities in view in "entitiesInView" (except for player)
+    void checkView(std::list<std::unique_ptr<Entity>>& entities); //puts all entities in view in "entitiesInView" (except for visualPlayer)
 private:
 //    std::list<std::shared_ptr<Entity>> entitiesInView;
 

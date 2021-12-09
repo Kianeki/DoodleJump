@@ -11,7 +11,7 @@
 class Game {
 private:
     sf::RenderWindow mainWindow;
-    sf::CircleShape player;
+    sf::RectangleShape visualPlayer;
     World world;
     Camera camera;
 public:

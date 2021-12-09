@@ -12,7 +12,7 @@ class World {
 public:
     World();
     std::list<std::unique_ptr<Entity>> entities;
-    std::unique_ptr<Entity> player;
+    std::unique_ptr<Player> player;
 public:
     void generatePlatforms();
     void movePlayer(std::pair<float,float> pos); //moves x and y coordinate by an amount

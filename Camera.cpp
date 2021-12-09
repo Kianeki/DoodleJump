@@ -38,7 +38,7 @@ void Camera::setWindowSize(int windowWidth, int windowheight) {
 }
 
 
-void Camera::updateMaxHeight(std::unique_ptr<Entity>& player) { //update camera according to player Height
+void Camera::updateMaxHeight(std::unique_ptr<Player>& player) { //update camera according to visualPlayer Height
     float wCentrex = windowSize.first/2.f;
     float wCentrey = windowSize.second/2.f;
     std::pair<float,float> playerPos = player->getPosition();
