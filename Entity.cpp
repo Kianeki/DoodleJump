@@ -11,8 +11,10 @@ Entity::Entity() {
 std::pair<float, float> Entity::getPosition() {
     return position;
 }
-
-void Entity::setScaledPosition(std::pair<int, int> scaledPos) {
+void Entity::setPosition(std::pair<float,float> pos){
+    position= pos;
+}
+void Entity::setScaledPosition(std::pair<float,float> scaledPos) {
     scaledPosition=scaledPos;
 }
 

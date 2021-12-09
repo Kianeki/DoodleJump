@@ -13,8 +13,10 @@ public:
     Entity();
     Entity(float x, float y);
     std::pair<float,float> getPosition();
+
     std::pair<float,float> getScaledPosition();
-    void setScaledPosition(std::pair<int,int> scaledPos);
+    void setPosition(std::pair<float,float> Pos);
+    void setScaledPosition(std::pair<float,float> scaledPos);
 protected:
     std::pair<float,float> position{0,0};
     std::pair<float,float> scaledPosition{0,0};

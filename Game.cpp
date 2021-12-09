@@ -42,12 +42,17 @@ void Game::processEvents() {
 }
 
 void Game::update() {
-
+    std::pair<float,float> playerMovement{0,0};
+    playerMovement.second+=0.001;
+    world.movePlayer(playerMovement);
+    camera.updateMaxHeight(world.player); // update the max height according to the player, should always be centered
 }
 
 void Game::render() {
     mainWindow.clear();
     drawEntities(camera.getEntitiesinView(world.entities));
+    std::pair<float,float> playerPos = world.player->getScaledPosition(); //actual player in the logic world
+    player.setPosition(playerPos.first,playerPos.second);
     mainWindow.draw(player);
     mainWindow.display();
 }

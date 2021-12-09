@@ -20,21 +20,14 @@ public:
     float lowerBound=-1;
     std::pair<int,int> windowSize;
 public:
-    void updateMaxHeight(float playerHeight){ //update camera according to player Height
-        if(playerHeight>currentMaxHeight){
-            currentMaxHeight=playerHeight;
-            upperBound=currentMaxHeight+1;
-            lowerBound=currentMaxHeight-1;
-        }
-    }
+    void updateMaxHeight(std::unique_ptr<Entity>& player);
     void setWindowSize(int windowWidth, int windowheight);
-
-    std::list<std::shared_ptr<Entity>> getEntitiesinView(std::list<std::shared_ptr<Entity>> entities);
+    std::list<std::shared_ptr<Entity>> getEntitiesinView(std::list<std::shared_ptr<Entity>>& entities);
 private:
     std::list<std::shared_ptr<Entity>> entitiesInView;
 
 private:
-    void checkView(std::list<std::shared_ptr<Entity>> entities); //puts all entities in view in "entitiesInView" (except for player)
+    void checkView(std::list<std::shared_ptr<Entity>>& entities); //puts all entities in view in "entitiesInView" (except for player)
 };
 
 

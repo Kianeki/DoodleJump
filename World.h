@@ -15,6 +15,7 @@ public:
     std::unique_ptr<Entity> player;
 public:
     void generatePlatforms();
+    void movePlayer(std::pair<float,float> pos); //moves x and y coordinate by an amount
 };
 
 
