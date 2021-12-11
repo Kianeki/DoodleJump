@@ -7,17 +7,25 @@
 
 
 #include <utility>
-
+namespace platformType {
+    enum Type {
+        staticP = 'S', temporaryP = 'T', horizontalP = 'H', verticalP = 'V'
+    };
+}
 class Entity {
 public:
     Entity();
     Entity(float x, float y);
+
     std::pair<float,float> getPosition();
     std::pair<float,float> getScaledPosition();
-//    void setPosition(std::pair<float,float> Pos);
+    void setXPosition(float pos);
+    void setYPosition(float pos);
     void setScaledPosition(std::pair<float,float> scaledPos);
     virtual float getWidth() const;
     virtual float getHeight() const;
+    virtual platformType::Type getPlatformType() const;
+
 protected:
     std::pair<float,float> position{0,0};
     std::pair<float,float> scaledPosition{0,0};
@@ -38,11 +46,6 @@ private:
     float height = 0.10;
     float jumpHeight = 0.4;
 };
-namespace platformType {
-    enum Type {
-        staticP = 'S', temporaryP = 'T', horizontalP = 'H', verticalP = 'V'
-    };
-}
 
 class Platform : public Entity {
 public:
@@ -52,10 +55,12 @@ public:
     };
     float getWidth() const override;
     float getHeight() const override;
+    platformType::Type getPlatformType() const override;
 protected:
     float width = 0.25;
     float height = 0.02;
     platformType::Type type;
 };
+
 
 #endif //DOODLEJUMP_ENTITY_H

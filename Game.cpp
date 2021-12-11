@@ -7,12 +7,12 @@
 Game::Game(): mainWindow(sf::VideoMode(600,900),"DoodleJump"), visualPlayer() { //600,900
     float playerHeight = world.player->getHeight(); //measurements of player char
     float playerWidth = world.player->getWidth(); //measurements of player char
-    visualPlayer.setFillColor(sf::Color::Green);
+    visualPlayer.setFillColor(sf::Color::Cyan);
 //    sf::FloatRect bounds = visualPlayer.getLocalBounds();
 //    visualPlayer.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
     auto windowSize = mainWindow.getSize();
     visualPlayer.setPosition(windowSize.x / 2.f, windowSize.y / 2.f); //set visualPlayer at middle of window, is later updated in gameloop
-    camera.setWindowSize(windowSize.x,windowSize.y);
+    world.setWindowSize(windowSize.x,windowSize.y);
     auto playerSize = visualPlayer.getSize();
     playerSize.x= windowSize.x*playerWidth;
     playerSize.y = windowSize.y * playerHeight;
@@ -54,31 +54,46 @@ void Game::update() {
     world.generatePlatforms();
     playerMovement.second+=0.001;
     world.movePlayer(playerMovement);
-    camera.updateMaxHeight(world.player); // update the max height according to the Player, should always be centered
-    camera.checkView(world.entities); // check if platforms are in view, delete if out of view
+    world.updateMaxHeight(); // update the max height according to the Player, should always be centered
+    world.updateCameraView(); // check if platforms are in view, delete if out of view
 }
 
 void Game::render() {
     mainWindow.clear();
 //    camera.checkView(world.entities);
-    drawEntities(world.entities); //draw all platforms
+    drawEntities(world.getEntities()); //draw all platforms
     std::pair<float,float> playerPos = world.player->getScaledPosition(); //actual Player in the logic world
     visualPlayer.setPosition(playerPos.first, playerPos.second);
     mainWindow.draw(visualPlayer);
     mainWindow.display();
+//    std::cout<<world.getEntities().size()<<std::endl;
 }
 
 void Game::drawEntities(const std::list<std::unique_ptr<Entity>>& entities) {
     auto windowSize= mainWindow.getSize();
     for(const auto& entity : entities){
         sf::RectangleShape visualPlatform;
-        visualPlatform.setFillColor(sf::Color::White);
+        platformType::Type type = entity->getPlatformType();
+        switch(type){
+            case platformType::staticP:
+                visualPlatform.setFillColor(sf::Color::Green);
+                break;
+
+            case platformType::temporaryP:
+                visualPlatform.setFillColor(sf::Color::White);
+                break;
+
+            case platformType::horizontalP:
+                visualPlatform.setFillColor(sf::Color::Blue);
+                break;
+            case platformType::verticalP:
+                visualPlatform.setFillColor(sf::Color::Yellow);
+        }
         float width = entity->getWidth();
         float height = entity->getHeight();
         width= windowSize.x*width;
         height= windowSize.y*height;
         visualPlatform.setSize(sf::Vector2f(width, height));
-//        visualPlatform.setSize(sf::Vector2f(150.f,25.f));
         sf::FloatRect bounds = visualPlatform.getLocalBounds();
         visualPlatform.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
         std::pair<float,float> position= entity->getScaledPosition();

@@ -9,15 +9,25 @@
 #include "Entity.h"
 #include <memory>
 #include "Random.h"
+#include "Camera.h"
 class World {
 public:
-    World();
-    std::list<std::unique_ptr<Entity>> entities;
+
     std::unique_ptr<Player> player;
 public:
+    World();
     void generatePlatforms();
     void movePlayer(std::pair<float,float> pos); //moves x and y coordinate by an amount
-    std::list<std::unique_ptr<Entity>>& getEntities();
+    const std::list<std::unique_ptr<Entity>>& getEntities() const;
+    void updateMaxHeight(); // update the max height according to the Player, should always be centered
+    void updateCameraView(); // check if platforms are in view, delete if out of view
+    void setWindowSize(float x, float y);
+
+private:
+    Camera camera;
+    std::list<std::unique_ptr<Entity>> entities;
+    int score=0;
+    int difficulty=3; //max 3
 };
 
 

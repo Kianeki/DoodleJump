@@ -7,13 +7,13 @@
 #include "SFML/Graphics.hpp"
 #include "World.h"
 #include "Camera.h"
-
+#include "iostream"
 class Game {
 private:
     sf::RenderWindow mainWindow;
     sf::RectangleShape visualPlayer;
     World world;
-    Camera camera;
+//    Camera camera;
 public:
     Game();
     void run();

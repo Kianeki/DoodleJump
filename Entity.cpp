@@ -35,12 +35,28 @@ float Entity::getHeight() const {
     return 0;
 }
 
+platformType::Type Entity::getPlatformType() const {
+    return platformType::Type();
+}
+
+void Entity::setXPosition(float pos) {
+    position.first=pos;
+}
+
+void Entity::setYPosition(float pos) {
+    position.second=pos;
+}
+
 float Platform::getWidth() const {
     return width;
 }
 
 float Platform::getHeight() const {
     return height;
+}
+
+platformType::Type Platform::getPlatformType() const {
+    return type;
 }
 
 float Player::getWidth() const {

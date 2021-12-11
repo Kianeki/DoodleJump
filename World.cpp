@@ -13,11 +13,14 @@ World::World() {
 void World::generatePlatforms() {
     float lastPlatformY = entities.back()->getPosition().second;
     float platformX = 0.0;
+    float platformWidth = entities.back()->getWidth();
+    float platformHeight = entities.back()->getHeight();
     std::shared_ptr<Random> random = Random::getInstance();
-    while(lastPlatformY< 1.0){ //while the last platform generated is lower than the top of the camera
-        lastPlatformY+= random->randomPlatformY(); //lastPlatformY will represent Y value of new platform
-        platformX = random->randomPlatformX(); //platformX represents X value of new platform
-        entities.push_back(std::unique_ptr<Platform>(new Platform(platformX,lastPlatformY,platformType::staticP)));
+    while(lastPlatformY< camera.upperBound){ //while the last platform generated is lower than the top of the camera
+        platformType::Type platformType = random->randomPlatformType(difficulty);
+        lastPlatformY+= random->randomPlatformY(platformHeight, player->getJumpHeight(), difficulty); //lastPlatformY will represent Y value of new platform
+        platformX = random->randomPlatformX(platformWidth); //platformX represents X value of new platform
+        entities.push_back(std::unique_ptr<Platform>(new Platform(platformX,lastPlatformY, platformType)));
     }
 }
 
@@ -29,8 +32,21 @@ void World::movePlayer(std::pair<float, float> pos) {
 //    visualPlayer->setPosition(currentPos);
 }
 
-std::list<std::unique_ptr<Entity>>& World::getEntities() {
+const std::list<std::unique_ptr<Entity>>& World::getEntities() const {
     return entities;
+}
+
+void World::updateMaxHeight() {
+    camera.updateMaxHeight(player); // update the max height according to the Player, should always be centered
+
+}
+
+void World::updateCameraView() {
+    camera.updateView(entities); // check if platforms are in view, delete if out of view
+}
+
+void World::setWindowSize(float width, float height) {
+    camera.setWindowSize(width, height);
 }
 
 
