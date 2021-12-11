@@ -8,6 +8,7 @@
 #include <list>
 #include "Entity.h"
 #include <memory>
+#include "Random.h"
 class World {
 public:
     World();

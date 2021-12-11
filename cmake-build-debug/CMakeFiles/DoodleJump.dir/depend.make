@@ -89,6 +89,7 @@ CMakeFiles/DoodleJump.dir/Game.cpp.obj: ../Camera.h
 CMakeFiles/DoodleJump.dir/Game.cpp.obj: ../Entity.h
 CMakeFiles/DoodleJump.dir/Game.cpp.obj: ../Game.cpp
 CMakeFiles/DoodleJump.dir/Game.cpp.obj: ../Game.h
+CMakeFiles/DoodleJump.dir/Game.cpp.obj: ../Random.h
 CMakeFiles/DoodleJump.dir/Game.cpp.obj: ../World.h
 
 CMakeFiles/DoodleJump.dir/Random.cpp.obj: ../Random.cpp
@@ -98,6 +99,7 @@ CMakeFiles/DoodleJump.dir/Stopwatch.cpp.obj: ../Stopwatch.cpp
 CMakeFiles/DoodleJump.dir/Stopwatch.cpp.obj: ../Stopwatch.h
 
 CMakeFiles/DoodleJump.dir/World.cpp.obj: ../Entity.h
+CMakeFiles/DoodleJump.dir/World.cpp.obj: ../Random.h
 CMakeFiles/DoodleJump.dir/World.cpp.obj: ../World.cpp
 CMakeFiles/DoodleJump.dir/World.cpp.obj: ../World.h
 
@@ -175,6 +177,7 @@ CMakeFiles/DoodleJump.dir/main.cpp.obj: C:/SFML/include/SFML/Window/WindowStyle.
 CMakeFiles/DoodleJump.dir/main.cpp.obj: ../Camera.h
 CMakeFiles/DoodleJump.dir/main.cpp.obj: ../Entity.h
 CMakeFiles/DoodleJump.dir/main.cpp.obj: ../Game.h
+CMakeFiles/DoodleJump.dir/main.cpp.obj: ../Random.h
 CMakeFiles/DoodleJump.dir/main.cpp.obj: ../World.h
 CMakeFiles/DoodleJump.dir/main.cpp.obj: ../main.cpp
 

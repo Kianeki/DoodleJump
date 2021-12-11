@@ -27,26 +27,30 @@ std::pair<float, float> Entity::getScaledPosition() {
     return scaledPosition;
 }
 
-float Entity::getWidth() {
+float Entity::getWidth() const {
     return 0;
 }
 
-float Entity::getHeight() {
+float Entity::getHeight() const {
     return 0;
 }
 
-float Platform::getWidth() {
+float Platform::getWidth() const {
     return width;
 }
 
-float Platform::getHeight() {
+float Platform::getHeight() const {
     return height;
 }
 
-float Player::getWidth() {
+float Player::getWidth() const {
     return width;
 }
 
-float Player::getHeight() {
+float Player::getHeight() const {
     return height;
+}
+
+float Player::getJumpHeight() const {
+    return jumpHeight;
 }

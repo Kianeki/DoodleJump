@@ -4,7 +4,7 @@
 
 #include "Game.h"
 
-Game::Game(): mainWindow(sf::VideoMode(600,900),"DoodleJump"), visualPlayer() {
+Game::Game(): mainWindow(sf::VideoMode(600,900),"DoodleJump"), visualPlayer() { //600,900
     float playerHeight = world.player->getHeight(); //measurements of player char
     float playerWidth = world.player->getWidth(); //measurements of player char
     visualPlayer.setFillColor(sf::Color::Green);
@@ -51,6 +51,7 @@ void Game::processEvents() {
 
 void Game::update() {
     std::pair<float,float> playerMovement{0,0};
+    world.generatePlatforms();
     playerMovement.second+=0.001;
     world.movePlayer(playerMovement);
     camera.updateMaxHeight(world.player); // update the max height according to the Player, should always be centered
