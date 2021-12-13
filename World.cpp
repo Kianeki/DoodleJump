@@ -5,8 +5,7 @@
 #include "World.h"
 
 World::World() {
-//    entities.push_back(std::unique_ptr<Platform>(new Platform(0,-0.98, platformType::staticP)));
-//    entities.push_back(std::unique_ptr<Platform>(new Platform(0.5,0.5,platformType::staticP)));
+
     entities.push_back(std::unique_ptr<Platform>(new Platform(0,-0.8,platformType::staticP)));
     player = std::unique_ptr<Player>(new Player(0,-0.5));
 }
@@ -20,7 +19,15 @@ void World::generatePlatforms() {
         platformType::Type platformType = random->randomPlatformType(difficulty);
         lastPlatformY+= random->randomPlatformY(platformHeight, player->getJumpHeight(), difficulty); //lastPlatformY will represent Y value of new platform
         platformX = random->randomPlatformX(platformWidth); //platformX represents X value of new platform
-        entities.push_back(std::unique_ptr<Platform>(new Platform(platformX,lastPlatformY, platformType)));
+        if(platformType==platformType::horizontalP){
+            entities.push_back(std::unique_ptr<Platform>(new HorizontalPlatform(platformX,lastPlatformY)));
+        }
+        else if(platformType==platformType::verticalP){
+            entities.push_back(std::unique_ptr<Platform>(new VerticalPlatform(platformX,lastPlatformY)));
+        }
+        else{
+            entities.push_back(std::unique_ptr<Platform>(new Platform(platformX,lastPlatformY, platformType)));
+        }
     }
 }
 

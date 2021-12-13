@@ -20,7 +20,7 @@ public:
 
 private:
     void processEvents();
-    void update();
+    void update(float timePerFrame);
     void render();
     void drawEntities(const std::list<std::unique_ptr<Entity>>& entities);
 };

@@ -3,6 +3,7 @@
 //
 
 #include "Game.h"
+#include "Stopwatch.h"
 
 Game::Game(): mainWindow(sf::VideoMode(600,900),"DoodleJump"), visualPlayer() { //600,900
     float playerHeight = world.player->getHeight(); //measurements of player char
@@ -22,10 +23,18 @@ Game::Game(): mainWindow(sf::VideoMode(600,900),"DoodleJump"), visualPlayer() { 
 }
 
 void Game::run() {
+    std::shared_ptr<Stopwatch> klok = Stopwatch::getInstance();
+    float timeSinceLastTick = klok->getElapsedTime();
     while (mainWindow.isOpen())
     {
         processEvents();
-        update();
+        timeSinceLastTick +=klok->getElapsedTime();
+        float timePerFrame = klok->getTimePerFrame();
+        while(timeSinceLastTick > timePerFrame){
+            timeSinceLastTick -= timePerFrame;
+            processEvents();
+            update(timePerFrame);
+        }
         render();
     }
 }
@@ -49,10 +58,10 @@ void Game::processEvents() {
     }
 }
 
-void Game::update() {
+void Game::update(float timePerFrame) {
     std::pair<float,float> playerMovement{0,0};
     world.generatePlatforms();
-    playerMovement.second+=0.001;
+    playerMovement.second+=0.5*timePerFrame;
     world.movePlayer(playerMovement);
     world.updateMaxHeight(); // update the max height according to the Player, should always be centered
     world.updateCameraView(); // check if platforms are in view, delete if out of view

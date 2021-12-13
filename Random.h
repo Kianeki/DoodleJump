@@ -23,18 +23,18 @@ public:
         return distribution(generator);
     }
     platformType::Type randomPlatformType(int difficulty){
-        std::uniform_int_distribution<int> distribution(0+difficulty,6+difficulty); //0+difficulty <= x <= 4+difficulty
+        std::uniform_int_distribution<int> distribution(0+difficulty,4+difficulty); //0+difficulty <= x <= 4+difficulty
         int randomNumber = distribution(generator);
-        if(randomNumber<5){
+        if(randomNumber<4){
             return platformType::staticP;
         }
-        else if (randomNumber==5){
+        else if (randomNumber==4){
             return platformType::temporaryP;
         }
-        else if(randomNumber==6 || randomNumber==7 || randomNumber==8){
+        else if(randomNumber==5 || randomNumber==6){
             return platformType::horizontalP;
         }
-        else if(randomNumber==9){
+        else if(randomNumber==7){
             return platformType::verticalP;
         }
         return platformType::Type(); //Need to throw exception here

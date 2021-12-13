@@ -59,6 +59,10 @@ platformType::Type Platform::getPlatformType() const {
     return type;
 }
 
+bool Platform::checkDirection() {
+    return false;
+}
+
 float Player::getWidth() const {
     return width;
 }
@@ -69,4 +73,23 @@ float Player::getHeight() const {
 
 float Player::getJumpHeight() const {
     return jumpHeight;
+}
+
+bool Player::checkDirection() {
+    falling=!falling;
+    return falling;
+}
+
+bool VerticalPlatform::checkDirection() {
+    if(position.second>=maxMoveDistanceY || position.second<=minMoveDistanceY){
+        direction=!direction;
+    }
+    return direction;
+}
+
+bool HorizontalPlatform::checkDirection() {
+    if(width+position.first>=1 || position.first-width<=-1){
+        direction=!direction;
+    }
+    return  direction;
 }

@@ -8,18 +8,28 @@ void Camera::updateView(std::list<std::unique_ptr<Entity>>& entities) {
     float wCentrex = windowSize.first/2.f;
     float wCentrey = windowSize.second/2.f;
     for(auto it=entities.begin(); it!=entities.end();){
-
-        if((*it)->getPlatformType()== platformType::horizontalP){
-
-            (*it)->setXPosition((*it)->getPosition().first+0.001);
+        //************************************************************************
+        if((*it)->getPlatformType()== platformType::horizontalP){ //this section controls horizon/vertical platform movement
+            if((*it)->checkDirection()){
+                (*it)->setXPosition((*it)->getPosition().first+0.01);
+            }
+            else{
+                (*it)->setXPosition((*it)->getPosition().first-0.01);
+            }
         }
         else if((*it)->getPlatformType()== platformType::verticalP){
-            (*it)->setYPosition((*it)->getPosition().second-0.001);
+            if((*it)->checkDirection()){
+                (*it)->setYPosition((*it)->getPosition().second+0.01);
+            }
+            else{
+                (*it)->setYPosition((*it)->getPosition().second-0.01);
+            }
         }
+        //********************************************************
         std:: pair<float,float> position = (*it)->getPosition();
         if(position.second>lowerBound /*&& position.second<upperBound*/){ //if it is in view
-            position.first = floor(wCentrex+(wCentrex*position.first)); //floor for exact pixel value
-            position.second = floor(wCentrey-((position.second-currentMaxHeight)*wCentrey));
+            position.first = wCentrex+(wCentrex*position.first); //scaled pixelwaarde X
+            position.second = wCentrey-((position.second-currentMaxHeight)*wCentrey); //scaled pixelwaarde Y
             (*it)->setScaledPosition(position);
             ++it;
         }
@@ -27,17 +37,7 @@ void Camera::updateView(std::list<std::unique_ptr<Entity>>& entities) {
             it = entities.erase(it);
         }
     }
-//    for(auto& entity: entities){
-//        std:: pair<float,float> position = entity->getPosition();
-//        if(position.second>lowerBound && position.second<upperBound){ //if it is in view
-//            position.first= floor(wCentrex+(wCentrex*position.first)); //floor for exact pixel value
-//            position.second= floor(wCentrey-((position.second-currentMaxHeight)*wCentrey));
-//            entity->setScaledPosition(position);
-//        }
-//        else{
-//            entities.pop_front(); //we arrange the platforms from bottom to top, so we can alway pop front if platform is out of view
-//        }
-//    }
+
 }
 
 void Camera::setWindowSize(int windowWidth, int windowheight) {

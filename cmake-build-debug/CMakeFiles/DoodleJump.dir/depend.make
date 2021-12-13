@@ -90,6 +90,7 @@ CMakeFiles/DoodleJump.dir/Game.cpp.obj: ../Entity.h
 CMakeFiles/DoodleJump.dir/Game.cpp.obj: ../Game.cpp
 CMakeFiles/DoodleJump.dir/Game.cpp.obj: ../Game.h
 CMakeFiles/DoodleJump.dir/Game.cpp.obj: ../Random.h
+CMakeFiles/DoodleJump.dir/Game.cpp.obj: ../Stopwatch.h
 CMakeFiles/DoodleJump.dir/Game.cpp.obj: ../World.h
 
 CMakeFiles/DoodleJump.dir/Random.cpp.obj: ../Entity.h

@@ -5,10 +5,34 @@
 #ifndef DOODLEJUMP_STOPWATCH_H
 #define DOODLEJUMP_STOPWATCH_H
 
-
+#include "memory"
+#include "chrono"
 class Stopwatch {
+public:
+    static std::shared_ptr<Stopwatch> getInstance() {
+        static std::shared_ptr<Stopwatch> instance = std::shared_ptr<Stopwatch>(new Stopwatch());
+        return instance;
+    }
 
+    float getElapsedTime() { //returns elapsed time in seconds
+        std::chrono::high_resolution_clock::time_point currentTimePoint = std::chrono::high_resolution_clock::now();
+//        std::chrono::high_resolution_clock::time_point tempTime = previousTimePoint;
+        elapsedTime = std::chrono::duration_cast<std::chrono::microseconds>(currentTimePoint - previousTimePoint).count() / 1000000.f;
+        previousTimePoint = currentTimePoint;
+        return elapsedTime;
+    }
+
+    float getTimePerFrame() const{
+        return timePerFrame;
+    }
+private:
+    Stopwatch() {
+        previousTimePoint = std::chrono::high_resolution_clock::now();
+    }
+
+    std::chrono::high_resolution_clock::time_point previousTimePoint;
+    float elapsedTime=0;
+    float timePerFrame = 1 / 60.f;
 };
-
 
 #endif //DOODLEJUMP_STOPWATCH_H
