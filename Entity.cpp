@@ -71,14 +71,28 @@ float Player::getHeight() const {
     return height;
 }
 
-float Player::getJumpHeight() const {
-    return jumpHeight;
-}
+//float Player::getJumpHeight() const {
+//    return jumpHeight;
+//}
 
 bool Player::checkDirection() {
-    falling=!falling;
-    return falling;
+
+    if(currentSpeed>0){
+        return true;
+    }
+    return false;
 }
+
+float Player::changeDirection() {
+    currentSpeed=speed;
+}
+
+
+
+
+
+
+
 
 bool VerticalPlatform::checkDirection() {
     if(position.second>=maxMoveDistanceY || position.second<=minMoveDistanceY){

@@ -36,17 +36,22 @@ public:
     Player(float x, float y) : Entity(x,y){};
     float getWidth() const override;
     float  getHeight() const override;
-    float  getJumpHeight() const;
+//    float  getJumpHeight() const;
     void changeLocation(float x, float y){
         position.first=x;
         position.second=y;
     }
     virtual bool checkDirection() override;
+    float changeDirection();
+
+    float currentSpeed = 0;
+    float speed = 1.7f;
 private:
     float width = 0.10;
     float height = 0.10;
-    float jumpHeight = 0.4;
-    bool falling;
+//    float jumpHeight = 0.4;
+
+//    float currentSpeed = 0;
 };
 
 class Platform : public Entity {

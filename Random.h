@@ -18,8 +18,8 @@ public:
         std::uniform_real_distribution<double> distribution(-1.0+platformWidth,1.0-platformWidth);//adding/subtracting platformwidth ensures platforms are within view
         return distribution(generator);
     }
-    float randomPlatformY(float platformHeight, float jumpheight, int difficulty){ // platformHeight is the thickness of the platform
-        std::uniform_real_distribution<double> distribution(3*platformHeight*(1 + difficulty),(jumpheight/2)+(jumpheight*difficulty/9));
+    float randomPlatformY(float platformHeight, float minPlatformDistance, int difficulty){ // platformHeight is the thickness of the platform
+        std::uniform_real_distribution<double> distribution(3*platformHeight*(1.0+ difficulty), (minPlatformDistance / 2) + (minPlatformDistance * difficulty / 9));
         return distribution(generator);
     }
     platformType::Type randomPlatformType(int difficulty){

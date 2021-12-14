@@ -43,13 +43,13 @@ void Game::processEvents() {
     sf::Event event;
     while (mainWindow.pollEvent(event)){
         switch (event.type) {
-//            case sf::Event::KeyPressed:
-//                handlePlayerInput(event.key.code,true);
-//                break;
-//
-//            case sf::Event::KeyReleased:
-//                handlePlayerInput(event.key.code, false);
-//                break;
+            case sf::Event::KeyPressed:
+                handlePlayerInput(event.key.code,true);
+                break;
+
+            case sf::Event::KeyReleased:
+                handlePlayerInput(event.key.code, false);
+                break;
 
             case sf::Event::Closed:
                 mainWindow.close();
@@ -59,11 +59,11 @@ void Game::processEvents() {
 }
 
 void Game::update(float timePerFrame) {
-    std::pair<float,float> playerMovement{0,0};
     world.generatePlatforms();
-    playerMovement.second+=0.5*timePerFrame;
-    world.movePlayer(playerMovement);
+    world.checkCollision();
+    world.movePlayer(timePerFrame);
     world.updateMaxHeight(); // update the max height according to the Player, should always be centered
+    world.movePlatforms(timePerFrame);
     world.updateCameraView(); // check if platforms are in view, delete if out of view
 }
 
@@ -108,5 +108,14 @@ void Game::drawEntities(const std::list<std::unique_ptr<Entity>>& entities) {
         std::pair<float,float> position= entity->getScaledPosition();
         visualPlatform.setPosition(position.first, position.second);
         mainWindow.draw(visualPlatform);
+    }
+}
+
+void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed) {
+    if(key == sf::Keyboard::Left ||key ==sf::Keyboard::A ){
+        world.movePlayerLeft(isPressed);
+    }
+    else if(key == sf::Keyboard::Right ||key ==sf::Keyboard::D ){
+        world.movePlayerRight(isPressed);
     }
 }

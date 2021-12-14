@@ -23,6 +23,7 @@ private:
     void update(float timePerFrame);
     void render();
     void drawEntities(const std::list<std::unique_ptr<Entity>>& entities);
+    void handlePlayerInput(sf::Keyboard::Key key, bool isPressed);
 };
 
 

@@ -17,17 +17,27 @@ public:
 public:
     World();
     void generatePlatforms();
-    void movePlayer(std::pair<float,float> pos); //moves x and y coordinate by an amount
+    void movePlayer(float timePerFrame); //moves x and y coordinate by an amount
     const std::list<std::unique_ptr<Entity>>& getEntities() const;
     void updateMaxHeight(); // update the max height according to the Player, should always be centered
     void updateCameraView(); // check if platforms are in view, delete if out of view
     void setWindowSize(float x, float y);
+    void movePlayerLeft(bool keyPressed);
+    void movePlayerRight(bool keyPressed);
+    void movePlatforms(float timePerFrame);
+    void checkCollision();
 
+    float getGravity() const;
+//    void handlePlayerInput()
 private:
     Camera camera;
     std::list<std::unique_ptr<Entity>> entities;
     int score=0;
     int difficulty=3; //max 3
+    bool playerMovingLeft=false;
+    bool playerMovingRight=false;
+    float gravity = 2.f;
+    float minPlatformDistance = 0.4f;
 };
 
 
