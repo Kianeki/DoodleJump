@@ -2,33 +2,82 @@
 // Created by Kiani on 7/12/2021.
 //
 
-#ifndef DOODLEJUMP_CAMERA_H
-#define DOODLEJUMP_CAMERA_H
+#ifndef TESTSFML_CAMERA_H
+#define TESTSFML_CAMERA_H
 
-#include "Entity.h"
-#include <memory>
-#include <list>
-//We will be using (0,0) as origin
-//(-1,q) left bound, (1,q) right bound (q can take all y values)
-//(v,-1) as lower bound (v can go from -1 to 1
-// and infinitely extending up
 
+#include <utility>
+#include <math.h>
+//We will be using a coordinate system with (0,0) as origin,
+//(-1,0) as left bound
+//(1,0) as right bound
+//(0,-1) lowewst bound
+//and (0,x) as upper bound where x can go to infty
+// (0,x-1) as lower bound
 class Camera {
+
 public:
-    float currentMaxHeight=0; //start in the centre
-    float upperBound=1;
-    float lowerBound=-1;
-    std::pair<int,int> windowSize;
-public:
-    void updateMaxHeight(std::unique_ptr<Player>& player);
-    void setWindowSize(int windowWidth, int windowheight);
-    void updateView(std::list<std::unique_ptr<Entity>>& entities); //puts all entities in view in "entitiesInView" (except for visualPlayer)
+    Camera(float windowWidth, float windowHeight) : windowWidth(windowWidth), windowHeight(windowHeight){
+
+    }
+    Camera();
+    std::pair<float,float> scaledPosition(float positionX, float positionY) const{
+        float wCentrex = windowWidth/2.f;
+        float wCentrey = windowHeight/2.f;
+//        std::pair<float,float> scaledPos;
+        if(positionY>lowerBound /*&& position.second<upperBound*/){ //if it is in view
+            positionX = wCentrex+(wCentrex*positionX); //scaled pixelwaarde X
+            positionY = wCentrey-((positionY-currentMaxHeight)*wCentrey); //scaled pixelwaarde Y
+        }
+        return {positionX,positionY};
+    }
+    bool updateMaxHeight(std::pair<float,float> playerPos){
+        if(playerPos.second>currentMaxHeight){
+            currentMaxHeight=playerPos.second;
+            upperBound=currentMaxHeight+1;
+            lowerBound=currentMaxHeight-1;
+            return true;
+        }
+        return false;
+    }
+    bool checkView(std::pair<float,float> position) const{
+        if(position.second >lowerBound) {//if it is in cameraview
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    bool screenFilled(std::pair<float,float> entityPosition) const{
+        if(entityPosition.second>upperBound){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+//    void updatePlayerLocation(float x, float y){
+//        playerLocation.first+=x;
+//        playerLocation.second+=y;
+//        if(playerLocation.second>currentMaxHeight){
+//            currentMaxHeight=playerLocation.second;
+//            cameraBounds.first=currentMaxHeight+1;
+//            cameraBounds.second=currentMaxHeight-1;
+//        }
+//    }
+//    std::pair<float,float> getPlayerLocation(){
+//        std::pair<float,float> relativeLocation{playerLocation.first,playerLocation.second-currentMaxHeight};
+//        return relativeLocation;
+//    }
 private:
-//    std::list<std::shared_ptr<Entity>> entitiesInView;
-
-
+//    std::pair<float,float> playerLocation{0,0};
+    float currentMaxHeight{0}; //Y-value
+    float upperBound{1};//upper and lower bounds, left and right bounds are always the same
+    float lowerBound{-1};
+    float windowWidth;
+    float windowHeight;
 
 };
 
 
-#endif //DOODLEJUMP_CAMERA_H
+#endif //TESTSFML_CAMERA_H

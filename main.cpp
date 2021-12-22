@@ -1,9 +1,10 @@
 #include <iostream>
 
-
+//#include "amen"
+#include <SFML/Graphics.hpp>
 #include "Game.h"
-#include "Entity.h"
-int main() {
+int main()
+{
     Game game;
     game.run();
     return 0;

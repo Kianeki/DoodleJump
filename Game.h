@@ -1,30 +1,35 @@
 //
-// Created by Kiani on 7/12/2021.
+// Created by Kiani on 4/12/2021.
 //
 
-#ifndef DOODLEJUMP_GAME_H
-#define DOODLEJUMP_GAME_H
-#include "SFML/Graphics.hpp"
-#include "World.h"
+#ifndef TESTSFML_GAME_H
+#define TESTSFML_GAME_H
+#include <SFML/Graphics.hpp>
 #include "Camera.h"
-#include "iostream"
+#include <iostream>
+#include <list>
+#include "ConcreteFactory.h"
+
+#include "World.h"
+#include "Stopwatch.h"
 class Game {
-private:
-    sf::RenderWindow mainWindow;
-    sf::RectangleShape visualPlayer;
-    World world;
-//    Camera camera;
 public:
     Game();
     void run();
-
 private:
     void processEvents();
-    void update(float timePerFrame);
+    void update();
     void render();
-    void drawEntities(const std::list<std::unique_ptr<Entity>>& entities);
     void handlePlayerInput(sf::Keyboard::Key key, bool isPressed);
+private:
+    std::shared_ptr<sf::RenderWindow> mWindow;
+    World world;
+    PlayerMovement::Direction currentPlayerDirection = PlayerMovement::none;
+//    PlayerMovement::Direction previousPlayerDirection = PlayerMovement::none;
+    bool left=false;
+    bool right=false;
+
 };
 
 
-#endif //DOODLEJUMP_GAME_H
+#endif //TESTSFML_GAME_H

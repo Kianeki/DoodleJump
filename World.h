@@ -1,44 +1,45 @@
 //
-// Created by Kiani on 7/12/2021.
+// Created by Kiani on 16/12/2021.
 //
 
-#ifndef DOODLEJUMP_WORLD_H
-#define DOODLEJUMP_WORLD_H
+#ifndef TESTSFML_WORLD_H
+#define TESTSFML_WORLD_H
 
 #include <list>
-#include "Entity.h"
-#include <memory>
-#include "Random.h"
+
+#include "memory"
+#include "EntityModel.h"
+#include "AbstractFactory.h"
 #include "Camera.h"
 class World {
 public:
-
-    std::unique_ptr<Player> player;
-public:
-    World();
-    void generatePlatforms();
-    void movePlayer(float timePerFrame); //moves x and y coordinate by an amount
-    const std::list<std::unique_ptr<Entity>>& getEntities() const;
-    void updateMaxHeight(); // update the max height according to the Player, should always be centered
-    void updateCameraView(); // check if platforms are in view, delete if out of view
-    void setWindowSize(float x, float y);
-    void movePlayerLeft(bool keyPressed);
-    void movePlayerRight(bool keyPressed);
-    void movePlatforms(float timePerFrame);
+    World(){}
+    World(std::unique_ptr<AbstractFactory> concreteFactory, float windowWidth, float windowHeight): factory(std::move(concreteFactory)){
+        camera = Camera(windowWidth, windowHeight);
+        player = std::move(factory->createPlayer(0,-0.5)); //don't spawn too high or stuff gets wonky
+        player->setGravity(gravity);
+        platforms.push_back(std::move(factory->createPlatform(0, -0.8, PlatformType::staticP)));
+        generateRandomPlatforms();
+//        drawEntities();
+    }
+    void generateRandomPlatforms();
+    void drawEntities();
+    void drawPlayer();
+    void movePlayer();
+    void setPlayerDirection(PlayerMovement::Direction direction);
+    void checkEntitiesInView();
+    void movePlatforms();
     void checkCollision();
-
-    float getGravity() const;
-//    void handlePlayerInput()
+    bool checkPlayerInView();
 private:
+    std::list<std::unique_ptr<PlatformModel>> platforms;
+    std::unique_ptr<PlayerModel> player = nullptr;
+    std::unique_ptr<AbstractFactory> factory;
     Camera camera;
-    std::list<std::unique_ptr<Entity>> entities;
-    int score=0;
-    int difficulty=3; //max 3
-    bool playerMovingLeft=false;
-    bool playerMovingRight=false;
-    float gravity = 2.f;
     float minPlatformDistance = 0.4f;
+    float gravity = 2.f;
 };
 
 
-#endif //DOODLEJUMP_WORLD_H
+
+#endif //TESTSFML_WORLD_H

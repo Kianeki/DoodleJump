@@ -122,16 +122,10 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/BGTile.cpp">
+		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/AbstractFactory.cpp">
 			<Option target="DoodleJump"/>
 		</Unit>
-		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/BGTile.h">
-			<Option target="DoodleJump"/>
-		</Unit>
-		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Bonus.cpp">
-			<Option target="DoodleJump"/>
-		</Unit>
-		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Bonus.h">
+		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/AbstractFactory.h">
 			<Option target="DoodleJump"/>
 		</Unit>
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Camera.cpp">
@@ -140,16 +134,34 @@
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Camera.h">
 			<Option target="DoodleJump"/>
 		</Unit>
-		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Entity.cpp">
+		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/ConcreteFactory.cpp">
 			<Option target="DoodleJump"/>
 		</Unit>
-		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Entity.h">
+		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/ConcreteFactory.h">
+			<Option target="DoodleJump"/>
+		</Unit>
+		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/EntityModel.cpp">
+			<Option target="DoodleJump"/>
+		</Unit>
+		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/EntityModel.h">
+			<Option target="DoodleJump"/>
+		</Unit>
+		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/EntityView.cpp">
+			<Option target="DoodleJump"/>
+		</Unit>
+		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/EntityView.h">
 			<Option target="DoodleJump"/>
 		</Unit>
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Game.cpp">
 			<Option target="DoodleJump"/>
 		</Unit>
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Game.h">
+			<Option target="DoodleJump"/>
+		</Unit>
+		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Observer.cpp">
+			<Option target="DoodleJump"/>
+		</Unit>
+		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Observer.h">
 			<Option target="DoodleJump"/>
 		</Unit>
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Random.cpp">
@@ -162,6 +174,12 @@
 			<Option target="DoodleJump"/>
 		</Unit>
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Stopwatch.h">
+			<Option target="DoodleJump"/>
+		</Unit>
+		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Subject.cpp">
+			<Option target="DoodleJump"/>
+		</Unit>
+		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Subject.h">
 			<Option target="DoodleJump"/>
 		</Unit>
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/World.cpp">
