@@ -60,9 +60,9 @@ public:
     void collide(){
         currentSpeedY = maxPlayerSpeedY;
     }
-    void setGravity(float worldGravity){
-        gravity = worldGravity;
-    }
+//    void setGravity(float worldGravity){
+//        gravity = worldGravity;
+//    }
     float getCurrentSpeed() const{
         return currentSpeedY;
     }
@@ -70,10 +70,10 @@ public:
         direction = dir;
     }
 private:
-    float maxPlayerSpeedY=2.2f;
+    float maxPlayerSpeedY=1.6f;
     float maxPlayerSpeedX= 1.f;
     float currentSpeedY=0.f;
-    float gravity=0.f; //is set by the world
+    float gravity=2.f;
     PlayerMovement::Direction direction = PlayerMovement::none;
 };
 

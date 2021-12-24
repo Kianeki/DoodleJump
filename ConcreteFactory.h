@@ -38,7 +38,7 @@ public:
     std::unique_ptr<BGTileModel> createBGTile() override{
 
     }
-    std::unique_ptr<BonusModel> createBonus() override{
+    std::unique_ptr<BonusModel> createBonus(float x, float y, BonusType::Type btype) override{
 
     }
 

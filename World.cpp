@@ -19,6 +19,7 @@ void World::generateRandomPlatforms() {
         float newPlatformY = lastPlatformPosition.second + random->randomPlatformY(platformHeight, minPlatformDistance);
         float newPlatformX = random->randomPlatformX(platformWidth);
         platforms.push_back(factory->createPlatform(newPlatformX, newPlatformY, random->randomPlatformType()));
+
     }
 
 }
@@ -122,5 +123,11 @@ bool World::checkPlayerInView() {
 void World::setPlayerDirection(PlayerMovement::Direction direction) {
     player->setPlayerDirection(direction);
 }
+
+void World::generateBonuses() {
+
+}
+
+
 
 

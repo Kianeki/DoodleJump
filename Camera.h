@@ -25,10 +25,9 @@ public:
         float wCentrex = windowWidth/2.f;
         float wCentrey = windowHeight/2.f;
 //        std::pair<float,float> scaledPos;
-        if(positionY>lowerBound /*&& position.second<upperBound*/){ //if it is in view
-            positionX = wCentrex+(wCentrex*positionX); //scaled pixelwaarde X
-            positionY = wCentrey-((positionY-currentMaxHeight)*wCentrey); //scaled pixelwaarde Y
-        }
+        positionX = wCentrex+(wCentrex*positionX); //scaled pixelwaarde X
+        positionY = wCentrey-((positionY-currentMaxHeight)*wCentrey); //scaled pixelwaarde Y
+
         return {positionX,positionY};
     }
     bool updateMaxHeight(std::pair<float,float> playerPos){

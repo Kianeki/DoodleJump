@@ -22,11 +22,9 @@ void Game::run() {
     }
 }
 
-Game::Game(): mWindow(std::shared_ptr<sf::RenderWindow>(std::make_shared<sf::RenderWindow>(sf::VideoMode(600, 900), "SFML Application"))),
-
+Game::Game(): mWindow(std::shared_ptr<sf::RenderWindow>(std::make_shared<sf::RenderWindow>(sf::VideoMode(600, 900), "Doodle Jump"))),
     world(std::unique_ptr<AbstractFactory>(new ConcreteFactory(mWindow)),600, 900){
-//    world.generatePlatforms();
-//    world.generatePlayer();
+
 
 }
 void Game::processEvents() {

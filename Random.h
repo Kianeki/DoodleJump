@@ -11,7 +11,9 @@
 namespace PlatformType{
     enum Type{staticP,temporaryP,horizontalP,verticalP};
 }
-
+namespace BonusType{
+    enum Type{none,spring,jetpack};
+}
 class Random {
 public:
     static std::shared_ptr<Random> getInstance(){
@@ -42,6 +44,19 @@ public:
             return PlatformType::verticalP;
         }
         return PlatformType::Type(); //Need to throw exception here
+    }
+    BonusType::Type randomBonusType(){
+        std::uniform_int_distribution<int> distribution(0,10); //0 <= x <= 10
+        int randomNumber = distribution(generator);
+        if(randomNumber == 5){
+            return BonusType::spring;
+        }
+        else if(randomNumber == 10){
+            return BonusType::jetpack;
+        }
+        else{
+            return BonusType::none;
+        }
     }
 private:
     Random(){
