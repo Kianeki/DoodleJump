@@ -54,9 +54,8 @@ public:
         else if(randomNumber == 10){
             return BonusType::jetpack;
         }
-        else{
-            return BonusType::none;
-        }
+        return BonusType::none;
+
     }
 private:
     Random(){

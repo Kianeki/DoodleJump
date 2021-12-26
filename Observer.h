@@ -7,7 +7,7 @@
 #include "utility"
 namespace Alert {
     enum Type {
-        drawRequest, updatePosition
+        drawRequest
     };
 }
 class Observer {

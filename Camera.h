@@ -40,7 +40,7 @@ public:
         return false;
     }
     bool checkView(std::pair<float,float> position) const{
-        if(position.second >lowerBound) {//if it is in cameraview
+        if(position.second >lowerBound-0.1) {//if it is in cameraview (with a little margin)
             return true;
         }
         else{

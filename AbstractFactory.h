@@ -12,7 +12,7 @@ class AbstractFactory {
 public:
     virtual std::unique_ptr<PlayerModel> createPlayer(float x, float y)=0;
     virtual std::unique_ptr<PlatformModel> createPlatform(float x, float y, PlatformType::Type ptype)=0;
-    virtual std::unique_ptr<BonusModel> createBonus(float x, float y, BonusType::Type btype)=0;
+    virtual std::unique_ptr<BonusModel> createBonus(const std::unique_ptr<PlatformModel>& platform, BonusType::Type btype)=0;
     virtual std::unique_ptr<BGTileModel> createBGTile()=0;
 };
 

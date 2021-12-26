@@ -107,8 +107,28 @@ private:
 
 class BonusView : public EntityView{
 public:
-    void onNotify(Alert::Type alert, std::pair<float,float> scaledPos) override{
-
+    BonusView(BonusType::Type btype,float width, float height, std::shared_ptr<sf::RenderWindow> window ): EntityView(width,height,window){
+        switch(btype){
+            case BonusType::spring:
+                entityVisual.setFillColor(sf::Color::Cyan);
+                break;
+            case BonusType::jetpack:
+                entityVisual.setFillColor(sf::Color::Magenta);
+                break;
+        }
+        sf::FloatRect bounds = entityVisual.getLocalBounds();
+        entityVisual.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
+    }
+    void onNotify(Alert::Type alert, std::pair<float,float> scaledPos) override {
+        switch (alert) {
+            case Alert::drawRequest:
+                updatePosition(scaledPos);
+                drawOnScreen();
+                break;
+//            case Alert::updatePosition:
+//                updatePosition(scaledPos);
+//                break;
+        }
     }
 };
 

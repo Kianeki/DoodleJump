@@ -57,8 +57,8 @@ public:
             position.first-=2.f*direction;
         }
     }
-    void collide(){
-        currentSpeedY = maxPlayerSpeedY;
+    void platformCollide(){
+        currentSpeedY = jumpSpeed;
     }
 //    void setGravity(float worldGravity){
 //        gravity = worldGravity;
@@ -66,11 +66,20 @@ public:
     float getCurrentSpeed() const{
         return currentSpeedY;
     }
+    void setCurrentSpeed(float newSpeed) {
+        currentSpeedY= newSpeed;
+    }
     void setPlayerDirection(PlayerMovement::Direction dir){
         direction = dir;
     }
+    PlayerMovement::Direction getPlayerDirection()const{
+        return direction;
+    }
+    float getJumpSpeed() const{
+        return jumpSpeed;
+    }
 private:
-    float maxPlayerSpeedY=1.6f;
+    float jumpSpeed=1.6f;
     float maxPlayerSpeedX= 1.f;
     float currentSpeedY=0.f;
     float gravity=2.f;
@@ -130,6 +139,65 @@ private:
 };
 
 class BonusModel : public EntityModel{
+public:
+    BonusModel(const std::unique_ptr<PlatformModel>& platform, BonusType::Type type) : EntityModel(platform->getPosition().first,platform->getPosition().second){
+        switch(type){
+            case BonusType::spring:
+                width=0.05;
+                height=0.02;
+                break;
+            case BonusType::jetpack:
+                width=0.08;
+                height=0.06;
+                break;
+        }
+        position.second += platform->getHeight()+height;
+        btype = type;
+    }
+    void movePlatformBonus(const std::unique_ptr<PlatformModel>& platform){
+        position.first = platform->getPosition().first;
+        position.second = platform->getPosition().second +platform->getHeight()+height;
+    }
+    BonusType::Type getType() const{
+        return btype;
+    }
+    void applyToPlayer(std::unique_ptr<PlayerModel>& player){
+        float playerSpeed= player->getCurrentSpeed();
+        switch(btype){
+            case BonusType::spring:
+                playerSpeed *= sqrt(5); //5x as high jump
+                break;
+            case BonusType::jetpack:
+                playerSpeed *= sqrt(20);
+                break;
+        }
+        player->setCurrentSpeed(playerSpeed);
+    }
+    bool update(std::unique_ptr<PlayerModel>& player){
+        if(player->getCurrentSpeed()< player->getJumpSpeed()){
+            return false;
+        }
+        PlayerMovement::Direction playerDirection = player->getPlayerDirection();
+        std::pair<float,float> playerPosition = player->getPosition();
+        float playerWidth = player->getWidth();
+        float offset =0; // will determine how much the jetpack has to be "pushed" from the player centre
+        if(playerWidth> width){
+            offset = playerWidth;
+        }
+        else{
+            offset = width;
+        }
+        if(playerDirection == PlayerMovement::left){
+            position.first= playerPosition.first+offset;
+        }
+        else{
+            position.first= playerPosition.first-offset;
+        }
+        position.second = playerPosition.second;
+        return true;
+    }
+private:
+    BonusType::Type btype;
 
 };
 

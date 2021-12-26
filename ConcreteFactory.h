@@ -38,8 +38,11 @@ public:
     std::unique_ptr<BGTileModel> createBGTile() override{
 
     }
-    std::unique_ptr<BonusModel> createBonus(float x, float y, BonusType::Type btype) override{
-
+    std::unique_ptr<BonusModel> createBonus(const std::unique_ptr<PlatformModel>& platform, BonusType::Type btype) override{
+        std::unique_ptr<BonusModel> bonusModel = std::make_unique<BonusModel>(platform, btype);
+        std::unique_ptr<BonusView> bonusView = std::make_unique<BonusView>(btype,bonusModel->getWidth(),bonusModel->getHeight(), gameWindow);
+        bonusModel->addObserver(std::move(bonusView));
+        return bonusModel;
     }
 
 private:

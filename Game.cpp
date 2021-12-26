@@ -46,8 +46,8 @@ void Game::processEvents() {
     }
 }
 void Game::update() {
-    world.generateRandomPlatforms();
-    world.movePlatforms();
+    world.generateRandomEntities();
+    world.moveEntities();
     world.movePlayer();
     world.checkCollision();
 
