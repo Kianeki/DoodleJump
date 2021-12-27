@@ -15,6 +15,7 @@ public:
     EntityModel(float x, float y) : position{x,y}, width{0}, height{0}{
 
     }
+    virtual ~EntityModel()=default;
     void drawEntity(Camera& camera){
         std::pair<float,float> scaledPos = camera.scaledPosition(position.first, position.second);
         notify(Alert::drawRequest,scaledPos); //will scale the position, then draw the entity
@@ -47,6 +48,7 @@ public:
         width=0.1f;
         height=0.1f;
     }
+    virtual ~PlayerModel() override=default;
     void movePlayer(){
         float timePerFrame = Stopwatch::getInstance()->getTimePerFrame();
         currentSpeedY -= gravity * timePerFrame;
@@ -102,6 +104,7 @@ public:
             upperBound= y + 4 * height;
         }
     }
+    virtual ~PlatformModel() override=default;
     void movePlatform() {
         float timePerFrame = Stopwatch::getInstance()->getTimePerFrame();
         if(type == PlatformType::horizontalP){
@@ -154,6 +157,7 @@ public:
         position.second += platform->getHeight()+height;
         btype = type;
     }
+    virtual ~BonusModel() override=default;
     void movePlatformBonus(const std::unique_ptr<PlatformModel>& platform){
         position.first = platform->getPosition().first;
         position.second = platform->getPosition().second +platform->getHeight()+height;
@@ -202,6 +206,11 @@ private:
 };
 
 class BGTileModel : public EntityModel {
-
+public:
+    BGTileModel(float x, float y):EntityModel(x,y){
+        width = 0.1;
+        height = 0.1;
+    }
+    virtual ~BGTileModel() override =default;
 };
 #endif //TESTSFML_ENTITYMODEL_H

@@ -70,7 +70,15 @@ void World::checkEntitiesInView() {//delete entities if they are out of view
             it = entities.erase(it); //this will delete both the platform and the attached bonus
         }
     }
-//    std::cout<<entities.size()<<std::endl;
+    for(auto it=backgroundTiles.begin(); it != backgroundTiles.end();){
+        if(camera.checkView((*it).back()->getPosition())){//we check if the position of a tile in a row is in view
+            it++;
+        }
+        else{
+            it = backgroundTiles.erase(it); //if it is out of view we delete the row
+        }
+    }
+//    std::cout<<backgroundTiles.size()<<std::endl;
 }
 
 void World::moveEntities() {
@@ -235,6 +243,32 @@ void World::updateActiveBonus() { // is used to update the position of the activ
         else{
             activeBonus.reset();
             activeBonus = nullptr;
+        }
+    }
+}
+
+void World::generateBackground() {
+    while(!camera.screenFilled(backgroundTiles.back().back()->getPosition())){ //checks if the screen is filled with tiles
+        float lastrowY = backgroundTiles.back().back()->getPosition().second;
+        float newRowY = lastrowY+ backgroundTiles.back().back()->getHeight()+0.001; // little bit of margin so they don't overlap perfectly(can cause visual rounding errors otherwise)
+        backgroundTiles.push_back(makeBackgroundRow(newRowY));
+    }
+}
+
+std::list<std::unique_ptr<BGTileModel>> World::makeBackgroundRow(float currentRowY) {
+    float currentRowX = -1; //world view is defined [-1,1];
+    std::list<std::unique_ptr<BGTileModel>> row;
+    while(currentRowX<1){
+        row.push_back(factory->createBGTile(currentRowX,currentRowY));
+        currentRowX += row.back()->getWidth(); //we need to add the width to make a proper grid
+    }
+    return row;
+}
+
+void World::drawBackground() {
+    for(auto& row: backgroundTiles){
+        for(auto& tile: row){
+            tile->drawEntity(camera);
         }
     }
 }

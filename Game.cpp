@@ -23,8 +23,7 @@ void Game::run() {
 }
 
 Game::Game(): mWindow(std::shared_ptr<sf::RenderWindow>(std::make_shared<sf::RenderWindow>(sf::VideoMode(600, 900), "Doodle Jump"))),
-    world(std::unique_ptr<AbstractFactory>(new ConcreteFactory(mWindow)),600, 900){
-
+    world(std::unique_ptr<AbstractFactory>(new ConcreteFactory(mWindow)),mWindow->getSize().x, mWindow->getSize().y){
 
 }
 void Game::processEvents() {
@@ -46,6 +45,7 @@ void Game::processEvents() {
     }
 }
 void Game::update() {
+    world.generateBackground();
     world.generateRandomEntities();
     world.moveEntities();
     world.movePlayer();
@@ -55,6 +55,7 @@ void Game::update() {
 
 void Game::render() {
     mWindow->clear();
+    world.drawBackground();
     world.drawEntities();
     world.drawPlayer();
     //    mWindow.draw(mPlayer);

@@ -21,6 +21,7 @@ public:
             height *= gameWindow->getSize().y;
             entityVisual.setSize(sf::Vector2f(width,height));
     }
+    virtual ~EntityView() override=default;
     virtual void onNotify(Alert::Type alert, std::pair<float,float> scaledPos) override=0;
 
     void updatePosition(std::pair<float,float> scaledPosition){
@@ -54,6 +55,7 @@ public:
         sf::FloatRect bounds = entityVisual.getLocalBounds();
         entityVisual.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
     }
+    virtual ~PlayerView() override =default;
 //    void drawOnScreen(){
 //        gameWindow->draw(entityVisual);
 //    }
@@ -97,6 +99,7 @@ public:
         sf::FloatRect bounds = entityVisual.getLocalBounds();
         entityVisual.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
     }
+    virtual ~PlatformView() override=default;
 //    void drawOnScreen(){
 //        gameWindow->draw(platform);
 //    }
@@ -107,7 +110,7 @@ private:
 
 class BonusView : public EntityView{
 public:
-    BonusView(BonusType::Type btype,float width, float height, std::shared_ptr<sf::RenderWindow> window ): EntityView(width,height,window){
+    BonusView(BonusType::Type btype,float width, float height, std::shared_ptr<sf::RenderWindow> window ): EntityView(width,height,std::move(window)){
         switch(btype){
             case BonusType::spring:
                 entityVisual.setFillColor(sf::Color::Cyan);
@@ -119,6 +122,7 @@ public:
         sf::FloatRect bounds = entityVisual.getLocalBounds();
         entityVisual.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
     }
+    virtual ~BonusView() override=default;
     void onNotify(Alert::Type alert, std::pair<float,float> scaledPos) override {
         switch (alert) {
             case Alert::drawRequest:
@@ -134,8 +138,19 @@ public:
 
 class BGTileView : public EntityView{
 public:
-    void onNotify(Alert::Type alert, std::pair<float,float> scaledPos) override{
-
+    BGTileView(sf::Texture& background, float width, float height, std::shared_ptr<sf::RenderWindow> window): EntityView(width,height,std::move(window)){
+        entityVisual.setTexture(&background);
+        sf::FloatRect bounds = entityVisual.getLocalBounds();
+        entityVisual.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
     }
+    void onNotify(Alert::Type alert, std::pair<float,float> scaledPos) override{
+        switch (alert) {
+            case Alert::drawRequest:
+                updatePosition(scaledPos);
+                drawOnScreen();
+                break;
+        }
+    }
+    virtual ~BGTileView() override =default;
 };
 #endif //TESTSFML_ENTITYVIEW_H

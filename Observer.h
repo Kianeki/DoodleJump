@@ -14,6 +14,7 @@ class Observer {
 
 public:
     virtual void onNotify(Alert::Type alert, std::pair<float,float> scaledPos) =0;
+    virtual ~Observer()=default;
 };
 
 

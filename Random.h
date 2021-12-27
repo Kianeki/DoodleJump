@@ -46,12 +46,12 @@ public:
         return PlatformType::Type(); //Need to throw exception here
     }
     BonusType::Type randomBonusType(){
-        std::uniform_int_distribution<int> distribution(0,10); //0 <= x <= 10
+        std::uniform_int_distribution<int> distribution(0,100); //0 <= x <= 10
         int randomNumber = distribution(generator);
-        if(randomNumber == 5){
+        if(randomNumber < 10){
             return BonusType::spring;
         }
-        else if(randomNumber == 10){
+        else if(randomNumber >95 && difficulty>1){
             return BonusType::jetpack;
         }
         return BonusType::none;

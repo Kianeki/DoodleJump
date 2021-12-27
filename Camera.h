@@ -17,7 +17,7 @@
 class Camera {
 
 public:
-    Camera(float windowWidth, float windowHeight) : windowWidth(windowWidth), windowHeight(windowHeight){
+    Camera(unsigned int windowWidth, unsigned int windowHeight) : windowWidth(windowWidth), windowHeight(windowHeight){
 
     }
     Camera();
@@ -55,6 +55,12 @@ public:
             return false;
         }
     }
+    unsigned int getWindowWidth()const{
+        return windowWidth;
+    }
+    unsigned int getWindowHeight()const{
+        return windowHeight;
+    }
 //    void updatePlayerLocation(float x, float y){
 //        playerLocation.first+=x;
 //        playerLocation.second+=y;
@@ -73,8 +79,8 @@ private:
     float currentMaxHeight{0}; //Y-value
     float upperBound{1};//upper and lower bounds, left and right bounds are always the same
     float lowerBound{-1};
-    float windowWidth;
-    float windowHeight;
+    unsigned int windowWidth=0;
+    unsigned int windowHeight=0;
 
 };
 
