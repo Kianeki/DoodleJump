@@ -7,6 +7,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/DoodleJump.dir/Game.cpp.obj"
   "CMakeFiles/DoodleJump.dir/Observer.cpp.obj"
   "CMakeFiles/DoodleJump.dir/Random.cpp.obj"
+  "CMakeFiles/DoodleJump.dir/Score.cpp.obj"
+  "CMakeFiles/DoodleJump.dir/ScoreView.cpp.obj"
   "CMakeFiles/DoodleJump.dir/Stopwatch.cpp.obj"
   "CMakeFiles/DoodleJump.dir/Subject.cpp.obj"
   "CMakeFiles/DoodleJump.dir/World.cpp.obj"

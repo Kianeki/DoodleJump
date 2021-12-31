@@ -12,6 +12,8 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "C:/Users/Kiani/CLionProjects/DoodleJump/Game.cpp" "C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/DoodleJump.dir/Game.cpp.obj"
   "C:/Users/Kiani/CLionProjects/DoodleJump/Observer.cpp" "C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/DoodleJump.dir/Observer.cpp.obj"
   "C:/Users/Kiani/CLionProjects/DoodleJump/Random.cpp" "C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/DoodleJump.dir/Random.cpp.obj"
+  "C:/Users/Kiani/CLionProjects/DoodleJump/Score.cpp" "C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/DoodleJump.dir/Score.cpp.obj"
+  "C:/Users/Kiani/CLionProjects/DoodleJump/ScoreView.cpp" "C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/DoodleJump.dir/ScoreView.cpp.obj"
   "C:/Users/Kiani/CLionProjects/DoodleJump/Stopwatch.cpp" "C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/DoodleJump.dir/Stopwatch.cpp.obj"
   "C:/Users/Kiani/CLionProjects/DoodleJump/Subject.cpp" "C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/DoodleJump.dir/Subject.cpp.obj"
   "C:/Users/Kiani/CLionProjects/DoodleJump/World.cpp" "C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/DoodleJump.dir/World.cpp.obj"

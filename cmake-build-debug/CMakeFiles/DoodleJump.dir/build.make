@@ -244,6 +244,34 @@ CMakeFiles/DoodleJump.dir/Stopwatch.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DoodleJump.dir/Stopwatch.cpp.s"
 	C:\mingw32\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Kiani\CLionProjects\DoodleJump\Stopwatch.cpp -o CMakeFiles\DoodleJump.dir\Stopwatch.cpp.s
 
+CMakeFiles/DoodleJump.dir/Score.cpp.obj: CMakeFiles/DoodleJump.dir/flags.make
+CMakeFiles/DoodleJump.dir/Score.cpp.obj: CMakeFiles/DoodleJump.dir/includes_CXX.rsp
+CMakeFiles/DoodleJump.dir/Score.cpp.obj: ../Score.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Kiani\CLionProjects\DoodleJump\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/DoodleJump.dir/Score.cpp.obj"
+	C:\mingw32\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\DoodleJump.dir\Score.cpp.obj -c C:\Users\Kiani\CLionProjects\DoodleJump\Score.cpp
+
+CMakeFiles/DoodleJump.dir/Score.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DoodleJump.dir/Score.cpp.i"
+	C:\mingw32\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Kiani\CLionProjects\DoodleJump\Score.cpp > CMakeFiles\DoodleJump.dir\Score.cpp.i
+
+CMakeFiles/DoodleJump.dir/Score.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DoodleJump.dir/Score.cpp.s"
+	C:\mingw32\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Kiani\CLionProjects\DoodleJump\Score.cpp -o CMakeFiles\DoodleJump.dir\Score.cpp.s
+
+CMakeFiles/DoodleJump.dir/ScoreView.cpp.obj: CMakeFiles/DoodleJump.dir/flags.make
+CMakeFiles/DoodleJump.dir/ScoreView.cpp.obj: CMakeFiles/DoodleJump.dir/includes_CXX.rsp
+CMakeFiles/DoodleJump.dir/ScoreView.cpp.obj: ../ScoreView.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Kiani\CLionProjects\DoodleJump\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/DoodleJump.dir/ScoreView.cpp.obj"
+	C:\mingw32\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\DoodleJump.dir\ScoreView.cpp.obj -c C:\Users\Kiani\CLionProjects\DoodleJump\ScoreView.cpp
+
+CMakeFiles/DoodleJump.dir/ScoreView.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DoodleJump.dir/ScoreView.cpp.i"
+	C:\mingw32\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Kiani\CLionProjects\DoodleJump\ScoreView.cpp > CMakeFiles\DoodleJump.dir\ScoreView.cpp.i
+
+CMakeFiles/DoodleJump.dir/ScoreView.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DoodleJump.dir/ScoreView.cpp.s"
+	C:\mingw32\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Kiani\CLionProjects\DoodleJump\ScoreView.cpp -o CMakeFiles\DoodleJump.dir\ScoreView.cpp.s
+
 # Object files for target DoodleJump
 DoodleJump_OBJECTS = \
 "CMakeFiles/DoodleJump.dir/main.cpp.obj" \
@@ -257,7 +285,9 @@ DoodleJump_OBJECTS = \
 "CMakeFiles/DoodleJump.dir/Observer.cpp.obj" \
 "CMakeFiles/DoodleJump.dir/Subject.cpp.obj" \
 "CMakeFiles/DoodleJump.dir/Random.cpp.obj" \
-"CMakeFiles/DoodleJump.dir/Stopwatch.cpp.obj"
+"CMakeFiles/DoodleJump.dir/Stopwatch.cpp.obj" \
+"CMakeFiles/DoodleJump.dir/Score.cpp.obj" \
+"CMakeFiles/DoodleJump.dir/ScoreView.cpp.obj"
 
 # External object files for target DoodleJump
 DoodleJump_EXTERNAL_OBJECTS =
@@ -274,6 +304,8 @@ DoodleJump.exe: CMakeFiles/DoodleJump.dir/Observer.cpp.obj
 DoodleJump.exe: CMakeFiles/DoodleJump.dir/Subject.cpp.obj
 DoodleJump.exe: CMakeFiles/DoodleJump.dir/Random.cpp.obj
 DoodleJump.exe: CMakeFiles/DoodleJump.dir/Stopwatch.cpp.obj
+DoodleJump.exe: CMakeFiles/DoodleJump.dir/Score.cpp.obj
+DoodleJump.exe: CMakeFiles/DoodleJump.dir/ScoreView.cpp.obj
 DoodleJump.exe: CMakeFiles/DoodleJump.dir/build.make
 DoodleJump.exe: C:/SFML/lib/libsfml-system-d.a
 DoodleJump.exe: C:/SFML/lib/libsfml-window-d.a
@@ -281,7 +313,7 @@ DoodleJump.exe: C:/SFML/lib/libsfml-graphics-d.a
 DoodleJump.exe: CMakeFiles/DoodleJump.dir/linklibs.rsp
 DoodleJump.exe: CMakeFiles/DoodleJump.dir/objects1.rsp
 DoodleJump.exe: CMakeFiles/DoodleJump.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Kiani\CLionProjects\DoodleJump\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable DoodleJump.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Kiani\CLionProjects\DoodleJump\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking CXX executable DoodleJump.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\DoodleJump.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

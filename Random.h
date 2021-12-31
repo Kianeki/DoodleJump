@@ -9,10 +9,10 @@
 #include <iostream>
 #include "ctime"
 namespace PlatformType{
-    enum Type{staticP,temporaryP,horizontalP,verticalP};
+    enum Type{staticP=200,temporaryP=0,horizontalP=100,verticalP=75}; //these int values are for score calc
 }
 namespace BonusType{
-    enum Type{none,spring,jetpack};
+    enum Type{none=0,spring=500,jetpack=2000};  //these int values are for score calc
 }
 class Random {
 public:
@@ -48,7 +48,7 @@ public:
     BonusType::Type randomBonusType(){
         std::uniform_int_distribution<int> distribution(0,100); //0 <= x <= 10
         int randomNumber = distribution(generator);
-        if(randomNumber < 10){
+        if(randomNumber < 10 && difficulty>0){
             return BonusType::spring;
         }
         else if(randomNumber >95 && difficulty>1){
@@ -57,12 +57,24 @@ public:
         return BonusType::none;
 
     }
+    void calcDifficulty(float currentMaxHeight){
+        std::cout<<currentMaxHeight<<std::endl;
+        if(currentMaxHeight>150){
+            difficulty=3;
+        }
+        else if(currentMaxHeight>80){
+            difficulty=2;
+        }
+        else if(currentMaxHeight>20){
+            difficulty=1;
+        }
+    }
 private:
     Random(){
         generator.seed(time(nullptr));
     }
     std::default_random_engine generator;
-    int difficulty=3; //max 3
+    int difficulty=0; //max 3
 };
 
 

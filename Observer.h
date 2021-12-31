@@ -7,7 +7,9 @@
 #include "utility"
 namespace Alert {
     enum Type {
-        drawRequest
+        drawRequest,
+        increaseScore,
+        decreaseScore
     };
 }
 class Observer {

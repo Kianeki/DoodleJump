@@ -54,8 +54,10 @@ void World::movePlayer() {
 //       player.reset();
         // game over
     }
-    if(camera.updateMaxHeight(player->getPosition())){ //returns true if the camera has moved (player passed half screen)
-        checkEntitiesInView();
+    std::pair<bool,int> cameraUpdate = camera.updateMaxHeight(player->getPosition());//returns true if the camera has moved (player passed half screen) and int value of how much the camera moved
+    if(cameraUpdate.first){
+        player->increaseScore(cameraUpdate.second);
+        checkEntitiesInView(); // if the camera has moved we have to destruct platforms that have gone out of view
     };
 
 
@@ -206,13 +208,13 @@ void World::checkCollision() {
                 float bonusHeight = (*it).second->getHeight();
                 float bonusWidth = (*it).second->getWidth();
                 if(checkPlatformCollision(bonusPos, bonusWidth, bonusHeight)){ //spring bonus collision is the same as platform collision
-                    player->platformCollide();//this will give player the normal jump speed
-                    (*it).second->applyToPlayer(player); //this will apply the (spring)bonus
+                    player->platformCollide((*it).first);//this will give player the normal jump speed and notfy the player which platform the bonus is on
+                    (*it).second->applyToPlayer(player); //this will apply the (spring)bonus and increase score
                 }
             }
             else{ //its not a spring bonus
                 if(checkBonusCollision((*it).second) && activeBonus==nullptr){ //player picks up bonus and there is no bonus active
-                    player->platformCollide();//this will give player the normal jump speed
+                    player->platformCollide((*it).first);//this will give player the normal jump speed and notfy the player which platform the bonus is on
                     (*it).second->applyToPlayer(player); //this will apply the bonus
                     activeBonus = std::move((*it).second); //the world will keep track of the activeBonus
                     (*it).second = nullptr; //safety
@@ -220,7 +222,7 @@ void World::checkCollision() {
             }
         }
         if(checkPlatformCollision(platformPos, platformWidth, platformHeight)){ // if there is collision between platform and player
-            player->platformCollide();
+            player->platformCollide((*it).first);
             if((*it).first->getType() == PlatformType::temporaryP){
                 it = entities.erase(it);
             }

@@ -404,6 +404,60 @@ Random.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Random.cpp.s
 .PHONY : Random.cpp.s
 
+Score.obj: Score.cpp.obj
+
+.PHONY : Score.obj
+
+# target to build an object file
+Score.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Score.cpp.obj
+.PHONY : Score.cpp.obj
+
+Score.i: Score.cpp.i
+
+.PHONY : Score.i
+
+# target to preprocess a source file
+Score.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Score.cpp.i
+.PHONY : Score.cpp.i
+
+Score.s: Score.cpp.s
+
+.PHONY : Score.s
+
+# target to generate assembly for a file
+Score.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Score.cpp.s
+.PHONY : Score.cpp.s
+
+ScoreView.obj: ScoreView.cpp.obj
+
+.PHONY : ScoreView.obj
+
+# target to build an object file
+ScoreView.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/ScoreView.cpp.obj
+.PHONY : ScoreView.cpp.obj
+
+ScoreView.i: ScoreView.cpp.i
+
+.PHONY : ScoreView.i
+
+# target to preprocess a source file
+ScoreView.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/ScoreView.cpp.i
+.PHONY : ScoreView.cpp.i
+
+ScoreView.s: ScoreView.cpp.s
+
+.PHONY : ScoreView.s
+
+# target to generate assembly for a file
+ScoreView.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/ScoreView.cpp.s
+.PHONY : ScoreView.cpp.s
+
 Stopwatch.obj: Stopwatch.cpp.obj
 
 .PHONY : Stopwatch.obj
@@ -549,6 +603,12 @@ help:
 	@echo ... Random.obj
 	@echo ... Random.i
 	@echo ... Random.s
+	@echo ... Score.obj
+	@echo ... Score.i
+	@echo ... Score.s
+	@echo ... ScoreView.obj
+	@echo ... ScoreView.i
+	@echo ... ScoreView.s
 	@echo ... Stopwatch.obj
 	@echo ... Stopwatch.i
 	@echo ... Stopwatch.s

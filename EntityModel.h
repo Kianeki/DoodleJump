@@ -42,52 +42,6 @@ protected:
 namespace PlayerMovement{
     enum Direction{left=-1, right=+1, none=0};
 }
-class PlayerModel  : public EntityModel{
-public:
-    PlayerModel(float x, float y) : EntityModel(x,y){
-        width=0.1f;
-        height=0.1f;
-    }
-    virtual ~PlayerModel() override=default;
-    void movePlayer(){
-        float timePerFrame = Stopwatch::getInstance()->getTimePerFrame();
-        currentSpeedY -= gravity * timePerFrame;
-        position.second += currentSpeedY * timePerFrame;
-        float horizontalMovement = maxPlayerSpeedX*timePerFrame*direction;
-        position.first += horizontalMovement;
-        if(position.first >1.f || position.first<-1.f){
-            position.first-=2.f*direction;
-        }
-    }
-    void platformCollide(){
-        currentSpeedY = jumpSpeed;
-    }
-//    void setGravity(float worldGravity){
-//        gravity = worldGravity;
-//    }
-    float getCurrentSpeed() const{
-        return currentSpeedY;
-    }
-    void setCurrentSpeed(float newSpeed) {
-        currentSpeedY= newSpeed;
-    }
-    void setPlayerDirection(PlayerMovement::Direction dir){
-        direction = dir;
-    }
-    PlayerMovement::Direction getPlayerDirection()const{
-        return direction;
-    }
-    float getJumpSpeed() const{
-        return jumpSpeed;
-    }
-private:
-    float jumpSpeed=1.6f;
-    float maxPlayerSpeedX= 1.f;
-    float currentSpeedY=0.f;
-    float gravity=2.f;
-    PlayerMovement::Direction direction = PlayerMovement::none;
-};
-
 class PlatformModel : public EntityModel{
 public:
     PlatformModel(float x, float y, PlatformType::Type randomType) : EntityModel(x, y), type(randomType){
@@ -141,6 +95,62 @@ private:
     float platformSpeed=0;
 };
 
+class PlayerModel  : public EntityModel{
+public:
+    PlayerModel(float x, float y) : EntityModel(x,y){
+        width=0.1f;
+        height=0.1f;
+    }
+    virtual ~PlayerModel() override=default;
+    void movePlayer(){
+        float timePerFrame = Stopwatch::getInstance()->getTimePerFrame();
+        currentSpeedY -= gravity * timePerFrame;
+        position.second += currentSpeedY * timePerFrame;
+        float horizontalMovement = maxPlayerSpeedX*timePerFrame*direction;
+        position.first += horizontalMovement;
+        if(position.first >1.f || position.first<-1.f){
+            position.first-=2.f*direction;
+        }
+    }
+    void platformCollide(std::shared_ptr<PlatformModel>& platformCollision){
+        if(platformCollision == lastJumpedOn){
+            notify(Alert::decreaseScore, std::pair<int,int>(lastJumpedOn->getType(),0));
+        }
+        lastJumpedOn = platformCollision;
+        currentSpeedY = jumpSpeed;
+    }
+//    void setGravity(float worldGravity){
+//        gravity = worldGravity;
+//    }
+    float getCurrentSpeed() const{
+        return currentSpeedY;
+    }
+    void setCurrentSpeed(float newSpeed) {
+        currentSpeedY= newSpeed;
+    }
+    void setPlayerDirection(PlayerMovement::Direction dir){
+        direction = dir;
+    }
+    PlayerMovement::Direction getPlayerDirection()const{
+        return direction;
+    }
+    float getJumpSpeed() const{
+        return jumpSpeed;
+    }
+    void increaseScore(int scoreIncrease){
+        notify(Alert::increaseScore, std::pair<int,int>(scoreIncrease,0));
+    }
+private:
+    float jumpSpeed=1.6f;
+    float maxPlayerSpeedX= 1.f;
+    float currentSpeedY=0.f;
+    float gravity=2.f;
+    PlayerMovement::Direction direction = PlayerMovement::none;
+    std::shared_ptr<PlatformModel> lastJumpedOn = nullptr;
+};
+
+
+
 class BonusModel : public EntityModel{
 public:
     BonusModel(const std::unique_ptr<PlatformModel>& platform, BonusType::Type type) : EntityModel(platform->getPosition().first,platform->getPosition().second){
@@ -158,7 +168,7 @@ public:
         btype = type;
     }
     virtual ~BonusModel() override=default;
-    void movePlatformBonus(const std::unique_ptr<PlatformModel>& platform){
+    void movePlatformBonus(const std::shared_ptr<PlatformModel>& platform){
         position.first = platform->getPosition().first;
         position.second = platform->getPosition().second +platform->getHeight()+height;
     }
@@ -176,6 +186,7 @@ public:
                 break;
         }
         player->setCurrentSpeed(playerSpeed);
+        player->increaseScore(btype);
     }
     bool update(std::unique_ptr<PlayerModel>& player){
         if(player->getCurrentSpeed()< player->getJumpSpeed()){

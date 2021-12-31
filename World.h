@@ -44,7 +44,8 @@ private:
     bool checkPlatformCollision(std::pair<float,float> entityPos, float width, float height);
     bool checkBonusCollision(const std::unique_ptr<BonusModel>& bonus);
     std::list<std::unique_ptr<BGTileModel>> makeBackgroundRow(float currentRowY);
-    std::list<std::pair<std::unique_ptr<PlatformModel>,std::unique_ptr<BonusModel>>> entities;
+//    std::list<std::pair<std::unique_ptr<PlatformModel>,std::unique_ptr<BonusModel>>> entities;
+    std::list<std::pair<std::shared_ptr<PlatformModel>,std::unique_ptr<BonusModel>>> entities;
 //    std::list<std::unique_ptr<PlatformModel>> platforms;
 //    std::list<std::unique_ptr<BonusModel>> bonuses;
     std::unique_ptr<PlayerModel> player = nullptr;

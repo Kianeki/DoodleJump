@@ -170,6 +170,18 @@
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Random.h">
 			<Option target="DoodleJump"/>
 		</Unit>
+		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Score.cpp">
+			<Option target="DoodleJump"/>
+		</Unit>
+		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Score.h">
+			<Option target="DoodleJump"/>
+		</Unit>
+		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/ScoreView.cpp">
+			<Option target="DoodleJump"/>
+		</Unit>
+		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/ScoreView.h">
+			<Option target="DoodleJump"/>
+		</Unit>
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Stopwatch.cpp">
 			<Option target="DoodleJump"/>
 		</Unit>

@@ -10,12 +10,15 @@
 
 #include "AbstractFactory.h"
 #include "EntityView.h"
-
+#include "ScoreView.h"
 class ConcreteFactory: public AbstractFactory {
 public:
     explicit ConcreteFactory(std::shared_ptr<sf::RenderWindow> window): AbstractFactory(){
         gameWindow = std::move(window);
         if(backgroundTexture.loadFromFile("Textures/background2.png")){
+            std::cout<<"plaats hier is exception bruur"<<std::endl;
+        }
+        if(scoreFont.loadFromFile("arial.ttf")){
             std::cout<<"plaats hier is exception bruur"<<std::endl;
         }
     }
@@ -25,8 +28,10 @@ public:
         std::unique_ptr<PlayerModel> playerModel = std::make_unique<PlayerModel>(x,y);
         std::unique_ptr<EntityView> playerView = std::make_unique<PlayerView>(playerModel->getWidth(),playerModel->getHeight(),gameWindow);
 //        std::unique_ptr<PlayerModel> playerModel = std::make_unique<PlayerModel>(x,y);
+        std::unique_ptr<ScoreView> scoreView = std::make_unique<ScoreView>(std::pair<int,int>(gameWindow->getSize().x/2, 30),gameWindow, scoreFont);
         //attach PlayerView to Playermodel (add as observer)
         playerModel->addObserver(std::move(playerView));
+        playerModel->addObserver(std::move(scoreView));
         return playerModel;
     }
     std::unique_ptr<PlatformModel> createPlatform(float x, float y, PlatformType::Type ptype) override{
@@ -54,6 +59,7 @@ public:
 private:
     std::shared_ptr<sf::RenderWindow> gameWindow = nullptr;
     sf::Texture backgroundTexture;
+    sf::Font scoreFont;
 };
 
 

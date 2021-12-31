@@ -8,6 +8,7 @@
 
 #include <utility>
 #include <math.h>
+#include "Random.h"
 //We will be using a coordinate system with (0,0) as origin,
 //(-1,0) as left bound
 //(1,0) as right bound
@@ -30,14 +31,16 @@ public:
 
         return {positionX,positionY};
     }
-    bool updateMaxHeight(std::pair<float,float> playerPos){
+    std::pair<bool,int> updateMaxHeight(const std::pair<float,float>& playerPos){
         if(playerPos.second>currentMaxHeight){
+            int scoreIncrease = ceil((playerPos.second-currentMaxHeight)*100);
             currentMaxHeight=playerPos.second;
             upperBound=currentMaxHeight+1;
             lowerBound=currentMaxHeight-1;
-            return true;
+            Random::getInstance()->calcDifficulty(currentMaxHeight); //updates the difficulty based on camera height
+            return {true,scoreIncrease};
         }
-        return false;
+        return {false,0};
     }
     bool checkView(std::pair<float,float> position) const{
         if(position.second >lowerBound-0.1) {//if it is in cameraview (with a little margin)
