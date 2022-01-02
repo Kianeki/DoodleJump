@@ -98,10 +98,13 @@ private:
 class PlayerModel  : public EntityModel{
 public:
     PlayerModel(float x, float y) : EntityModel(x,y){
-        width=0.1f;
+        width=0.10f;
         height=0.1f;
     }
     virtual ~PlayerModel() override=default;
+    void dead(){
+        notify(Alert::gameOver,{0,0});
+    }
     void movePlayer(){
         float timePerFrame = Stopwatch::getInstance()->getTimePerFrame();
         currentSpeedY -= gravity * timePerFrame;

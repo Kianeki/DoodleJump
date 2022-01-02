@@ -21,6 +21,9 @@ public:
         if(scoreFont.loadFromFile("arial.ttf")){
             std::cout<<"plaats hier is exception bruur"<<std::endl;
         }
+//        if(playerTexture.loadFromFile("Textures/doodle-left.png")){
+//            std::cout<<"plaats hier is exception bruur"<<std::endl;
+//        }
     }
     virtual ~ConcreteFactory() override=default;
     std::unique_ptr<PlayerModel> createPlayer(float x, float y) override{
@@ -60,6 +63,7 @@ private:
     std::shared_ptr<sf::RenderWindow> gameWindow = nullptr;
     sf::Texture backgroundTexture;
     sf::Font scoreFont;
+//    sf::Texture playerTexture;
 };
 
 

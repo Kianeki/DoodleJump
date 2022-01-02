@@ -21,6 +21,8 @@ private:
     void update();
     void render();
     void handlePlayerInput(sf::Keyboard::Key key, bool isPressed);
+    void gameOver();
+    std::string readScoreFromFile(std::string fileName);
 private:
     std::shared_ptr<sf::RenderWindow> mWindow;
     World world;

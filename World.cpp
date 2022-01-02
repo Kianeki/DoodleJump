@@ -48,9 +48,11 @@ void World::drawPlayer() {
     player->drawEntity(camera);
 }
 
-void World::movePlayer() {
+bool World::movePlayer() {
     player->movePlayer();
     if(!checkPlayerInView()){
+        player->dead();
+        return false;
 //       player.reset();
         // game over
     }
@@ -59,7 +61,7 @@ void World::movePlayer() {
         player->increaseScore(cameraUpdate.second);
         checkEntitiesInView(); // if the camera has moved we have to destruct platforms that have gone out of view
     };
-
+    return true;
 
 }
 
@@ -138,7 +140,9 @@ bool World::checkPlatformCollision(std::pair<float,float> entityPosition, float 
 }
 
 bool World::checkPlayerInView() {
-    if(camera.checkView(player->getPosition())){ //player is in view
+    std::pair<float,float> playerpos = player->getPosition();
+    playerpos.second = playerpos.second-player->getHeight()-0.1; //-0.1 to counter the margin for platforms
+    if(camera.checkView(playerpos)){ //player is in view
         return true;
     }
     else{ //player has reached the bottom of the screen

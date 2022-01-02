@@ -6,7 +6,7 @@
 #define DOODLEJUMP_SCORE_H
 
 #include "Observer.h"
-
+#include "fstream"
 class Score: public Observer {
 public:
     virtual void onNotify(Alert::Type alert, std::pair<float, float> increase) override{
@@ -17,6 +17,10 @@ public:
             case Alert::decreaseScore:
                 score-=increase.first;
                 break;
+            case Alert::gameOver:
+                std::ofstream scoreFile("Scores/CurrentScore.txt");
+                scoreFile<<std::to_string(score);
+                scoreFile.close();
         }
     }
 protected:

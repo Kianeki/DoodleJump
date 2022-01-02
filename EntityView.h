@@ -52,6 +52,7 @@ public:
     PlayerView(float width, float height, std::shared_ptr<sf::RenderWindow> window) : EntityView(width,height, std::move(window)){
         entityVisual.setFillColor(sf::Color::Red);
 //        entityVisual.setPosition(scaledPos.first,scaledPos.second);
+//        entityVisual.setTexture(&playerTexture);
         sf::FloatRect bounds = entityVisual.getLocalBounds();
         entityVisual.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
     }
@@ -63,7 +64,7 @@ public:
 //        entityVisual.setPosition(scaledPosition.first, scaledPosition.second);
 //    }
 private:
-//    sf::RectangleShape player;
+//    int direction=-1;
 };
 
 class PlatformView : public EntityView{

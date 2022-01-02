@@ -14,6 +14,8 @@ public:
         scoreDisplay.setFont(scoreFont);
         scoreDisplay.setCharacterSize(20);
         scoreDisplay.setPosition(pos.first,pos.second);
+        sf::FloatRect bounds = scoreDisplay.getLocalBounds();
+        scoreDisplay.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
     }
     virtual void onNotify(Alert::Type alert, std::pair<float, float> increase) override{
         switch (alert) {
@@ -26,6 +28,10 @@ public:
             case Alert::drawRequest:
                 scoreDisplay.setString(std::to_string(score));
                 gameWindow->draw(scoreDisplay);
+            case Alert::gameOver:
+                std::ofstream scoreFile("Scores/CurrentScore.txt");
+                scoreFile<<std::to_string(score);
+                scoreFile.close();
 //            case Alert::drawRequest:
 //                gameWindow->draw()
         }

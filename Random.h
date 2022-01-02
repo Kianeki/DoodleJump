@@ -58,7 +58,7 @@ public:
 
     }
     void calcDifficulty(float currentMaxHeight){
-        std::cout<<currentMaxHeight<<std::endl;
+//        std::cout<<currentMaxHeight<<std::endl;
         if(currentMaxHeight>150){
             difficulty=3;
         }

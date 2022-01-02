@@ -9,7 +9,8 @@ namespace Alert {
     enum Type {
         drawRequest,
         increaseScore,
-        decreaseScore
+        decreaseScore,
+        gameOver
     };
 }
 class Observer {

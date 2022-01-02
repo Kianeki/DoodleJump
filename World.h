@@ -29,7 +29,7 @@ public:
     void generateRandomEntities();
     void drawEntities();
     void drawPlayer();
-    void movePlayer();
+    bool movePlayer();
     void setPlayerDirection(PlayerMovement::Direction direction);
     void checkEntitiesInView();
     void moveEntities();

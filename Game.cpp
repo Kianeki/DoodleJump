@@ -48,7 +48,9 @@ void Game::update() {
     world.generateBackground();
     world.generateRandomEntities();
     world.moveEntities();
-    world.movePlayer();
+    if(!world.movePlayer()){
+        gameOver();
+    };
     world.checkCollision();
 
 }
@@ -106,5 +108,60 @@ void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed) {
         }
     }
     world.setPlayerDirection(currentPlayerDirection);
+
+}
+
+void Game::gameOver() {
+    sf::Font font; //could've used resource holder class instead
+    font.loadFromFile("arial.ttf");
+    sf::Text text;
+    text.setFont(font);
+    text.setCharacterSize(30);
+    text.setString("GAME OVER");
+    sf::FloatRect bounds = text.getLocalBounds();
+    text.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
+    text.setPosition(mWindow->getSize().x/2.f, mWindow->getSize().y/3.f);
+    sf::Text currentscore;
+    currentscore.setFont(font);
+    currentscore.setCharacterSize(20);
+    std::string scoreValue = readScoreFromFile("Scores/CurrentScore.txt");
+    currentscore.setString("SCORE: "+scoreValue);
+    bounds =currentscore.getLocalBounds();
+    currentscore.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
+    currentscore.setPosition(mWindow->getSize().x/2.f, mWindow->getSize().y/2.f);
+    std::cout<<scoreValue<<std::endl;
+    std::string highscoreValue = readScoreFromFile("Scores/HighScore.txt");
+    if(highscoreValue.empty()){
+        highscoreValue="0";
+    }
+    if(std::stoi(scoreValue) > std::stoi(highscoreValue)){
+        std::ofstream MyFile("Scores/HighScore.txt");
+        MyFile<<scoreValue;
+        MyFile.close();
+    }
+    sf::Text highScore;
+    highScore.setFont(font);
+    highScore.setCharacterSize(20);
+    highScore.setString("HIGHSCORE: "+readScoreFromFile("Scores/HighScore.txt") );
+    bounds =highScore.getLocalBounds();
+    highScore.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
+    highScore.setPosition(currentscore.getPosition().x, currentscore.getPosition().y-2*currentscore.getLocalBounds().height);
+    std::cout<<readScoreFromFile("Scores/HighScore.txt");
+    while(mWindow->isOpen()){
+        mWindow->clear();
+        mWindow->draw(text);
+        mWindow->draw(currentscore);
+        mWindow->draw(highScore);
+        mWindow->display();
+        processEvents();
+    }
+}
+
+std::string Game::readScoreFromFile(std::string fileName) {
+    std::string score;
+    std::ifstream file(fileName);
+    std::getline (file,score);
+    file.close();
+    return score;
 
 }
