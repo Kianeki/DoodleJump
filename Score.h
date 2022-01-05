@@ -7,26 +7,28 @@
 
 #include "Observer.h"
 #include "fstream"
-class Score: public Observer {
+class Score : public Observer
+{
 public:
-    virtual void onNotify(Alert::Type alert, std::pair<float, float> increase) override{
-        switch (alert) {
-            case Alert::increaseScore:
-                score+=increase.first;
-                break;
-            case Alert::decreaseScore:
-                score-=increase.first;
-                break;
-            case Alert::gameOver:
-                std::ofstream scoreFile("Scores/CurrentScore.txt");
-                scoreFile<<std::to_string(score);
-                scoreFile.close();
+        virtual ~Score() override = default;
+        virtual void onNotify(Alert::Type alert, std::pair<float, float> increase) override
+        {
+                switch (alert) {
+                case Alert::increaseScore:
+                        score += increase.first;
+                        break;
+                case Alert::decreaseScore:
+                        score -= increase.first;
+                        break;
+                case Alert::gameOver:
+                        std::ofstream scoreFile("Scores/CurrentScore.txt");
+                        scoreFile << std::to_string(score);
+                        scoreFile.close();
+                }
         }
-    }
-protected:
-    int score=0;
 
+protected:
+        int score = 0;
 };
 
-
-#endif //DOODLEJUMP_SCORE_H
+#endif // DOODLEJUMP_SCORE_H

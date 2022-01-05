@@ -6,19 +6,20 @@
 #define TESTSFML_OBSERVER_H
 #include "utility"
 namespace Alert {
-    enum Type {
+enum Type
+{
         drawRequest,
         increaseScore,
         decreaseScore,
         gameOver
-    };
+};
 }
-class Observer {
+class Observer
+{
 
 public:
-    virtual void onNotify(Alert::Type alert, std::pair<float,float> scaledPos) =0;
-    virtual ~Observer()=default;
+        virtual void onNotify(Alert::Type alert, std::pair<float, float> scaledPos) = 0;
+        virtual ~Observer() = default;
 };
 
-
-#endif //TESTSFML_OBSERVER_H
+#endif // TESTSFML_OBSERVER_H

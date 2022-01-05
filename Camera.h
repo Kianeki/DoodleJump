@@ -9,6 +9,7 @@
 #include <utility>
 #include <math.h>
 #include "Random.h"
+
 //We will be using a coordinate system with (0,0) as origin,
 //(-1,0) as left bound
 //(1,0) as right bound
@@ -18,72 +19,60 @@
 class Camera {
 
 public:
-    Camera(unsigned int windowWidth, unsigned int windowHeight) : windowWidth(windowWidth), windowHeight(windowHeight){
+    Camera(unsigned int windowWidth, unsigned int windowHeight) : windowWidth(windowWidth),
+                                                                  windowHeight(windowHeight) {}
 
-    }
     Camera();
-    std::pair<float,float> scaledPosition(float positionX, float positionY) const{
-        float wCentrex = windowWidth/2.f;
-        float wCentrey = windowHeight/2.f;
-//        std::pair<float,float> scaledPos;
-        positionX = wCentrex+(wCentrex*positionX); //scaled pixelwaarde X
-        positionY = wCentrey-((positionY-currentMaxHeight)*wCentrey); //scaled pixelwaarde Y
 
-        return {positionX,positionY};
+    //returns the scaled position(for sfml)
+    std::pair<float, float> scaledPosition(float positionX, float positionY) const {
+        float wCentrex = windowWidth / 2.f;
+        float wCentrey = windowHeight / 2.f;
+        positionX = wCentrex + (wCentrex * positionX); //scaled pixelwaarde X
+        positionY = wCentrey - ((positionY - currentMaxHeight) * wCentrey); //scaled pixelwaarde Y
+
+        return {positionX, positionY};
     }
-    std::pair<bool,int> updateMaxHeight(const std::pair<float,float>& playerPos){
-        if(playerPos.second>currentMaxHeight){
-            int scoreIncrease = ceil((playerPos.second-currentMaxHeight)*100);
-            currentMaxHeight=playerPos.second;
-            upperBound=currentMaxHeight+1;
-            lowerBound=currentMaxHeight-1;
+
+    // updates the camera height if the player has reached half the screen
+    std::pair<bool, int> updateMaxHeight(const std::pair<float, float> &playerPos) {
+        if (playerPos.second > currentMaxHeight) {
+            int scoreIncrease = ceil((playerPos.second - currentMaxHeight) * 100);
+            currentMaxHeight = playerPos.second;
+            upperBound = currentMaxHeight + 1;
+            lowerBound = currentMaxHeight - 1;
             Random::getInstance()->calcDifficulty(currentMaxHeight); //updates the difficulty based on camera height
-            return {true,scoreIncrease};
+            return {true, scoreIncrease};
         }
-        return {false,0};
+        return {false, 0};
     }
-    bool checkView(std::pair<float,float> position) const{
-        if(position.second >lowerBound-0.1) {//if it is in cameraview (with a little margin)
+
+    //returns true  if the coordinates are in view of the camera
+    bool checkView(std::pair<float, float> position) const {
+        if (position.second > lowerBound - 0.1) {//if it is in cameraview (with a little margin)
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
-    bool screenFilled(std::pair<float,float> entityPosition) const{
-        if(entityPosition.second>upperBound){
+
+    //returns true if the coordinates are above the camera view
+    bool screenFilled(std::pair<float, float> entityPosition) const {
+        //is used to check if screen is filled with platforms
+        if (entityPosition.second > upperBound) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
-    unsigned int getWindowWidth()const{
-        return windowWidth;
-    }
-    unsigned int getWindowHeight()const{
-        return windowHeight;
-    }
-//    void updatePlayerLocation(float x, float y){
-//        playerLocation.first+=x;
-//        playerLocation.second+=y;
-//        if(playerLocation.second>currentMaxHeight){
-//            currentMaxHeight=playerLocation.second;
-//            cameraBounds.first=currentMaxHeight+1;
-//            cameraBounds.second=currentMaxHeight-1;
-//        }
-//    }
-//    std::pair<float,float> getPlayerLocation(){
-//        std::pair<float,float> relativeLocation{playerLocation.first,playerLocation.second-currentMaxHeight};
-//        return relativeLocation;
-//    }
+
 private:
-//    std::pair<float,float> playerLocation{0,0};
+
     float currentMaxHeight{0}; //Y-value
     float upperBound{1};//upper and lower bounds, left and right bounds are always the same
     float lowerBound{-1};
-    unsigned int windowWidth=0;
-    unsigned int windowHeight=0;
+    unsigned int windowWidth = 0;
+    unsigned int windowHeight = 0;
 
 };
 

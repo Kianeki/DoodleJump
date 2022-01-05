@@ -47,11 +47,12 @@ void Game::processEvents() {
 void Game::update() {
     world.generateBackground();
     world.generateRandomEntities();
-    world.moveEntities();
     if(!world.movePlayer()){
+            //if the player reaches the bottom of the screen, it will return false and the game will end
         gameOver();
     };
     world.checkCollision();
+    world.moveEntities();
 
 }
 
@@ -60,18 +61,6 @@ void Game::render() {
     world.drawBackground();
     world.drawEntities();
     world.drawPlayer();
-    //    mWindow.draw(mPlayer);
-//    sf::Font font;
-//    sf::Text score;
-//    if(!font.loadFromFile("arial.ttf")){
-//        std::cout<<"error"<<std::endl;
-//    }
-//    score.setFont(font);
-//    score.setString("Hello Ik ben string");
-//    score.setPosition(320,240);
-//    score.setCharacterSize(20);
-//    mWindow.draw(score);
-//    score.scale(3,3);
     mWindow->display();
 }
 
@@ -107,7 +96,7 @@ void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed) {
             }
         }
     }
-    world.setPlayerDirection(currentPlayerDirection);
+    world.setPlayerDirection(currentPlayerDirection); //left, right or none
 
 }
 
@@ -129,7 +118,7 @@ void Game::gameOver() {
     bounds =currentscore.getLocalBounds();
     currentscore.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
     currentscore.setPosition(mWindow->getSize().x/2.f, mWindow->getSize().y/2.f);
-    std::cout<<scoreValue<<std::endl;
+//    std::cout<<scoreValue<<std::endl;
     std::string highscoreValue = readScoreFromFile("Scores/HighScore.txt");
     if(highscoreValue.empty()){
         highscoreValue="0";
@@ -146,7 +135,7 @@ void Game::gameOver() {
     bounds =highScore.getLocalBounds();
     highScore.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
     highScore.setPosition(currentscore.getPosition().x, currentscore.getPosition().y-2*currentscore.getLocalBounds().height);
-    std::cout<<readScoreFromFile("Scores/HighScore.txt");
+
     while(mWindow->isOpen()){
         mWindow->clear();
         mWindow->draw(text);
@@ -155,6 +144,7 @@ void Game::gameOver() {
         mWindow->display();
         processEvents();
     }
+    exit(0);
 }
 
 std::string Game::readScoreFromFile(std::string fileName) {

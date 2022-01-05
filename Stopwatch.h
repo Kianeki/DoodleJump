@@ -14,7 +14,7 @@ public:
         return instance;
     }
 
-    float getElapsedTime() { //returns elapsed time in seconds
+    float getElapsedTime() { //returns elapsed time in seconds since last call
         std::chrono::high_resolution_clock::time_point currentTimePoint = std::chrono::high_resolution_clock::now();
         elapsedTime = std::chrono::duration_cast<std::chrono::microseconds>(currentTimePoint - previousTimePoint).count() / 1000000.f;
         previousTimePoint = currentTimePoint;
@@ -31,7 +31,7 @@ private:
 
     std::chrono::high_resolution_clock::time_point previousTimePoint;
     float elapsedTime=0;
-    float timePerFrame = 1 / 200.f; // 1/framerate
+    float timePerFrame = 1 / 60.f; // 1/framerate
 };
 
 #endif //DOODLEJUMP_STOPWATCH_H
