@@ -31,7 +31,7 @@ private:
         // draws gameOver screen with scores
         void gameOver();
         // reads scores from file
-        std::string readScoreFromFile(std::string fileName);
+        std::string readScoreFromFile(const std::string& fileName);
 
 private:
         std::shared_ptr<sf::RenderWindow> mWindow;

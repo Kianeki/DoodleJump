@@ -16,7 +16,7 @@ public:
                 scoreDisplay.setFont(scoreFont);
                 scoreDisplay.setCharacterSize(20);
                 scoreDisplay.setPosition(pos.first, pos.second);
-                //set origin in the centre
+                // set origin in the centre
                 sf::FloatRect bounds = scoreDisplay.getLocalBounds();
                 scoreDisplay.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
         }

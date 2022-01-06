@@ -118,7 +118,6 @@ void Game::gameOver() {
     bounds =currentscore.getLocalBounds();
     currentscore.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
     currentscore.setPosition(mWindow->getSize().x/2.f, mWindow->getSize().y/2.f);
-//    std::cout<<scoreValue<<std::endl;
     std::string highscoreValue = readScoreFromFile("Scores/HighScore.txt");
     if(highscoreValue.empty()){
         highscoreValue="0";
@@ -147,7 +146,7 @@ void Game::gameOver() {
     exit(0);
 }
 
-std::string Game::readScoreFromFile(std::string fileName) {
+std::string Game::readScoreFromFile(const std::string& fileName) {
     std::string score;
     std::ifstream file(fileName);
     std::getline (file,score);

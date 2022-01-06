@@ -20,6 +20,9 @@ public:
                 width *= gameWindow->getSize().x;
                 height *= gameWindow->getSize().y;
                 entityVisual.setSize(sf::Vector2f(width, height));
+                // set origin in centre
+                sf::FloatRect bounds = entityVisual.getLocalBounds();
+                entityVisual.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
         }
         virtual ~EntityView() override = default;
         void onNotify(Alert::Type alert, std::pair<float, float> scaledPos) override
@@ -49,9 +52,6 @@ public:
             : EntityView(width, height, std::move(window))
         {
                 entityVisual.setTexture(&playerTexture);
-                // set origin in centre
-                sf::FloatRect bounds = entityVisual.getLocalBounds();
-                entityVisual.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
         }
         virtual ~PlayerView() override = default;
 
@@ -78,9 +78,6 @@ public:
                         entityVisual.setFillColor(sf::Color::Yellow);
                         break;
                 }
-                // set origin in centre
-                sf::FloatRect bounds = entityVisual.getLocalBounds();
-                entityVisual.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
         }
         virtual ~PlatformView() override = default;
 
@@ -102,9 +99,6 @@ public:
                         entityVisual.setFillColor(sf::Color::Magenta);
                         break;
                 }
-                // set origin in centre
-                sf::FloatRect bounds = entityVisual.getLocalBounds();
-                entityVisual.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
         }
         virtual ~BonusView() override = default;
 };
@@ -116,9 +110,6 @@ public:
             : EntityView(width, height, std::move(window))
         {
                 entityVisual.setTexture(&background);
-                // set origin in centre
-                sf::FloatRect bounds = entityVisual.getLocalBounds();
-                entityVisual.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
         }
 
         virtual ~BGTileView() override = default;
