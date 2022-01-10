@@ -7,7 +7,7 @@
 
 #include "memory"
 #include <random>
-#include <iostream>
+
 #include "ctime"
 
 namespace PlatformType {

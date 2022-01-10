@@ -14,11 +14,11 @@ class EntityModel : public Subject
 public:
         EntityModel(float x, float y) : position{x, y}, width{0}, height{0} {}
         virtual ~EntityModel() = default;
-        //scales the coordinates of the entity via camera and gives them to the attached Observer(entityView)
+        // scales the coordinates of the entity via camera and gives them to the attached Observer(entityView)
         void drawEntity(Camera& camera)
-        {
+        { // will scale the position
                 std::pair<float, float> scaledPos = camera.scaledPosition(position.first, position.second);
-                notify(Alert::drawRequest, scaledPos); // will scale the position, then draw the entity
+                notify(Alert::drawRequest, scaledPos); // then draw the entity
         }
 
         std::pair<float, float> getPosition() const { return position; }
@@ -26,7 +26,7 @@ public:
         float getHeight() const { return height; }
 
 protected:
-        std::pair<float, float> position{0, 0};
+        std::pair<float, float> position{0.f ,0.f};
         float width{0.f};
         float height{0.f};
 };
@@ -43,20 +43,20 @@ class PlatformModel : public EntityModel
 public:
         PlatformModel(float x, float y, PlatformType::Type randomType) : EntityModel(x, y), type(randomType)
         {
-                width = 0.25;
-                height = 0.02; // 0.02
+                width = 0.25f;
+                height = 0.02f; // 0.02
                 if (randomType == PlatformType::horizontalP) {
-                        platformSpeed = 0.5;
+                        platformSpeed = 0.5f;
                         lowerBound = -1 + width;
                         upperBound = 1 - width;
                 } else if (randomType == PlatformType::verticalP) {
-                        platformSpeed = 0.2;
+                        platformSpeed = 0.2f;
                         lowerBound = y - 4 * height;
                         upperBound = y + 4 * height;
                 }
         }
         virtual ~PlatformModel() override = default;
-        //Moves the PlatformModel in X or Y
+        // Moves the PlatformModel in X or Y
         void movePlatform()
         {
                 float timePerFrame = Stopwatch::getInstance()->getTimePerFrame();
@@ -85,9 +85,9 @@ public:
 private:
         PlatformType::Type type;
         bool direction = false;
-        float lowerBound = 0;
-        float upperBound = 0;
-        float platformSpeed = 0;
+        float lowerBound = 0.f;
+        float upperBound = 0.f;
+        float platformSpeed = 0.f;
 };
 
 class PlayerModel : public EntityModel
@@ -99,9 +99,9 @@ public:
                 height = 0.1f;
         }
         virtual ~PlayerModel() override = default;
-        //Is used when the player reaches the bottom of the screen. Alerts score to save itself to file
-        void dead() { notify(Alert::gameOver, {0, 0}); }
-        //Moves the player in X and Y direction
+        // Is used when the player reaches the bottom of the screen. Alerts score to save itself to file
+        void dead() { notify(Alert::gameOver, {0.f, 0.f}); }
+        // Moves the player in X and Y direction
         void movePlayer()
         {
                 float timePerFrame = Stopwatch::getInstance()->getTimePerFrame();
@@ -112,10 +112,9 @@ public:
                 if (position.first > 1.f || position.first < -1.f) {
                         position.first -= 2.f * direction;
                 }
-
         }
-        //Holds ptr of platform with which player collided and bounces player off of platform
-        //Also updates score if player collides with same platform twice
+        // Holds ptr of platform with which player collided and bounces player off of platform
+        // Also updates score if player collides with same platform twice
         void platformCollide(const std::shared_ptr<PlatformModel>& platformCollision)
         {
                 if (platformCollision == lastJumpedOn) {
@@ -151,26 +150,26 @@ public:
         {
                 switch (type) {
                 case BonusType::spring:
-                        width = 0.05;
-                        height = 0.02;
+                        width = 0.05f;
+                        height = 0.02f;
                         break;
                 case BonusType::jetpack:
-                        width = 0.06;
-                        height = 0.06;
+                        width = 0.06f;
+                        height = 0.06f;
                         break;
                 }
                 position.second += platform->getHeight() + height;
                 btype = type;
         }
         virtual ~BonusModel() override = default;
-        //Moves bonus according to the platform it's located on
+        // Moves bonus according to the platform it's located on
         void movePlatformBonus(const std::shared_ptr<PlatformModel>& platform)
         {
                 position.first = platform->getPosition().first;
                 position.second = platform->getPosition().second + platform->getHeight() + height;
         }
         BonusType::Type getType() const { return btype; }
-        //applies bonus to player
+        // applies bonus to player
         void applyToPlayer(std::unique_ptr<PlayerModel>& player)
         {
                 float playerSpeed = player->getCurrentSpeed();
@@ -195,7 +194,7 @@ public:
                 PlayerMovement::Direction playerDirection = player->getPlayerDirection();
                 std::pair<float, float> playerPosition = player->getPosition();
                 float playerWidth = player->getWidth();
-                float offset = playerWidth+width;
+                float offset = playerWidth + width;
                 // offset will determine how much the jetpack has to be "pushed" from the player centre
                 if (playerDirection == PlayerMovement::left) {
                         position.first = playerPosition.first + offset;
@@ -215,8 +214,8 @@ class BGTileModel : public EntityModel
 public:
         BGTileModel(float x, float y) : EntityModel(x, y)
         {
-                width = 0.1;
-                height = 0.1;
+                width = 0.1f;
+                height = 0.1f;
         }
         virtual ~BGTileModel() override = default;
 };

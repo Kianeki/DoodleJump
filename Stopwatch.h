@@ -34,7 +34,7 @@ private:
         Stopwatch() { previousTimePoint = std::chrono::high_resolution_clock::now(); }
 
         std::chrono::high_resolution_clock::time_point previousTimePoint;
-        float elapsedTime = 0;
+        float elapsedTime = 0.f;
         float timePerFrame = 1 / 60.f; // 1/framerate
 };
 
