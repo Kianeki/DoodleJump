@@ -4,19 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/Kiani/CLionProjects/DoodleJump/AbstractFactory.cpp" "C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/DoodleJump.dir/AbstractFactory.cpp.obj"
-  "C:/Users/Kiani/CLionProjects/DoodleJump/Camera.cpp" "C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/DoodleJump.dir/Camera.cpp.obj"
   "C:/Users/Kiani/CLionProjects/DoodleJump/ConcreteFactory.cpp" "C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/DoodleJump.dir/ConcreteFactory.cpp.obj"
-  "C:/Users/Kiani/CLionProjects/DoodleJump/EntityModel.cpp" "C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/DoodleJump.dir/EntityModel.cpp.obj"
   "C:/Users/Kiani/CLionProjects/DoodleJump/EntityView.cpp" "C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/DoodleJump.dir/EntityView.cpp.obj"
   "C:/Users/Kiani/CLionProjects/DoodleJump/Game.cpp" "C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/DoodleJump.dir/Game.cpp.obj"
-  "C:/Users/Kiani/CLionProjects/DoodleJump/Observer.cpp" "C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/DoodleJump.dir/Observer.cpp.obj"
-  "C:/Users/Kiani/CLionProjects/DoodleJump/Random.cpp" "C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/DoodleJump.dir/Random.cpp.obj"
-  "C:/Users/Kiani/CLionProjects/DoodleJump/Score.cpp" "C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/DoodleJump.dir/Score.cpp.obj"
   "C:/Users/Kiani/CLionProjects/DoodleJump/ScoreView.cpp" "C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/DoodleJump.dir/ScoreView.cpp.obj"
-  "C:/Users/Kiani/CLionProjects/DoodleJump/Stopwatch.cpp" "C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/DoodleJump.dir/Stopwatch.cpp.obj"
-  "C:/Users/Kiani/CLionProjects/DoodleJump/Subject.cpp" "C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/DoodleJump.dir/Subject.cpp.obj"
-  "C:/Users/Kiani/CLionProjects/DoodleJump/World.cpp" "C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/DoodleJump.dir/World.cpp.obj"
   "C:/Users/Kiani/CLionProjects/DoodleJump/main.cpp" "C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/DoodleJump.dir/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
@@ -28,6 +19,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
+  "C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/logic.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

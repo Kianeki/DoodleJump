@@ -75,6 +75,18 @@ CMAKE_BINARY_DIR = C:\Users\Kiani\CLionProjects\DoodleJump\cmake-build-debug
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	"C:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	"C:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -131,18 +143,6 @@ list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
 
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	"C:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	"C:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
-
 # The main all target
 all: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Kiani\CLionProjects\DoodleJump\cmake-build-debug\CMakeFiles C:\Users\Kiani\CLionProjects\DoodleJump\cmake-build-debug\CMakeFiles\progress.marks
@@ -176,6 +176,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named logic
+
+# Build rule for target.
+logic: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 logic
+.PHONY : logic
+
+# fast build rule for target.
+logic/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\logic.dir\build.make CMakeFiles/logic.dir/build
+.PHONY : logic/fast
+
+#=============================================================================
 # Target rules for targets named DoodleJump
 
 # Build rule for target.
@@ -194,7 +207,7 @@ AbstractFactory.obj: AbstractFactory.cpp.obj
 
 # target to build an object file
 AbstractFactory.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/AbstractFactory.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\logic.dir\build.make CMakeFiles/logic.dir/AbstractFactory.cpp.obj
 .PHONY : AbstractFactory.cpp.obj
 
 AbstractFactory.i: AbstractFactory.cpp.i
@@ -203,7 +216,7 @@ AbstractFactory.i: AbstractFactory.cpp.i
 
 # target to preprocess a source file
 AbstractFactory.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/AbstractFactory.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\logic.dir\build.make CMakeFiles/logic.dir/AbstractFactory.cpp.i
 .PHONY : AbstractFactory.cpp.i
 
 AbstractFactory.s: AbstractFactory.cpp.s
@@ -212,7 +225,7 @@ AbstractFactory.s: AbstractFactory.cpp.s
 
 # target to generate assembly for a file
 AbstractFactory.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/AbstractFactory.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\logic.dir\build.make CMakeFiles/logic.dir/AbstractFactory.cpp.s
 .PHONY : AbstractFactory.cpp.s
 
 Camera.obj: Camera.cpp.obj
@@ -221,7 +234,7 @@ Camera.obj: Camera.cpp.obj
 
 # target to build an object file
 Camera.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Camera.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\logic.dir\build.make CMakeFiles/logic.dir/Camera.cpp.obj
 .PHONY : Camera.cpp.obj
 
 Camera.i: Camera.cpp.i
@@ -230,7 +243,7 @@ Camera.i: Camera.cpp.i
 
 # target to preprocess a source file
 Camera.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Camera.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\logic.dir\build.make CMakeFiles/logic.dir/Camera.cpp.i
 .PHONY : Camera.cpp.i
 
 Camera.s: Camera.cpp.s
@@ -239,7 +252,7 @@ Camera.s: Camera.cpp.s
 
 # target to generate assembly for a file
 Camera.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Camera.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\logic.dir\build.make CMakeFiles/logic.dir/Camera.cpp.s
 .PHONY : Camera.cpp.s
 
 ConcreteFactory.obj: ConcreteFactory.cpp.obj
@@ -275,7 +288,7 @@ EntityModel.obj: EntityModel.cpp.obj
 
 # target to build an object file
 EntityModel.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/EntityModel.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\logic.dir\build.make CMakeFiles/logic.dir/EntityModel.cpp.obj
 .PHONY : EntityModel.cpp.obj
 
 EntityModel.i: EntityModel.cpp.i
@@ -284,7 +297,7 @@ EntityModel.i: EntityModel.cpp.i
 
 # target to preprocess a source file
 EntityModel.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/EntityModel.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\logic.dir\build.make CMakeFiles/logic.dir/EntityModel.cpp.i
 .PHONY : EntityModel.cpp.i
 
 EntityModel.s: EntityModel.cpp.s
@@ -293,7 +306,7 @@ EntityModel.s: EntityModel.cpp.s
 
 # target to generate assembly for a file
 EntityModel.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/EntityModel.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\logic.dir\build.make CMakeFiles/logic.dir/EntityModel.cpp.s
 .PHONY : EntityModel.cpp.s
 
 EntityView.obj: EntityView.cpp.obj
@@ -356,7 +369,7 @@ Observer.obj: Observer.cpp.obj
 
 # target to build an object file
 Observer.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Observer.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\logic.dir\build.make CMakeFiles/logic.dir/Observer.cpp.obj
 .PHONY : Observer.cpp.obj
 
 Observer.i: Observer.cpp.i
@@ -365,7 +378,7 @@ Observer.i: Observer.cpp.i
 
 # target to preprocess a source file
 Observer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Observer.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\logic.dir\build.make CMakeFiles/logic.dir/Observer.cpp.i
 .PHONY : Observer.cpp.i
 
 Observer.s: Observer.cpp.s
@@ -374,7 +387,7 @@ Observer.s: Observer.cpp.s
 
 # target to generate assembly for a file
 Observer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Observer.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\logic.dir\build.make CMakeFiles/logic.dir/Observer.cpp.s
 .PHONY : Observer.cpp.s
 
 Random.obj: Random.cpp.obj
@@ -383,7 +396,7 @@ Random.obj: Random.cpp.obj
 
 # target to build an object file
 Random.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Random.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\logic.dir\build.make CMakeFiles/logic.dir/Random.cpp.obj
 .PHONY : Random.cpp.obj
 
 Random.i: Random.cpp.i
@@ -392,7 +405,7 @@ Random.i: Random.cpp.i
 
 # target to preprocess a source file
 Random.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Random.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\logic.dir\build.make CMakeFiles/logic.dir/Random.cpp.i
 .PHONY : Random.cpp.i
 
 Random.s: Random.cpp.s
@@ -401,7 +414,7 @@ Random.s: Random.cpp.s
 
 # target to generate assembly for a file
 Random.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Random.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\logic.dir\build.make CMakeFiles/logic.dir/Random.cpp.s
 .PHONY : Random.cpp.s
 
 Score.obj: Score.cpp.obj
@@ -410,7 +423,7 @@ Score.obj: Score.cpp.obj
 
 # target to build an object file
 Score.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Score.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\logic.dir\build.make CMakeFiles/logic.dir/Score.cpp.obj
 .PHONY : Score.cpp.obj
 
 Score.i: Score.cpp.i
@@ -419,7 +432,7 @@ Score.i: Score.cpp.i
 
 # target to preprocess a source file
 Score.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Score.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\logic.dir\build.make CMakeFiles/logic.dir/Score.cpp.i
 .PHONY : Score.cpp.i
 
 Score.s: Score.cpp.s
@@ -428,7 +441,7 @@ Score.s: Score.cpp.s
 
 # target to generate assembly for a file
 Score.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Score.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\logic.dir\build.make CMakeFiles/logic.dir/Score.cpp.s
 .PHONY : Score.cpp.s
 
 ScoreView.obj: ScoreView.cpp.obj
@@ -464,7 +477,7 @@ Stopwatch.obj: Stopwatch.cpp.obj
 
 # target to build an object file
 Stopwatch.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Stopwatch.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\logic.dir\build.make CMakeFiles/logic.dir/Stopwatch.cpp.obj
 .PHONY : Stopwatch.cpp.obj
 
 Stopwatch.i: Stopwatch.cpp.i
@@ -473,7 +486,7 @@ Stopwatch.i: Stopwatch.cpp.i
 
 # target to preprocess a source file
 Stopwatch.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Stopwatch.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\logic.dir\build.make CMakeFiles/logic.dir/Stopwatch.cpp.i
 .PHONY : Stopwatch.cpp.i
 
 Stopwatch.s: Stopwatch.cpp.s
@@ -482,7 +495,7 @@ Stopwatch.s: Stopwatch.cpp.s
 
 # target to generate assembly for a file
 Stopwatch.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Stopwatch.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\logic.dir\build.make CMakeFiles/logic.dir/Stopwatch.cpp.s
 .PHONY : Stopwatch.cpp.s
 
 Subject.obj: Subject.cpp.obj
@@ -491,7 +504,7 @@ Subject.obj: Subject.cpp.obj
 
 # target to build an object file
 Subject.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Subject.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\logic.dir\build.make CMakeFiles/logic.dir/Subject.cpp.obj
 .PHONY : Subject.cpp.obj
 
 Subject.i: Subject.cpp.i
@@ -500,7 +513,7 @@ Subject.i: Subject.cpp.i
 
 # target to preprocess a source file
 Subject.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Subject.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\logic.dir\build.make CMakeFiles/logic.dir/Subject.cpp.i
 .PHONY : Subject.cpp.i
 
 Subject.s: Subject.cpp.s
@@ -509,7 +522,7 @@ Subject.s: Subject.cpp.s
 
 # target to generate assembly for a file
 Subject.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/Subject.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\logic.dir\build.make CMakeFiles/logic.dir/Subject.cpp.s
 .PHONY : Subject.cpp.s
 
 World.obj: World.cpp.obj
@@ -518,7 +531,7 @@ World.obj: World.cpp.obj
 
 # target to build an object file
 World.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/World.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\logic.dir\build.make CMakeFiles/logic.dir/World.cpp.obj
 .PHONY : World.cpp.obj
 
 World.i: World.cpp.i
@@ -527,7 +540,7 @@ World.i: World.cpp.i
 
 # target to preprocess a source file
 World.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/World.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\logic.dir\build.make CMakeFiles/logic.dir/World.cpp.i
 .PHONY : World.cpp.i
 
 World.s: World.cpp.s
@@ -536,7 +549,7 @@ World.s: World.cpp.s
 
 # target to generate assembly for a file
 World.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DoodleJump.dir\build.make CMakeFiles/DoodleJump.dir/World.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\logic.dir\build.make CMakeFiles/logic.dir/World.cpp.s
 .PHONY : World.cpp.s
 
 main.obj: main.cpp.obj
@@ -579,6 +592,7 @@ help:
 	@echo ... list_install_components
 	@echo ... rebuild_cache
 	@echo ... DoodleJump
+	@echo ... logic
 	@echo ... AbstractFactory.obj
 	@echo ... AbstractFactory.i
 	@echo ... AbstractFactory.s

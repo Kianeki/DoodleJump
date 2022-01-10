@@ -17,6 +17,60 @@
 					<DistClean command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
+			<Target title="install/strip">
+				<Option working_dir="C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 install/strip"/>
+					<CompileFile command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="logic">
+				<Option output="C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/liblogic.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/SFML/include"/>
+					<Add directory="C:/mingw32/bin/../lib/gcc/i686-w64-mingw32/6.1.0/include/c++"/>
+					<Add directory="C:/mingw32/bin/../lib/gcc/i686-w64-mingw32/6.1.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="C:/mingw32/bin/../lib/gcc/i686-w64-mingw32/6.1.0/include/c++/backward"/>
+					<Add directory="C:/mingw32/bin/../lib/gcc/i686-w64-mingw32/6.1.0/include"/>
+					<Add directory="C:/mingw32/bin/../lib/gcc/i686-w64-mingw32/6.1.0/include-fixed"/>
+					<Add directory="C:/mingw32/bin/../lib/gcc/i686-w64-mingw32/6.1.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 logic"/>
+					<CompileFile command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="logic/fast">
+				<Option output="C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/liblogic.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/SFML/include"/>
+					<Add directory="C:/mingw32/bin/../lib/gcc/i686-w64-mingw32/6.1.0/include/c++"/>
+					<Add directory="C:/mingw32/bin/../lib/gcc/i686-w64-mingw32/6.1.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="C:/mingw32/bin/../lib/gcc/i686-w64-mingw32/6.1.0/include/c++/backward"/>
+					<Add directory="C:/mingw32/bin/../lib/gcc/i686-w64-mingw32/6.1.0/include"/>
+					<Add directory="C:/mingw32/bin/../lib/gcc/i686-w64-mingw32/6.1.0/include-fixed"/>
+					<Add directory="C:/mingw32/bin/../lib/gcc/i686-w64-mingw32/6.1.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 logic/fast"/>
+					<CompileFile command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
 			<Target title="install/local">
 				<Option working_dir="C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug"/>
 				<Option type="4"/>
@@ -111,28 +165,18 @@
 					<DistClean command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="install/strip">
-				<Option working_dir="C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 install/strip"/>
-					<CompileFile command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
 		</Build>
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/AbstractFactory.cpp">
-			<Option target="DoodleJump"/>
+			<Option target="logic"/>
 		</Unit>
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/AbstractFactory.h">
-			<Option target="DoodleJump"/>
+			<Option target="logic"/>
 		</Unit>
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Camera.cpp">
-			<Option target="DoodleJump"/>
+			<Option target="logic"/>
 		</Unit>
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Camera.h">
-			<Option target="DoodleJump"/>
+			<Option target="logic"/>
 		</Unit>
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/ConcreteFactory.cpp">
 			<Option target="DoodleJump"/>
@@ -141,10 +185,10 @@
 			<Option target="DoodleJump"/>
 		</Unit>
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/EntityModel.cpp">
-			<Option target="DoodleJump"/>
+			<Option target="logic"/>
 		</Unit>
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/EntityModel.h">
-			<Option target="DoodleJump"/>
+			<Option target="logic"/>
 		</Unit>
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/EntityView.cpp">
 			<Option target="DoodleJump"/>
@@ -159,22 +203,22 @@
 			<Option target="DoodleJump"/>
 		</Unit>
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Observer.cpp">
-			<Option target="DoodleJump"/>
+			<Option target="logic"/>
 		</Unit>
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Observer.h">
-			<Option target="DoodleJump"/>
+			<Option target="logic"/>
 		</Unit>
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Random.cpp">
-			<Option target="DoodleJump"/>
+			<Option target="logic"/>
 		</Unit>
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Random.h">
-			<Option target="DoodleJump"/>
+			<Option target="logic"/>
 		</Unit>
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Score.cpp">
-			<Option target="DoodleJump"/>
+			<Option target="logic"/>
 		</Unit>
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Score.h">
-			<Option target="DoodleJump"/>
+			<Option target="logic"/>
 		</Unit>
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/ScoreView.cpp">
 			<Option target="DoodleJump"/>
@@ -183,22 +227,22 @@
 			<Option target="DoodleJump"/>
 		</Unit>
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Stopwatch.cpp">
-			<Option target="DoodleJump"/>
+			<Option target="logic"/>
 		</Unit>
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Stopwatch.h">
-			<Option target="DoodleJump"/>
+			<Option target="logic"/>
 		</Unit>
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Subject.cpp">
-			<Option target="DoodleJump"/>
+			<Option target="logic"/>
 		</Unit>
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/Subject.h">
-			<Option target="DoodleJump"/>
+			<Option target="logic"/>
 		</Unit>
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/World.cpp">
-			<Option target="DoodleJump"/>
+			<Option target="logic"/>
 		</Unit>
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/World.h">
-			<Option target="DoodleJump"/>
+			<Option target="logic"/>
 		</Unit>
 		<Unit filename="C:/Users/Kiani/CLionProjects/DoodleJump/main.cpp">
 			<Option target="DoodleJump"/>
