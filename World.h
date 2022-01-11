@@ -16,9 +16,8 @@ class World
 {
 public:
         World(std::unique_ptr<AbstractFactory> concreteFactory, unsigned int windowWidth, unsigned int windowHeight)
-            : factory(std::move(concreteFactory))
+            : factory(std::move(concreteFactory)), camera(Camera(windowWidth, windowHeight))
         {
-                camera = Camera(windowWidth, windowHeight);
                 player = std::move(factory->createPlayer(0, -0.5)); // don't spawn too high or stuff gets wonky
                 // place starter platform
                 entities.emplace_back(std::move(factory->createPlatform(0, -0.8, PlatformType::staticP)), nullptr);
@@ -62,6 +61,7 @@ private:
 
         std::list<std::pair<std::shared_ptr<PlatformModel>, std::unique_ptr<BonusModel>>> entities;
 
+private:
         std::unique_ptr<PlayerModel> player = nullptr;
         std::unique_ptr<AbstractFactory> factory;
         Camera camera;

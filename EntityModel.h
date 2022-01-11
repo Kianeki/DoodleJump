@@ -26,7 +26,7 @@ public:
         float getHeight() const { return height; }
 
 protected:
-        std::pair<float, float> position{0.f ,0.f};
+        std::pair<float, float> position{0.f, 0.f};
         float width{0.f};
         float height{0.f};
 };
