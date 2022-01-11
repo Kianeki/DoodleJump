@@ -20,7 +20,7 @@ public:
         {
                 player = std::move(factory->createPlayer(0, -0.5)); // don't spawn too high or stuff gets wonky
                 // place starter platform
-                entities.emplace_back(std::move(factory->createPlatform(0, -0.8, PlatformType::staticP)), nullptr);
+                entities.emplace_back(std::move(factory->createPlatform(0, -0.7, PlatformType::staticP)), nullptr);
                 // make bottom row of background
                 backgroundTiles.push_back(makeBackgroundRow(-1));
                 generateBackground();
