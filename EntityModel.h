@@ -55,6 +55,7 @@ public:
                         upperBound = y + 4 * height;
                 }
         }
+
         virtual ~PlatformModel() override = default;
         // Moves the PlatformModel in X or Y
         void movePlatform()

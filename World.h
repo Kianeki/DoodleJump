@@ -29,26 +29,37 @@ public:
         }
         // creates platforms and bonuses to fill screen
         void generateRandomEntities();
+
         // draws platforms and bonuses on screen
         void drawEntities();
+
         // draws player on screen
         void drawPlayer();
+
         // moves player in X and Y direction and updates camera height if necessary
         bool movePlayer();
+
         // changes player direction according to input
         void setPlayerDirection(PlayerMovement::Direction direction);
+
         // check if platforms are still in view
         void checkEntitiesInView();
+
         // move platforms and bonuses
         void moveEntities();
+
         // check if player is in view (if player hits bottom of screen the game will end)
         bool checkPlayerInView();
+
         // check collision between player and platforms/bonuses
         void checkCollision();
+
         // update (if necessary) the active bonus that is applied to the player
         void updateActiveBonus();
+
         // creates the backgrounds to fill the screen
         void generateBackground();
+
         // draws background onto screen
         void drawBackground();
 

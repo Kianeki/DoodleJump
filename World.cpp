@@ -4,7 +4,6 @@
 
 #include "World.h"
 
-
 void World::generateRandomEntities()
 {
         float platformWidth = entities.back().first->getWidth();
@@ -152,7 +151,7 @@ bool World::checkPlayerInView()
 {
         std::pair<float, float> playerpos = player->getPosition();
         playerpos.second = playerpos.second - player->getHeight() - 0.1f; //-0.1 to counter the margin for platforms
-        if (camera.checkView(playerpos)) {                               // player is in view
+        if (camera.checkView(playerpos)) {                                // player is in view
                 return true;
         } else { // player has reached the bottom of the screen
                 return false;

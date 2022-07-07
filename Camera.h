@@ -24,8 +24,6 @@ public:
         {
         }
 
-//        Camera(){};
-
         // returns the scaled position(for sfml)
         std::pair<float, float> scaledPosition(float positionX, float positionY) const
         {
@@ -75,7 +73,7 @@ public:
 
 private:
         float currentMaxHeight{0}; // Y-value
-        float upperBound{1};       // upper and lower bounds, left and right bounds are always the same
+        float upperBound{1};       // upper and lower bounds, left and right bounds are always the same {-1, 1}
         float lowerBound{-1};
         unsigned int windowWidth = 0;
         unsigned int windowHeight = 0;

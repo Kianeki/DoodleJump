@@ -33,6 +33,7 @@ public:
                 case Alert::drawRequest:
                         scoreDisplay.setString(std::to_string(score));
                         gameWindow->draw(scoreDisplay);
+                        break;
                 case Alert::gameOver:
                         std::ofstream scoreFile("Scores/CurrentScore.txt");
                         scoreFile << std::to_string(score);
