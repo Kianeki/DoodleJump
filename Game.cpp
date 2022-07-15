@@ -58,6 +58,7 @@ void Game::update()
         };
         world.checkCollision();
         world.moveEntities();
+//        world.animateEntities();
 }
 
 void Game::render()

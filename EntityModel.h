@@ -24,7 +24,7 @@ public:
         std::pair<float, float> getPosition() const { return position; }
         float getWidth() const { return width; }
         float getHeight() const { return height; }
-
+        void setPosition(std::pair<float,float> newPosition){ position = newPosition; }
 protected:
         std::pair<float, float> position{0.f, 0.f};
         float width{0.f};
@@ -45,6 +45,7 @@ public:
         {
                 width = 0.25f;
                 height = 0.02f; // 0.02
+                //set their speed (default 0) and bounds in which they can move/teleport
                 if (randomType == PlatformType::horizontalP) {
                         platformSpeed = 0.5f;
                         lowerBound = -1 + width;
@@ -54,7 +55,14 @@ public:
                         lowerBound = y - 4 * height;
                         upperBound = y + 4 * height;
                 }
+                else if (randomType == PlatformType::verticalPteleport) {
+                        lowerBound = y - 6 * height;
+                        upperBound = y + 6 * height;
+                }
         }
+
+        float getLowerBound() const { return lowerBound; }
+        float getUpperBound() const { return upperBound; }
 
         virtual ~PlatformModel() override = default;
         // Moves the PlatformModel in X or Y
@@ -80,6 +88,7 @@ public:
                                 direction = !direction;
                         }
                 }
+
         }
         PlatformType::Type getType() const { return type; }
 
@@ -98,10 +107,20 @@ public:
         {
                 width = 0.10f;
                 height = 0.1f;
+                HP = maxHP;
         }
         virtual ~PlayerModel() override = default;
+
         // Is used when the player reaches the bottom of the screen. Alerts score to save itself to file
         void dead() { notify(Alert::gameOver, {0.f, 0.f}); }
+
+        bool isDead(){
+                if(HP == 0){
+                        return true;
+                }
+                return false;
+        }
+
         // Moves the player in X and Y direction
         void movePlayer()
         {
@@ -130,15 +149,35 @@ public:
         PlayerMovement::Direction getPlayerDirection() const { return direction; }
         float getJumpSpeed() const { return jumpSpeed; }
         void increaseScore(int scoreIncrease)
-        { // world can update score through player
+        { // world can updateJetpack score through player
                 notify(Alert::increaseScore, std::pair<int, int>(scoreIncrease, 0));
         }
+        void increaseHP(int value)
+        { // world can updateJetpack HP through player
+                if (HP<maxHP && HP >0){
+                        notify(Alert::increaseHP, std::pair<int, int>(value, 0));
+                        HP += value;
+                }
+
+        }
+        void decreaseHP(int value)
+        { // world can updateJetpack HP through player
+                if (HP>0){
+                        notify(Alert::decreaseHP, std::pair<int, int>(value, 0));
+                        HP -= value;
+
+                }
+        }
+        int getMaxHp() const { return maxHP; }
 
 private:
         float jumpSpeed = 1.6f;
         float maxPlayerSpeedX = 1.f;
         float currentSpeedY = 0.f;
         float gravity = 2.f;
+        int HP = 0;
+        int maxHP = 3;
+//        int immunityFrames = 0;
         PlayerMovement::Direction direction = PlayerMovement::none;
         std::shared_ptr<PlatformModel> lastJumpedOn = nullptr;
 };
@@ -158,7 +197,16 @@ public:
                         width = 0.06f;
                         height = 0.06f;
                         break;
+                case BonusType::heart:
+                        width = 0.05f;
+                        height = 0.03f;
+                        break;
+                case BonusType::spike:
+                        width = 0.10f;
+                        height = 0.02f;
+                        break;
                 }
+
                 position.second += platform->getHeight() + height;
                 btype = type;
         }
@@ -176,10 +224,18 @@ public:
                 float playerSpeed = player->getCurrentSpeed();
                 switch (btype) {
                 case BonusType::spring:
+                        playerSpeed = player->getJumpSpeed();
                         playerSpeed *= sqrt(5); // 5x as high jump
                         break;
                 case BonusType::jetpack:
+                        playerSpeed = player->getJumpSpeed();
                         playerSpeed *= sqrt(20);
+                        break;
+                case BonusType::heart:
+                        player->increaseHP(1);
+                        break;
+                case BonusType::spike:
+                        player->decreaseHP(1);
                         break;
                 }
                 player->setCurrentSpeed(playerSpeed);
@@ -187,7 +243,7 @@ public:
         }
         // updates the bonus position according to the player interaction
         // currently only applies to jetpack
-        bool update(const std::unique_ptr<PlayerModel>& player)
+        bool updateJetpack(const std::unique_ptr<PlayerModel>& player)
         {
                 if (player->getCurrentSpeed() < player->getJumpSpeed()) {
                         return false;

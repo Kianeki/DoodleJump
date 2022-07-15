@@ -11,7 +11,9 @@ enum Type
         drawRequest,
         increaseScore,
         decreaseScore,
-        gameOver
+        gameOver,
+        increaseHP,
+        decreaseHP
 };
 }
 class Observer

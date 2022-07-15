@@ -1,8 +1,8 @@
-# Install script for directory: C:/Users/Kiani/CLionProjects/DoodleJump
+# Install script for directory: /home/kiani/CLionProjects/DoodleJump
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/DoodleJump")
+  set(CMAKE_INSTALL_PREFIX "/usr/local")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -27,25 +27,41 @@ if(NOT CMAKE_INSTALL_COMPONENT)
   endif()
 endif()
 
+# Install shared libraries without execute permission?
+if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
+  set(CMAKE_INSTALL_SO_NO_EXE "1")
+endif()
+
 # Is this installation the result of a crosscompile?
 if(NOT DEFINED CMAKE_CROSSCOMPILING)
   set(CMAKE_CROSSCOMPILING "FALSE")
 endif()
 
+# Set default install directory permissions.
+if(NOT DEFINED CMAKE_OBJDUMP)
+  set(CMAKE_OBJDUMP "/usr/bin/objdump")
+endif()
+
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  if(EXISTS "$ENV{DESTDIR}/home/kiani/CLionProjects/DoodleJump/bin/DoodleJump" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}/home/kiani/CLionProjects/DoodleJump/bin/DoodleJump")
+    file(RPATH_CHECK
+         FILE "$ENV{DESTDIR}/home/kiani/CLionProjects/DoodleJump/bin/DoodleJump"
+         RPATH "")
+  endif()
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "C:/Users/Kiani/CLionProjects/DoodleJump/bin/DoodleJump.exe")
+   "/home/kiani/CLionProjects/DoodleJump/bin/DoodleJump")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "C:/Users/Kiani/CLionProjects/DoodleJump/bin" TYPE EXECUTABLE FILES "C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/DoodleJump.exe")
-  if(EXISTS "$ENV{DESTDIR}/C:/Users/Kiani/CLionProjects/DoodleJump/bin/DoodleJump.exe" AND
-     NOT IS_SYMLINK "$ENV{DESTDIR}/C:/Users/Kiani/CLionProjects/DoodleJump/bin/DoodleJump.exe")
+  file(INSTALL DESTINATION "/home/kiani/CLionProjects/DoodleJump/bin" TYPE EXECUTABLE FILES "/home/kiani/CLionProjects/DoodleJump/cmake-build-debug/DoodleJump")
+  if(EXISTS "$ENV{DESTDIR}/home/kiani/CLionProjects/DoodleJump/bin/DoodleJump" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}/home/kiani/CLionProjects/DoodleJump/bin/DoodleJump")
     if(CMAKE_INSTALL_DO_STRIP)
-      execute_process(COMMAND "C:/mingw32/bin/strip.exe" "$ENV{DESTDIR}/C:/Users/Kiani/CLionProjects/DoodleJump/bin/DoodleJump.exe")
+      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}/home/kiani/CLionProjects/DoodleJump/bin/DoodleJump")
     endif()
   endif()
 endif()
@@ -58,5 +74,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/kiani/CLionProjects/DoodleJump/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

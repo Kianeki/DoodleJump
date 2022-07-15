@@ -1,5 +1,5 @@
-"C:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" C:\Users\Kiani\CLionProjects\DoodleJump
--- Found SFML 2.4.0 in C:/SFML/include
+/snap/clion/198/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /home/kiani/CLionProjects/DoodleJump -B /home/kiani/CLionProjects/DoodleJump/cmake-build-debug
+-- Found SFML 2.5.1 in /usr/include
 -- Configuring done
 -- Generating done
--- Build files have been written to: C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug
+-- Build files have been written to: /home/kiani/CLionProjects/DoodleJump/cmake-build-debug

@@ -16,9 +16,9 @@ enum Type
         staticP = 200,
         temporaryP = 0,
         horizontalP = 100,
-        horizontalPteleport = 100,
+        horizontalPteleport = 50,
         verticalP = 75,
-        verticalPteleport = 75
+        verticalPteleport = 25
 
 }; // these int values are for score calc
 }
@@ -27,7 +27,9 @@ enum Type
 {
         none = 0,
         spring = 500,
-        jetpack = 2000
+        jetpack = 2000,
+        heart = 250,
+        spike = -1000,
 }; // these int values are for score calc
 }
 class Random
@@ -55,7 +57,11 @@ public:
                                                                         (minPlatformDistance * difficulty / 9.f));
                 return distribution(generator);
         }
-
+        // return random teleport Y-value for vertical platform
+        float randomTeleportPlatformY(const float lowerBound, const float upperBound){
+                std::uniform_real_distribution<double> distribution(lowerBound, upperBound);
+                return distribution(generator);
+        }
         // returns a random PlatformType depending on difficulty
         PlatformType::Type randomPlatformType()
         {
@@ -87,7 +93,14 @@ public:
                 int randomNumber = distribution(generator);
                 if (randomNumber < 10 && difficulty > 0) {
                         return BonusType::spring;
-                } else if (randomNumber > 95 && difficulty > 1) {
+                }
+                else if (randomNumber >=10 && randomNumber <20 && difficulty > 0) {
+                        return BonusType::heart;
+                }
+                else if (randomNumber >=20 && randomNumber <30 && difficulty > 0) {
+                        return BonusType::spike;
+                }
+                else if (randomNumber > 95 && difficulty > 1) {
                         return BonusType::jetpack;
                 }
                 return BonusType::none;

@@ -1,8 +1,8 @@
-C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/install/strip.dir
-C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/logic.dir
-C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/install/local.dir
-C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/install.dir
-C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/DoodleJump.dir
-C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/list_install_components.dir
+/home/kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/logic.dir
+/home/kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/DoodleJump.dir
+/home/kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/list_install_components.dir
+/home/kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/install.dir
+/home/kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/install/local.dir
+/home/kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/install/strip.dir

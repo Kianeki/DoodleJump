@@ -14,7 +14,9 @@ public:
         {
                 gameWindow = window;
                 scoreDisplay.setFont(scoreFont);
-                scoreDisplay.setCharacterSize(20);
+                scoreDisplay.setCharacterSize(26);
+                scoreDisplay.setOutlineColor(sf::Color::Black);
+                scoreDisplay.setOutlineThickness(1);
                 scoreDisplay.setPosition(pos.first, pos.second);
                 // set origin in the centre
                 sf::FloatRect bounds = scoreDisplay.getLocalBounds();

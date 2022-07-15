@@ -1,25 +1,24 @@
+
+# Consider dependencies only in project.
+set(CMAKE_DEPENDS_IN_PROJECT_ONLY OFF)
+
 # The set of languages for which implicit dependencies are needed:
 set(CMAKE_DEPENDS_LANGUAGES
-  "CXX"
   )
-# The set of files for implicit dependencies of each language:
-set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/Kiani/CLionProjects/DoodleJump/ConcreteFactory.cpp" "C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/DoodleJump.dir/ConcreteFactory.cpp.obj"
-  "C:/Users/Kiani/CLionProjects/DoodleJump/EntityView.cpp" "C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/DoodleJump.dir/EntityView.cpp.obj"
-  "C:/Users/Kiani/CLionProjects/DoodleJump/Game.cpp" "C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/DoodleJump.dir/Game.cpp.obj"
-  "C:/Users/Kiani/CLionProjects/DoodleJump/ScoreView.cpp" "C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/DoodleJump.dir/ScoreView.cpp.obj"
-  "C:/Users/Kiani/CLionProjects/DoodleJump/main.cpp" "C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/DoodleJump.dir/main.cpp.obj"
-  )
-set(CMAKE_CXX_COMPILER_ID "GNU")
 
-# The include file search paths:
-set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "C:/SFML/include"
+# The set of dependency files which are needed:
+set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/kiani/CLionProjects/DoodleJump/ConcreteFactory.cpp" "CMakeFiles/DoodleJump.dir/ConcreteFactory.cpp.o" "gcc" "CMakeFiles/DoodleJump.dir/ConcreteFactory.cpp.o.d"
+  "/home/kiani/CLionProjects/DoodleJump/EntityView.cpp" "CMakeFiles/DoodleJump.dir/EntityView.cpp.o" "gcc" "CMakeFiles/DoodleJump.dir/EntityView.cpp.o.d"
+  "/home/kiani/CLionProjects/DoodleJump/Game.cpp" "CMakeFiles/DoodleJump.dir/Game.cpp.o" "gcc" "CMakeFiles/DoodleJump.dir/Game.cpp.o.d"
+  "/home/kiani/CLionProjects/DoodleJump/HPView.cpp" "CMakeFiles/DoodleJump.dir/HPView.cpp.o" "gcc" "CMakeFiles/DoodleJump.dir/HPView.cpp.o.d"
+  "/home/kiani/CLionProjects/DoodleJump/ScoreView.cpp" "CMakeFiles/DoodleJump.dir/ScoreView.cpp.o" "gcc" "CMakeFiles/DoodleJump.dir/ScoreView.cpp.o.d"
+  "/home/kiani/CLionProjects/DoodleJump/main.cpp" "CMakeFiles/DoodleJump.dir/main.cpp.o" "gcc" "CMakeFiles/DoodleJump.dir/main.cpp.o.d"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "C:/Users/Kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/logic.dir/DependInfo.cmake"
+  "/home/kiani/CLionProjects/DoodleJump/cmake-build-debug/CMakeFiles/logic.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

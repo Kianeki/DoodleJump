@@ -9,7 +9,7 @@ find_package(SFML 2 COMPONENTS system window graphics)
 
 ADD_LIBRARY(logic STATIC AbstractFactory.h AbstractFactory.cpp Camera.cpp Camera.h EntityModel.h EntityModel.cpp Observer.h Observer.cpp Random.cpp Random.h Score.h Score.cpp Stopwatch.cpp Stopwatch.h Subject.cpp Subject.h World.cpp World.h)
 #SET(SRC main.cpp Game.h Game.cpp Camera.cpp Camera.h World.cpp World.h AbstractFactory.cpp AbstractFactory.h EntityModel.cpp EntityModel.h ConcreteFactory.cpp ConcreteFactory.h EntityView.cpp EntityView.h Observer.cpp Observer.h Subject.cpp Subject.h Random.h Random.cpp Stopwatch.h Stopwatch.cpp Score.cpp Score.h ScoreView.cpp ScoreView.h)
-SET(SRC main.cpp Game.h Game.cpp ConcreteFactory.cpp ConcreteFactory.h EntityView.cpp EntityView.h ScoreView.cpp ScoreView.h)
+SET(SRC main.cpp Game.h Game.cpp ConcreteFactory.cpp ConcreteFactory.h EntityView.cpp EntityView.h ScoreView.cpp ScoreView.h HPView.cpp HPView.h)
 
 INCLUDE_DIRECTORIES(${SFML_INCLUDE_DIR})
 

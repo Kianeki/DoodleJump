@@ -1,13 +1,18 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/DoodleJump.dir/ConcreteFactory.cpp.obj"
-  "CMakeFiles/DoodleJump.dir/EntityView.cpp.obj"
-  "CMakeFiles/DoodleJump.dir/Game.cpp.obj"
-  "CMakeFiles/DoodleJump.dir/ScoreView.cpp.obj"
-  "CMakeFiles/DoodleJump.dir/main.cpp.obj"
-  "DoodleJump.exe"
-  "DoodleJump.exe.manifest"
+  "CMakeFiles/DoodleJump.dir/ConcreteFactory.cpp.o"
+  "CMakeFiles/DoodleJump.dir/ConcreteFactory.cpp.o.d"
+  "CMakeFiles/DoodleJump.dir/EntityView.cpp.o"
+  "CMakeFiles/DoodleJump.dir/EntityView.cpp.o.d"
+  "CMakeFiles/DoodleJump.dir/Game.cpp.o"
+  "CMakeFiles/DoodleJump.dir/Game.cpp.o.d"
+  "CMakeFiles/DoodleJump.dir/HPView.cpp.o"
+  "CMakeFiles/DoodleJump.dir/HPView.cpp.o.d"
+  "CMakeFiles/DoodleJump.dir/ScoreView.cpp.o"
+  "CMakeFiles/DoodleJump.dir/ScoreView.cpp.o.d"
+  "CMakeFiles/DoodleJump.dir/main.cpp.o"
+  "CMakeFiles/DoodleJump.dir/main.cpp.o.d"
+  "DoodleJump"
   "DoodleJump.pdb"
-  "libDoodleJump.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

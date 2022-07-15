@@ -54,7 +54,7 @@ public:
         // check collision between player and platforms/bonuses
         void checkCollision();
 
-        // update (if necessary) the active bonus that is applied to the player
+        // updateJetpack (if necessary) the active bonus that is applied to the player
         void updateActiveBonus();
 
         // creates the backgrounds to fill the screen
@@ -62,7 +62,10 @@ public:
 
         // draws background onto screen
         void drawBackground();
-
+        // teleport platform horizontally/vertically
+        void teleportPlatform(std::shared_ptr<PlatformModel>& );
+        // world checks if hit animation should be played
+//        void animateEntities();
 private:
         bool checkPlatformCollision(std::pair<float, float> entityPos, float width, float height);
 
@@ -71,6 +74,7 @@ private:
         std::list<std::unique_ptr<BGTileModel>> makeBackgroundRow(float currentRowY);
 
         std::list<std::pair<std::shared_ptr<PlatformModel>, std::unique_ptr<BonusModel>>> entities;
+
 
 private:
         std::unique_ptr<PlayerModel> player = nullptr;

@@ -24,7 +24,9 @@ public:
                 sf::FloatRect bounds = entityVisual.getLocalBounds();
                 entityVisual.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
         }
+
         virtual ~EntityView() override = default;
+
         void onNotify(Alert::Type alert, std::pair<float, float> scaledPos) override
         {
                 switch (alert) {
@@ -54,7 +56,16 @@ public:
                 entityVisual.setTexture(&playerTexture);
         }
         virtual ~PlayerView() override = default;
+        void onNotify(Alert::Type alert, std::pair<float, float> scaledPos) override
+        {
+                switch (alert) {
+                case Alert::drawRequest:
+                        updatePosition(scaledPos);
+                        drawOnScreen();
+                        break;
 
+                }
+        }
 private:
 };
 
@@ -64,6 +75,8 @@ public:
         PlatformView(PlatformType::Type randomType, float width, float height, std::shared_ptr<sf::RenderWindow> window)
             : EntityView(width, height, std::move(window))
         {
+                entityVisual.setOutlineColor(sf::Color::Black);
+                entityVisual.setOutlineThickness(1);
                 switch (randomType) {
                 case PlatformType::staticP:
                         entityVisual.setFillColor(sf::Color::Green);
@@ -71,13 +84,24 @@ public:
                 case PlatformType::horizontalP:
                         entityVisual.setFillColor(sf::Color::Blue);
                         break;
+                case PlatformType::horizontalPteleport:
+                        entityVisual.setFillColor(sf::Color::Blue);
+                        entityVisual.setOutlineThickness(-3);
+                        entityVisual.setOutlineColor(sf::Color::White);
+                        break;
                 case PlatformType::temporaryP:
                         entityVisual.setFillColor(sf::Color::White);
                         break;
                 case PlatformType::verticalP:
                         entityVisual.setFillColor(sf::Color::Yellow);
                         break;
+                case PlatformType::verticalPteleport:
+                        entityVisual.setFillColor(sf::Color::Yellow);
+                        entityVisual.setOutlineThickness(-3);
+                        entityVisual.setOutlineColor(sf::Color::White);
+                        break;
                 }
+
         }
         virtual ~PlatformView() override = default;
 
@@ -97,6 +121,12 @@ public:
                         break;
                 case BonusType::jetpack:
                         entityVisual.setFillColor(sf::Color::Magenta);
+                        break;
+                case BonusType::heart:
+                        entityVisual.setFillColor(sf::Color::Red);
+                        break;
+                case BonusType::spike:
+                        entityVisual.setFillColor(sf::Color::Black);
                         break;
                 }
         }

@@ -9,6 +9,7 @@
 
 #include "AbstractFactory.h"
 #include "EntityView.h"
+#include "HPView.h"
 #include "ScoreView.h"
 class ConcreteFactory : public AbstractFactory
 {
@@ -39,9 +40,12 @@ public:
 
                 std::unique_ptr<ScoreView> scoreView = std::make_unique<ScoreView>(
                     std::pair<int, int>(gameWindow->getSize().x / 2, 30), gameWindow, scoreFont);
+                std::unique_ptr<HPView> HP_view = std::make_unique<HPView>(
+                                                     std::pair<int, int>(playerModel->getPosition().first, playerModel->getPosition().second+playerModel->getHeight()*2), gameWindow, scoreFont, playerModel->getMaxHp());
                 // attach PlayerView to Playermodel (add as observer)
                 playerModel->addObserver(std::move(playerView));
                 playerModel->addObserver(std::move(scoreView));
+                playerModel->addObserver(std::move(HP_view));
                 return playerModel;
         }
         std::unique_ptr<PlatformModel> createPlatform(float x, float y, PlatformType::Type ptype) override

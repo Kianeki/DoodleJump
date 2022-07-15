@@ -1,3 +1,1 @@
-"C:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\DoodleJump.dir/objects.a
-C:\mingw32\bin\ar.exe cr CMakeFiles\DoodleJump.dir/objects.a @CMakeFiles\DoodleJump.dir\objects1.rsp
-C:\mingw32\bin\g++.exe -g   -Wl,--whole-archive CMakeFiles\DoodleJump.dir/objects.a -Wl,--no-whole-archive  -o DoodleJump.exe -Wl,--out-implib,libDoodleJump.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\DoodleJump.dir\linklibs.rsp
+/usr/bin/c++ -g CMakeFiles/DoodleJump.dir/main.cpp.o CMakeFiles/DoodleJump.dir/Game.cpp.o CMakeFiles/DoodleJump.dir/ConcreteFactory.cpp.o CMakeFiles/DoodleJump.dir/EntityView.cpp.o CMakeFiles/DoodleJump.dir/ScoreView.cpp.o CMakeFiles/DoodleJump.dir/HPView.cpp.o -o DoodleJump  liblogic.a /usr/lib/x86_64-linux-gnu/libsfml-system.so /usr/lib/x86_64-linux-gnu/libsfml-window.so /usr/lib/x86_64-linux-gnu/libsfml-graphics.so 
