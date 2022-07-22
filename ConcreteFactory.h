@@ -33,7 +33,6 @@ public:
         virtual ~ConcreteFactory() override = default;
         std::unique_ptr<PlayerModel> createPlayer(float x, float y) override
         {
-
                 std::unique_ptr<PlayerModel> playerModel = std::make_unique<PlayerModel>(x, y);
                 std::unique_ptr<EntityView> playerView = std::make_unique<PlayerView>(
                     playerTexture, playerModel->getWidth(), playerModel->getHeight(), gameWindow);
@@ -74,7 +73,19 @@ public:
                 bonusModel->addObserver(std::move(bonusView));
                 return bonusModel;
         }
+        std::unique_ptr<BulletModel> createBullet(float x, float y) override{
+                std::unique_ptr<BulletModel> bulletModel = std::make_unique<BulletModel>(x,y);
+                std::unique_ptr<BulletView> bulletView = std::make_unique<BulletView>(bulletModel->getWidth(),bulletModel->getHeight(), gameWindow);
+                bulletModel->addObserver(std::move(bulletView));
+                return bulletModel;
+        }
 
+        std::unique_ptr<EnemyModel> createEnemy(const std::unique_ptr<PlatformModel>& platform, EnemyType::Type etype) override{
+                std::unique_ptr<EnemyModel> enemyModel = std::make_unique<EnemyModel>(platform, etype);
+                std::unique_ptr<EnemyView> enemyView = std::make_unique<EnemyView>(enemyModel->getWidth(),enemyModel->getHeight(), etype, gameWindow);
+                enemyModel->addObserver(std::move(enemyView));
+                return enemyModel;
+        }
 private:
         std::shared_ptr<sf::RenderWindow> gameWindow = nullptr;
         sf::Texture backgroundTexture;

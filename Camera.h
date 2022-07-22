@@ -53,7 +53,7 @@ public:
         // returns true  if the coordinates are in view of the camera
         bool checkView(std::pair<float, float> position) const
         {
-                if (position.second > lowerBound - 0.1) { // if it is in cameraview (with a little margin)
+                if (position.second > lowerBound - 0.1 && position.second < upperBound +0.1) { // if it is in cameraview (with a little margin)
                         return true;
                 } else {
                         return false;

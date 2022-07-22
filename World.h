@@ -62,8 +62,9 @@ public:
 
         // draws background onto screen
         void drawBackground();
-        // teleport platform horizontally/vertically
-        void teleportPlatform(std::shared_ptr<PlatformModel>& );
+
+
+        void shootFriendlyBullet();
         // world checks if hit animation should be played
 //        void animateEntities();
 private:
@@ -73,16 +74,17 @@ private:
 
         std::list<std::unique_ptr<BGTileModel>> makeBackgroundRow(float currentRowY);
 
-        std::list<std::pair<std::shared_ptr<PlatformModel>, std::unique_ptr<BonusModel>>> entities;
+        std::list<std::pair<std::shared_ptr<PlatformModel>, std::unique_ptr<EntityModel>>> entities;
 
-
+        bool globalCollision(EntityModel& livingEntity, EntityModel& staticEntity);
 private:
         std::unique_ptr<PlayerModel> player = nullptr;
         std::unique_ptr<AbstractFactory> factory;
         Camera camera;
         float minPlatformDistance = 0.4f;
-        std::unique_ptr<BonusModel> activeBonus = nullptr;
+        std::unique_ptr<EntityModel> activeBonus = nullptr;
         std::list<std::list<std::unique_ptr<BGTileModel>>> backgroundTiles; // list[row][column]
+        std::list<std::unique_ptr<BulletModel>> friendlyBullets;
 };
 
 #endif // TESTSFML_WORLD_H

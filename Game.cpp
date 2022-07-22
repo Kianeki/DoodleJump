@@ -55,7 +55,7 @@ void Game::update()
         if (!world.movePlayer()) {
                 // if the player reaches the bottom of the screen, it will return false and the game will end
                 gameOver();
-        };
+        }
         world.checkCollision();
         world.moveEntities();
 //        world.animateEntities();
@@ -80,6 +80,9 @@ void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
                 } else if (key == sf::Keyboard::Right || key == sf::Keyboard::D) {
                         right = true;
                         currentPlayerDirection = PlayerMovement::right;
+                }
+                else if( key == sf::Keyboard::W || key == sf::Keyboard::Up ){
+                        world.shootFriendlyBullet();
                 }
         } else {
                 if (key == sf::Keyboard::Left || key == sf::Keyboard::A) {

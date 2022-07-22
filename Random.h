@@ -32,6 +32,13 @@ enum Type
         spike = -1000,
 }; // these int values are for score calc
 }
+namespace EnemyType{
+enum Type{
+        none = 0,
+        weak = 5000,
+        strong = 8000
+};
+}
 class Random
 {
 public:
@@ -89,7 +96,7 @@ public:
         // returns a random BonusType
         BonusType::Type randomBonusType()
         {
-                std::uniform_int_distribution<int> distribution(0, 100); // 0 <= x <= 10
+                std::uniform_int_distribution<int> distribution(0, 100); // 0 <= x <= 100
                 int randomNumber = distribution(generator);
                 if (randomNumber < 10 && difficulty > 0) {
                         return BonusType::spring;
@@ -106,6 +113,18 @@ public:
                 return BonusType::none;
         }
 
+        // return a random enemyType
+        EnemyType::Type randomEnemyType(){
+                std::uniform_int_distribution<int> distribution(0, 100); // 0 <= x <= 100
+                int randomNumber = distribution(generator);
+                if (randomNumber < 10 && difficulty > 0) {
+                        return EnemyType::weak;
+                }
+                else if (randomNumber > 95 && difficulty > 1) {
+                        return EnemyType::strong;
+                }
+                return EnemyType::none;
+        }
         // scales difficulty(max 3) depending on camera height
         void calcDifficulty(float currentMaxHeight)
         {

@@ -16,7 +16,6 @@ class EntityView : public Observer
 public:
         EntityView(float width, float height, std::shared_ptr<sf::RenderWindow> window) : gameWindow(std::move(window))
         {
-
                 width *= gameWindow->getSize().x;
                 height *= gameWindow->getSize().y;
                 entityVisual.setSize(sf::Vector2f(width, height));
@@ -47,6 +46,18 @@ protected:
         sf::RectangleShape entityVisual;
 };
 
+class BulletView : public EntityView
+{
+public:
+        BulletView(float width, float height,std::shared_ptr<sf::RenderWindow> window)
+            : EntityView(width, height, std::move(window)){
+                entityVisual.setFillColor(sf::Color(100,100,100));
+                entityVisual.setOutlineThickness(2);
+                entityVisual.setOutlineColor(sf::Color::Black);
+        }
+        ~BulletView() override = default;
+
+};
 class PlayerView : public EntityView
 {
 public:
@@ -55,20 +66,25 @@ public:
         {
                 entityVisual.setTexture(&playerTexture);
         }
-        virtual ~PlayerView() override = default;
-        void onNotify(Alert::Type alert, std::pair<float, float> scaledPos) override
-        {
-                switch (alert) {
-                case Alert::drawRequest:
-                        updatePosition(scaledPos);
-                        drawOnScreen();
-                        break;
+        ~PlayerView() override = default;
 
-                }
-        }
 private:
 };
 
+class EnemyView : public EntityView
+{
+public:
+        EnemyView(float width, float height, EnemyType::Type etype,std::shared_ptr<sf::RenderWindow> window) : EntityView(width, height, window){
+                if(etype == EnemyType::weak){
+                        entityVisual.setFillColor(sf::Color(200,30,30));
+                }
+                else if (etype == EnemyType::strong){
+                        entityVisual.setFillColor(sf::Color(100,30,200));
+                }
+                entityVisual.setOutlineColor(sf::Color::Black);
+                entityVisual.setOutlineThickness(2);
+        }
+};
 class PlatformView : public EntityView
 {
 public:

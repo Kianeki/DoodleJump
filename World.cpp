@@ -4,6 +4,7 @@
 
 #include "World.h"
 
+
 void World::generateRandomEntities()
 {
         float platformWidth = entities.back().first->getWidth();
@@ -18,12 +19,17 @@ void World::generateRandomEntities()
                 float newPlatformX = random->randomPlatformX(platformWidth);
                 std::unique_ptr<PlatformModel> newPlatform =
                     factory->createPlatform(newPlatformX, newPlatformY, random->randomPlatformType());
-                // we will also have a chance of generating a bonus after the platform has been created
+                // we will also have a chance of generating a bonus or enemy after the platform has been created
                 BonusType::Type bonustype = random->randomBonusType();
+                EnemyType::Type enemyType = random->randomEnemyType();
                 if ((bonustype != BonusType::none) && (newPlatform->getType() != PlatformType::temporaryP)) {
                         std::unique_ptr<BonusModel> newBonus = factory->createBonus(newPlatform, bonustype);
                         entities.emplace_back(std::move(newPlatform), std::move(newBonus));
-                } else {
+                } else if((enemyType != EnemyType::none) && (newPlatform->getType() != PlatformType::temporaryP)){
+                        std::unique_ptr<EnemyModel> newEnemy = factory->createEnemy(newPlatform, enemyType);
+                        entities.emplace_back(std::move(newPlatform), std::move(newEnemy));
+                }
+                else {
                         entities.emplace_back(std::move(newPlatform), nullptr);
                 }
         }
@@ -41,6 +47,9 @@ void World::drawEntities()
         if (activeBonus != nullptr) {
                 // needs to be drawn after platforms/bonuses
                 activeBonus->drawEntity(camera);
+        }
+        for(auto& bullet: friendlyBullets){
+                bullet->drawEntity(camera);
         }
 }
 
@@ -85,6 +94,16 @@ void World::checkEntitiesInView()
                         // if it is out of view we delete the whole row
                 }
         }
+        for(auto it = friendlyBullets.begin(); it != friendlyBullets.end();){
+                if (camera.checkView((*it)->getPosition())) {
+                        // we check if the position of a bullet is on screen
+                        it++;
+                } else {
+                        it = friendlyBullets.erase(it);
+                        // if it is out of view we delete the bullet
+                }
+        }
+
 }
 
 void World::moveEntities()
@@ -93,9 +112,12 @@ void World::moveEntities()
                 entity.first->movePlatform();
                 // first we move the platform
                 if (entity.second != nullptr) {
-                        entity.second->movePlatformBonus(entity.first);
+                        entity.second->moveEntityOnPlatform(*entity.first);
                         // will updateJetpack bonus position according to platformpos
                 }
+        }
+        for( auto& bullet: friendlyBullets){
+                bullet->move();
         }
 }
 
@@ -203,8 +225,65 @@ bool World::checkBonusCollision(const std::unique_ptr<BonusModel>& bonus)
                 // if this is true then the player is NOT above/below the bonus entirely
                 if (playerLowerLeftCorner.first <= bonusUpperRightCorner.first &&
                     playerLowerRightCorner.first >= bonusUpperLeftCorner.first) {
-                        // if this is true then the player is inside of the bonus
+                        // if this is true then the player is inside the bonus
                         return true;
+                }
+        } else {
+                return false;
+        }
+        return false;
+}
+
+bool World::globalCollision(EntityModel& livingEntity, EntityModel& staticEntity){
+        std::pair<float, float> staticEntityUpperLeftCorner{0, 0};
+        std::pair<float, float> staticEntityUpperRightCorner{0, 0};
+        std::pair<float, float> staticEntityLowerLeftCorner{0, 0};
+        std::pair<float, float> staticEntityLowerRightCorner{0, 0};
+        std::pair<float, float> livingEntityLowerLeftCorner{0, 0};
+        std::pair<float, float> livingEntityLowerRightCorner{0, 0};
+        std::pair<float, float> livingEntityUpperLeftCorner{0, 0};
+        std::pair<float, float> livingEntityUpperRightCorner{0, 0};
+        // this is to calc LOWER corners of rectanglebox of livingEntity
+        std::pair<float, float> livingEntityPos = livingEntity.getPosition();
+        float livingEntityWidth = livingEntity.getWidth();
+        float livingEntityHeight = livingEntity.getHeight();
+        livingEntityLowerLeftCorner.first = livingEntityPos.first - livingEntityWidth;
+        livingEntityLowerLeftCorner.second = livingEntityPos.second - livingEntityHeight;
+        livingEntityLowerRightCorner.first = livingEntityPos.first + livingEntityWidth;
+        livingEntityLowerRightCorner.second = livingEntityLowerLeftCorner.second;
+        livingEntityUpperLeftCorner.first = livingEntityLowerLeftCorner.first;
+        livingEntityUpperRightCorner.first = livingEntityLowerRightCorner.first;
+        livingEntityUpperLeftCorner.second = livingEntityPos.second + livingEntityHeight;
+        livingEntityUpperRightCorner.second = livingEntityUpperLeftCorner.second;
+        // we now have the full rectangleCollision box of the player
+        // now we calc the rectanglebox of bonusses
+        std::pair<float, float> staticEntityPosition = staticEntity.getPosition();
+        float staticEntityWidth = staticEntity.getWidth();
+        float staticEntityHeight = staticEntity.getHeight();
+        staticEntityUpperLeftCorner.first = staticEntityPosition.first - staticEntityWidth;
+        // entityPosition is  the centre of the entity
+        staticEntityUpperLeftCorner.second = staticEntityPosition.second + staticEntityHeight;
+        // need to add/subtract width and height to get rectangle corners
+        staticEntityUpperRightCorner.first = staticEntityPosition.first + staticEntityWidth;
+        staticEntityUpperRightCorner.second = staticEntityUpperLeftCorner.second;
+        staticEntityLowerLeftCorner.first = staticEntityUpperLeftCorner.first;
+        staticEntityLowerRightCorner.first = staticEntityUpperRightCorner.first;
+        staticEntityLowerRightCorner.second = staticEntityPosition.second - staticEntityHeight;
+        staticEntityLowerLeftCorner.second = staticEntityLowerRightCorner.second;
+        //precision softens the collision check by allowing it to be detected a little earlier when falling
+        float precision = 0.015;
+        //increase precision if collisionEntity is going slow
+        if (livingEntity.getCurrentSpeed() >= -0.5f) {
+                precision = 0.005f;
+        }
+        if (livingEntityLowerLeftCorner.second <= (staticEntityUpperRightCorner.second + precision) &&
+            livingEntityUpperLeftCorner.second >= staticEntityLowerRightCorner.second) {
+                // if this is true then the livingEntity is NOT above/below the staticEntity entirely
+                if (livingEntityLowerLeftCorner.first <= staticEntityUpperRightCorner.first &&
+                    livingEntityLowerRightCorner.first >= staticEntityUpperLeftCorner.first) {
+                        // if this is true then the livingEntity is inside of the staticEntity
+                        return staticEntity.collide(livingEntity);
+
                 }
         } else {
                 return false;
@@ -214,88 +293,93 @@ bool World::checkBonusCollision(const std::unique_ptr<BonusModel>& bonus)
 
 void World::checkCollision()
 {
+        // no need to check collision if player has 0 hp
         if(player->isDead()){
-                //when player has 0 hp, we don't check collision which means he falls to his death
                 return;
         }
+
         for (auto it = entities.begin(); it != entities.end();) {
-                std::pair<float, float> platformPos = (*it).first->getPosition();
-                float platformHeight = (*it).first->getHeight();
-                float platformWidth = (*it).first->getWidth();
                 if ((*it).second != nullptr) {
                         // if there is a bonus, check bonuscollision first
-                        if ((*it).second->getType() == BonusType::spring || (*it).second->getType() == BonusType::spike) {
-                                std::pair<float, float> bonusPos = (*it).second->getPosition();
-                                float bonusHeight = (*it).second->getHeight();
-                                float bonusWidth = (*it).second->getWidth();
-                                if (checkPlatformCollision(bonusPos, bonusWidth, bonusHeight)) {
-                                        // spring/spike bonus collision works the same as a platform collision
-                                        player->platformCollide((*it).first);
-                                        // this will give player the normal jump speed and notify the player which
-                                        // platform the bonus is on
-                                        (*it).second->applyToPlayer(player);
-                                        // this will apply the (spring)bonus and increase score
+                        if(globalCollision(*player, *(*it).second)){
+                                if((*it).second->getType() == BonusType::jetpack){
+                                        activeBonus = std::move((*it).second);
+                                        //safety
+                                        (*it).second = nullptr;
+                                        // the world will keep track of the activeBonus
+                                        // platform no longer holds any bonus
                                 }
-                        } else { // its not a spring/spike bonus
-                                if (checkBonusCollision((*it).second) && activeBonus == nullptr) {
-                                        // player picks up bonus and there is no bonus active
-                                        //player->platformCollide((*it).first);
-                                        // this will give player the normal jump speed and notfy the player which
-                                        // platform the bonus is on
-
-                                        // this will apply the bonus
-                                        (*it).second->applyToPlayer(player);
-
-                                        if((*it).second->getType() == BonusType::jetpack){
-                                                activeBonus = std::move((*it).second);
-                                                // the world will keep track of the activeBonus
-                                        }
-                                        else{
-                                                (*it).second.reset();
-                                        }
+                                else if (!((*it).second->getType() == BonusType::spring ||(*it).second->getType() == BonusType::spike)){
+                                        //delete bonus
+                                        (*it).second.reset();
+                                        //safety
                                         (*it).second = nullptr;
                                         // platform no longer holds any bonus
                                 }
                         }
                 }
-                if (checkPlatformCollision(platformPos, platformWidth, platformHeight)) {
-                        // if there is collision between platform and player
-                        player->platformCollide((*it).first);
-                        //delete temporaryPlatform on collision
-                        if ((*it).first->getType() == PlatformType::temporaryP) {
+                if(globalCollision(*player,*(*it).first)){
+                        player->platformCollide(*(*it).first);
+                        if((*it).first->getType() == PlatformType::temporaryP){
                                 it = entities.erase(it);
                         }
-                        //teleport platform horizontally/vertically on collision
-                        else if((*it).first->getType() == PlatformType::horizontalPteleport
-                                 ||(*it).first->getType() == PlatformType::verticalPteleport ){
-                                teleportPlatform((*it).first);
-                        }
+
                 }
+
+//                                if (checkPlatformCollision(bonusPos, bonusWidth, bonusHeight)) {
+//                                        // spring/spike bonus collision works the same as a platform collision
+//                                        player->platformCollide((*it).first);
+//                                        // this will give player the normal jump speed and notify the player which
+//                                        // platform the bonus is on
+//                                        (*it).second->applyToPlayer(player);
+//                                        // this will apply the (spring)bonus and increase score
+//                                }
+//                        } else { // its not a spring/spike bonus
+//                                if (checkBonusCollision((*it).second) && activeBonus == nullptr) {
+//                                        // player picks up bonus and there is no bonus active
+//                                        //player->platformCollide((*it).first);
+//                                        // this will give player the normal jump speed and notfy the player which
+//                                        // platform the bonus is on
+//
+//                                        // this will apply the bonus
+//                                        (*it).second->applyToPlayer(player);
+//
+//                                        if((*it).second->getType() == BonusType::jetpack){
+//                                                activeBonus = std::move((*it).second);
+//                                                // the world will keep track of the activeBonus
+//                                        }
+//                                        else{
+//                                                (*it).second.reset();
+//                                        }
+//                                        (*it).second = nullptr;
+//                                        // platform no longer holds any bonus
+//                                }
+//                        }
+//                }
+//                if (checkPlatformCollision(platformPos, platformWidth, platformHeight)) {
+//                        // if there is collision between platform and player
+//                        player->platformCollide((*it).first);
+//                        //delete temporaryPlatform on collision
+//                        if ((*it).first->getType() == PlatformType::temporaryP) {
+//                                it = entities.erase(it);
+//                        }
+//                        //teleport platform horizontally/vertically on collision
+//                        else if((*it).first->getType() == PlatformType::horizontalPteleport
+//                                 ||(*it).first->getType() == PlatformType::verticalPteleport ){
+//                                teleportPlatform((*it).first);
+//                        }
+
                 it++;
         }
 }
-void World::teleportPlatform(std::shared_ptr<PlatformModel>& platform){
 
-        if(platform->getType() == PlatformType::horizontalPteleport){
-                std::pair<float,float> newPos= platform->getPosition();
-                std::shared_ptr<Random> random = Random::getInstance();
-                newPos.first = random->randomPlatformX(platform->getWidth());
-                platform->setPosition(newPos);
-        }
-        else if(platform->getType() == PlatformType::verticalPteleport){
-                std::pair<float,float> newPos= platform->getPosition();
-                std::shared_ptr<Random> random = Random::getInstance();
-                newPos.second = random->randomTeleportPlatformY(platform->getLowerBound(), platform->getUpperBound());
-                platform->setPosition(newPos);
-        }
-}
 void World::updateActiveBonus()
 {
         // is used to updateJetpack the position of the active bonus and destruct it once it is expired
         if (activeBonus == nullptr) {
                 return;
         } else {
-                if (activeBonus->updateJetpack(player)) {
+                if (activeBonus->updateJetpack(*player)) {
                         // bonus has not yet expired
                 } else {
                         // bonus has expired
@@ -336,8 +420,10 @@ void World::drawBackground()
                 }
         }
 }
-//void World::animateEntities() {
-//        std::shared_ptr<Stopwatch> stopwatch= Stopwatch::getInstance();
-//
-//        if( player->)
-//}
+void World::shootFriendlyBullet() {
+        std::pair<float,float> topCentrePlayer = std::pair<float,float>(player->getPosition());
+        topCentrePlayer.first += player->getWidth();
+        topCentrePlayer.second += player->getHeight();
+        friendlyBullets.push_back(factory->createBullet(topCentrePlayer.first, topCentrePlayer.second));
+
+}
