@@ -44,10 +44,16 @@ public:
 
         void setPosition(std::pair<float,float> newPosition){ position = newPosition; }
 
-        virtual bool collide(EntityModel& entityModel){}
-        virtual void platformCollide(EntityModel& platformModel){}
+        //returns true if there is a valid collision between the entity and the player
+        virtual bool collide(EntityModel& playerModel){}
+
         virtual int getType() const{}
 
+        virtual bool isDead(){
+                return false;
+        }
+
+//        virtual void knockback(EntityModel& entityModel){}
         //moves an entity that is attached to a platform/player like bonus/enemy
 //        virtual void updateAttachedEntity(EntityModel& attachedentity) const{
 //
@@ -58,6 +64,8 @@ public:
                 position.first = platform.getPosition().first;
                 position.second = platform.getPosition().second + platform.getHeight() + height;
         }
+
+        // returns true if there is a valid collision(only when falling) between the entity and the player
         bool fallingCollide(EntityModel& entityModel) const{
 
                 if (entityModel.getCurrentSpeed() > 0.f) {
@@ -82,7 +90,9 @@ public:
         }
         //updates jetpack location according to playerLocation
         virtual bool updateJetpack(const EntityModel& player){}
-
+        //an entity getsHit if it collides with a bullet
+        //currently only livingEntities can get hit
+        virtual bool getsHit(int damage){ return false;}
 protected:
         std::pair<float, float> position{0.f, 0.f};
         float width{0.f};
@@ -194,16 +204,23 @@ private:
 
 class BulletModel : public EntityModel{
 public:
-        BulletModel(float x, float y) : EntityModel(x,y){
+        BulletModel(float x, float y, BulletType::Type bulletType) : EntityModel(x,y){
                 width = 0.04f;
                 height = 0.04f;
+                if(bulletType == BulletType::friendly){
+                        speedY = 1.2f;
+                }
+                else if (bulletType == BulletType::enemy){
+                        speedY = -0.8f;
+                }
         }
 
         ~BulletModel() override = default;
 
         //check collision between bullet and LivingEntityModel
         bool collide (EntityModel& entityModel) override{
-
+                //returns true if it hits appropriate entity and deals damage to its HP
+                return entityModel.getsHit(damage);
         }
 
         void move(){
@@ -211,13 +228,15 @@ public:
                 position.second += speedY * timePerFrame;
         }
 private:
-        float speedY = 1.2f;
+        float speedY = 0.f;
         int damage = 1;
 };
 class LivingEntityModel: public EntityModel{
 protected:
         int maxHP = 0;
         int HP = 0;
+        int currentImmunityFrames = 0;
+        int immunityFrames = 0;
 public:
         LivingEntityModel(float x, float y) : EntityModel(x, y)
         {
@@ -225,30 +244,75 @@ public:
         }
         ~LivingEntityModel() override = default;
 
+        bool isDead() override{
+                if(HP == 0){
+                        return true;
+                }
+                return false;
+        }
+        int getMaxHp() const { return maxHP; }
+
+        bool getsHit(int damage) override{
+                if(!isImmune()){
+                        decreaseHP(damage);
+                        grantImmunity();
+                        return true;
+                }
+                return false;
+        }
+        virtual void grantImmunity(){
+                currentImmunityFrames = immunityFrames;
+
+        }
+        virtual void updateImmunity(){
+                if(currentImmunityFrames>0){
+                        currentImmunityFrames--;
+                }
+        }
+        virtual bool isImmune(){
+                if(currentImmunityFrames>0){
+                        return true;
+                }
+                else return false;
+        }
 };
 class EnemyModel : public LivingEntityModel{
 private:
         EnemyType::Type type;
+
 public:
-        EnemyModel(const std::unique_ptr<PlatformModel>& platform, EnemyType::Type type): LivingEntityModel(platform->getPosition().first, platform->getPosition().second){
-                width = 0.1f;
-                height = 0.1f;
+        EnemyModel(const std::unique_ptr<PlatformModel>& platform, EnemyType::Type etype): LivingEntityModel(platform->getPosition().first, platform->getPosition().second){
+                width = 0.07f;
+                height = 0.07f;
+                type = etype;
                 if(type == EnemyType::weak){
-                        maxHP = 3;
+                        maxHP = 2;
                 }
                 else if (type == EnemyType::strong){
-                        maxHP = 5;
+                        maxHP = 3;
                 }
                 HP = maxHP;
                 position.second += platform->getHeight();
         }
         ~EnemyModel() override = default;
 
-        //EnemyModel collides with entityModel
-        bool collide(EntityModel& entityModel) override{
-                if(type == EnemyType::strong){
+        void decreaseHP(int value) override
+        { // world can update HP through player
+                if (HP>0){
+                        notify(Alert::decreaseHP, std::pair<int, int>(value, 0));
+                        HP -= value;
 
                 }
+        }
+
+        //EnemyModel collides with entityModel
+        bool collide(EntityModel& entityModel) override{
+                entityModel.getsHit(1);
+//                entityModel.knockback(*this);
+                return false;
+        }
+        int getType() const override{
+                return type;
         }
 };
 class PlayerModel : public LivingEntityModel
@@ -258,36 +322,61 @@ public:
         {
                 width = 0.1f;
                 height = 0.1f;
-                maxHP = 3;
+                maxHP = 5;
                 HP = maxHP;
+                immunityFrames = 0.75*(1.f/Stopwatch::getInstance()->getTimePerFrame());
         }
         virtual ~PlayerModel() override = default;
 
         // Is used when the player reaches the bottom of the screen. Alerts score to save itself to file
-        void dead() { notify(Alert::gameOver, {0.f, 0.f}); }
+        void gameOver() { notify(Alert::gameOver, {0.f, 0.f}); }
         // sets Y speed to standard
-        void jump(){
+        void jump() override{
                 currentSpeedY = jumpSpeed;
-        }
-        bool isDead(){
-                if(HP == 0){
-                        return true;
-                }
-                return false;
         }
 
         // Moves the player in X and Y direction
         void movePlayer()
         {
+                updateImmunity(); //!!!!!
                 float timePerFrame = Stopwatch::getInstance()->getTimePerFrame();
                 currentSpeedY -= gravity * timePerFrame;
                 position.second += currentSpeedY * timePerFrame;
-                float horizontalMovement = maxPlayerSpeedX * timePerFrame * direction;
+                float horizontalMovement = 0.f;
+                horizontalMovement = maxPlayerSpeedX * timePerFrame * direction;
                 position.first += horizontalMovement;
                 if (position.first > 1.f || position.first < -1.f) {
                         position.first -= 2.f * direction;
                 }
+
+
         }
+
+//        bool isKnockedBack(){
+//
+//                if(currentKnockBackFrames > 0 ){
+//                        currentKnockBackFrames--;
+//                        return true;
+//                }
+//                return false;
+//        }
+
+        //player has collided with an enemy and has to be pushed out of entity
+//        void knockback(EntityModel& entityModel) override{
+//
+//                if(currentImmunityFrames>immunityFrames/2){
+//                        float timePerFrame = Stopwatch::getInstance()->getTimePerFrame();
+//                        //player hits entity from the left
+//                        if(position.first - entityModel.getPosition().first < 0){
+//                                position.first -= maxPlayerSpeedX*timePerFrame*3;
+//                        }
+//                        //player hits entity from the right
+//                        else if(position.first - entityModel.getPosition().first > 0){
+//                                position.first += maxPlayerSpeedX*timePerFrame*3;
+//                        }
+//                        currentSpeedY = 0.2f*timePerFrame;
+//                }
+//        }
         // Holds ptr of platform with which player collided and bounces player off of platform
         // Also updates score if player collides with same platform twice
 //        void platformCollide(EntityModel& platformCollision) override
@@ -302,7 +391,10 @@ public:
 //        }
         float getCurrentSpeed() const override { return currentSpeedY; }
         void setCurrentSpeed(float newSpeed) override { currentSpeedY = newSpeed; }
-        void setPlayerDirection(PlayerMovement::Direction dir) { direction = dir; }
+        //set the player direction unless knockedBack
+        void setPlayerDirection(PlayerMovement::Direction dir) {
+                        direction = dir;
+        }
         PlayerMovement::Direction getPlayerDirection() const { return direction; }
         float getJumpSpeed() const override { return jumpSpeed; }
         void increaseScore(int scoreIncrease) override
@@ -314,7 +406,7 @@ public:
                 notify(Alert::decreaseScore, std::pair<int, int>(scoreIncrease, 0));
         }
         void increaseHP(int value) override
-        { // world can updateJetpack HP through player
+        { // world can update HP through player
                 if (HP<maxHP && HP >0){
                         notify(Alert::increaseHP, std::pair<int, int>(value, 0));
                         HP += value;
@@ -322,23 +414,25 @@ public:
 
         }
         void decreaseHP(int value) override
-        { // world can updateJetpack HP through player
+        { // world can update HP through player
                 if (HP>0){
                         notify(Alert::decreaseHP, std::pair<int, int>(value, 0));
                         HP -= value;
 
                 }
         }
-        int getMaxHp() const { return maxHP; }
+
 
 
 private:
         float jumpSpeed = 1.6f;
         float maxPlayerSpeedX = 1.f;
+//        int currentKnockBackFrames = 0;
+//        int knockBackFrames = 0.5*(1.f/Stopwatch::getInstance()->getTimePerFrame());
         float currentSpeedY = 0.f;
         float gravity = 2.f;
-//        int immunityFrames = 0;
         PlayerMovement::Direction direction = PlayerMovement::none;
+//        PlayerMovement::Direction knockBackDirection = PlayerMovement::none;
         std::shared_ptr<EntityModel> lastJumpedOn = nullptr;
 };
 

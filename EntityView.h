@@ -49,9 +49,14 @@ protected:
 class BulletView : public EntityView
 {
 public:
-        BulletView(float width, float height,std::shared_ptr<sf::RenderWindow> window)
+        BulletView(float width, float height,std::shared_ptr<sf::RenderWindow> window, BulletType::Type bulletType)
             : EntityView(width, height, std::move(window)){
-                entityVisual.setFillColor(sf::Color(100,100,100));
+                if(bulletType == BulletType::friendly){
+                        entityVisual.setFillColor(sf::Color(100,100,100));
+                }
+                else if( bulletType == BulletType::enemy){
+                        entityVisual.setFillColor(sf::Color(255,100,100));
+                }
                 entityVisual.setOutlineThickness(2);
                 entityVisual.setOutlineColor(sf::Color::Black);
         }

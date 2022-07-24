@@ -76,15 +76,14 @@ void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
                 if (key == sf::Keyboard::Left || key == sf::Keyboard::A) {
                         left = true;
                         currentPlayerDirection = PlayerMovement::left;
-                        //            world.setPlayerDirection(PlayerMovement::left)
                 } else if (key == sf::Keyboard::Right || key == sf::Keyboard::D) {
                         right = true;
                         currentPlayerDirection = PlayerMovement::right;
                 }
-                else if( key == sf::Keyboard::W || key == sf::Keyboard::Up ){
+                else if ( key == sf::Keyboard::W || key == sf::Keyboard::Up){
                         world.shootFriendlyBullet();
                 }
-        } else {
+        } else { // key is released
                 if (key == sf::Keyboard::Left || key == sf::Keyboard::A) {
                         left = false;
                         if (right) {
@@ -99,6 +98,9 @@ void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
                         } else {
                                 currentPlayerDirection = PlayerMovement::none;
                         }
+                }
+                else if (key == sf::Keyboard::W || key == sf::Keyboard::Up){
+                        world.reload();
                 }
         }
         world.setPlayerDirection(currentPlayerDirection); // left, right or none

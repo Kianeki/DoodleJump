@@ -63,8 +63,14 @@ public:
         // draws background onto screen
         void drawBackground();
 
-
+        // shoots a bullet from player that can hit enemies
         void shootFriendlyBullet();
+
+        // allows player to shoot again
+        bool reload();
+
+        // shoots a bullet from an enemy at the player
+        void shootEnemyBullet(const EntityModel& enemy);
         // world checks if hit animation should be played
 //        void animateEntities();
 private:
@@ -85,6 +91,8 @@ private:
         std::unique_ptr<EntityModel> activeBonus = nullptr;
         std::list<std::list<std::unique_ptr<BGTileModel>>> backgroundTiles; // list[row][column]
         std::list<std::unique_ptr<BulletModel>> friendlyBullets;
+        std::list<std::unique_ptr<BulletModel>> enemyBullets;
+        bool reloaded = true;
 };
 
 #endif // TESTSFML_WORLD_H

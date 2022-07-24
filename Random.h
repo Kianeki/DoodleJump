@@ -39,6 +39,13 @@ enum Type{
         strong = 8000
 };
 }
+namespace BulletType{
+enum Type{
+        none = 0,
+        friendly = 1,
+        enemy = 2
+};
+}
 class Random
 {
 public:

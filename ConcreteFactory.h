@@ -29,6 +29,13 @@ public:
                 if (!springTexture.loadFromFile("Textures/spring.png")) {
                         throw std::runtime_error("Failed  to load texture : Textures/spring.png");
                 }
+                sf::Texture gameTexture;
+                if(!gameTexture.loadFromFile("Textures/spikes.png")){
+                        throw std::runtime_error("Failed  to load texture : Textures/spikes.png");
+                }
+                gameTextures["spikeTexture"] = gameTexture;
+
+
         }
         virtual ~ConcreteFactory() override = default;
         std::unique_ptr<PlayerModel> createPlayer(float x, float y) override
@@ -73,9 +80,10 @@ public:
                 bonusModel->addObserver(std::move(bonusView));
                 return bonusModel;
         }
-        std::unique_ptr<BulletModel> createBullet(float x, float y) override{
-                std::unique_ptr<BulletModel> bulletModel = std::make_unique<BulletModel>(x,y);
-                std::unique_ptr<BulletView> bulletView = std::make_unique<BulletView>(bulletModel->getWidth(),bulletModel->getHeight(), gameWindow);
+        std::unique_ptr<BulletModel> createBullet(float x, float y, BulletType::Type bulletType) override{
+
+                std::unique_ptr<BulletModel> bulletModel = std::make_unique<BulletModel>(x,y, bulletType);
+                std::unique_ptr<BulletView> bulletView = std::make_unique<BulletView>(bulletModel->getWidth(),bulletModel->getHeight(), gameWindow, bulletType);
                 bulletModel->addObserver(std::move(bulletView));
                 return bulletModel;
         }
@@ -83,7 +91,10 @@ public:
         std::unique_ptr<EnemyModel> createEnemy(const std::unique_ptr<PlatformModel>& platform, EnemyType::Type etype) override{
                 std::unique_ptr<EnemyModel> enemyModel = std::make_unique<EnemyModel>(platform, etype);
                 std::unique_ptr<EnemyView> enemyView = std::make_unique<EnemyView>(enemyModel->getWidth(),enemyModel->getHeight(), etype, gameWindow);
+                std::unique_ptr<HPView> HP_view = std::make_unique<HPView>(
+                    std::pair<int, int>(enemyModel->getPosition().first, enemyModel->getPosition().second+enemyModel->getHeight()*2), gameWindow, scoreFont, enemyModel->getMaxHp());
                 enemyModel->addObserver(std::move(enemyView));
+                enemyModel->addObserver(std::move(HP_view));
                 return enemyModel;
         }
 private:
@@ -92,6 +103,7 @@ private:
         sf::Font scoreFont;
         sf::Texture springTexture;
         sf::Texture playerTexture;
+        std::map<std::string,sf::Texture> gameTextures;
 };
 
 #endif // TESTSFML_CONCRETEFACTORY_H
