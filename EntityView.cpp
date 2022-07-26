@@ -16,8 +16,8 @@ EntityView::EntityView(float width, float height, std::shared_ptr<sf::RenderWind
 void EntityView::onNotify(Alert::Type alert, std::pair<float, float> scaledPos)
 {
         switch (alert) {
-                case Alert::drawRequest:
-                        updatePosition(scaledPos);
+        case Alert::drawRequest:
+                updatePosition(scaledPos);
                 drawOnScreen();
                 break;
         }
@@ -28,12 +28,12 @@ void EntityView::updatePosition(std::pair<float, float> scaledPosition)
 }
 void EntityView::drawOnScreen() { gameWindow->draw(entityVisual); }
 BulletView::BulletView(float width, float height, std::shared_ptr<sf::RenderWindow> window, BulletType::Type bulletType)
-    : EntityView(width, height, std::move(window)){
-        if(bulletType == BulletType::friendly){
-                entityVisual.setFillColor(sf::Color(100,100,100));
-        }
-        else if( bulletType == BulletType::enemy){
-                entityVisual.setFillColor(sf::Color(255,100,100));
+    : EntityView(width, height, std::move(window))
+{
+        if (bulletType == BulletType::friendly) {
+                entityVisual.setFillColor(sf::Color(100, 100, 100));
+        } else if (bulletType == BulletType::enemy) {
+                entityVisual.setFillColor(sf::Color(255, 100, 100));
         }
         entityVisual.setOutlineThickness(2);
         entityVisual.setOutlineColor(sf::Color::Black);
@@ -46,7 +46,8 @@ PlayerView::PlayerView(const sf::Texture& playerTexture, float width, float heig
 }
 EnemyView::EnemyView(const sf::Texture& enemyTexture, float width, float height, EnemyType::Type etype,
                      std::shared_ptr<sf::RenderWindow> window)
-    : EntityView(width, height, window){
+    : EntityView(width, height, window)
+{
         entityVisual.setTexture(&enemyTexture);
 }
 PlatformView::PlatformView(PlatformType::Type randomType, float width, float height,
@@ -79,14 +80,12 @@ PlatformView::PlatformView(PlatformType::Type randomType, float width, float hei
                 entityVisual.setOutlineColor(sf::Color::White);
                 break;
         }
-
 }
 BonusView::BonusView(const sf::Texture& bonusTexture, float width, float height,
                      std::shared_ptr<sf::RenderWindow> window)
     : EntityView(width, height, std::move(window))
 {
         entityVisual.setTexture(&bonusTexture);
-
 }
 BGTileView::BGTileView(const sf::Texture& background, float width, float height,
                        std::shared_ptr<sf::RenderWindow> window)

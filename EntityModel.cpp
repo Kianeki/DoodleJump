@@ -24,32 +24,32 @@ bool EntityModel::fallingCollide(const EntityModel& entityModel) const
         collisionEntityPosition.second -= entityModel.getHeight();
         float precision = 0.015f;
 
-        //increase precision if collisionEntity is going slow
+        // increase precision if collisionEntity is going slow
         if (entityModel.getCurrentSpeed() >= -0.5f) {
                 precision = 0.005f;
         }
-        //check if collisionEntity is partially inside/ on top of platform/spring/spike
-        if ((collisionEntityPosition.second - (position.second+height)) >= -precision) {
+        // check if collisionEntity is partially inside/ on top of platform/spring/spike
+        if ((collisionEntityPosition.second - (position.second + height)) >= -precision) {
                 return true;
         }
         return false;
 }
-bool EntityModel::getsHit(int damage) { return false;}
-bool EntityModel::updateJetpack(const EntityModel& player) {return false;}
-bool EntityModel::isDead() {return false;}
-int EntityModel::getType() const {return 0;}
-bool EntityModel::deleteOnCollision() {return false;}
-bool EntityModel::collide(EntityModel& playerModel) {return false;}
+bool EntityModel::getsHit(int damage) { return false; }
+bool EntityModel::updateJetpack(const EntityModel& player) { return false; }
+bool EntityModel::isDead() { return false; }
+int EntityModel::getType() const { return 0; }
+bool EntityModel::deleteOnCollision() { return false; }
+bool EntityModel::collide(EntityModel& playerModel) { return false; }
 void EntityModel::setPosition(std::pair<float, float> newPosition) { position = newPosition; }
 float EntityModel::getWidth() const { return width; }
 float EntityModel::getHeight() const { return height; }
-float EntityModel::getCurrentSpeed() const {return 0.f;}
-float EntityModel::getJumpSpeed() const {return 0.f;}
+float EntityModel::getCurrentSpeed() const { return 0.f; }
+float EntityModel::getJumpSpeed() const { return 0.f; }
 PlatformModel::PlatformModel(float x, float y, PlatformType::Type randomType) : EntityModel(x, y), type(randomType)
 {
         width = 0.25f;
         height = 0.02f; // 0.02
-        //set their speed (default 0) and bounds in which they can move/teleport
+        // set their speed (default 0) and bounds in which they can move/teleport
         if (randomType == PlatformType::horizontalP) {
                 platformSpeed = 0.5f;
                 lowerBound = -1 + width;
@@ -58,8 +58,7 @@ PlatformModel::PlatformModel(float x, float y, PlatformType::Type randomType) : 
                 platformSpeed = 0.2f;
                 lowerBound = y - 4 * height;
                 upperBound = y + 4 * height;
-        }
-        else if (randomType == PlatformType::verticalPteleport) {
+        } else if (randomType == PlatformType::verticalPteleport) {
                 lowerBound = y - 6 * height;
                 upperBound = y + 6 * height;
         }
@@ -67,21 +66,20 @@ PlatformModel::PlatformModel(float x, float y, PlatformType::Type randomType) : 
 bool PlatformModel::collide(EntityModel& entityModel)
 {
         bool collision = false;
-        if(fallingCollide(entityModel)){
+        if (fallingCollide(entityModel)) {
                 collision = true;
                 entityModel.jump();
-                if(jumpedOn){
+                if (jumpedOn) {
                         entityModel.decreaseScore(type);
                 }
                 jumpedOn = true;
-                if(type == PlatformType::horizontalPteleport){
-                        std::pair<float,float> newPos= getPosition();
+                if (type == PlatformType::horizontalPteleport) {
+                        std::pair<float, float> newPos = getPosition();
                         std::shared_ptr<Random> random = Random::getInstance();
                         newPos.first = random->randomPlatformX(getWidth());
                         setPosition(newPos);
-                }
-                else if(getType() == PlatformType::verticalPteleport){
-                        std::pair<float,float> newPos= getPosition();
+                } else if (getType() == PlatformType::verticalPteleport) {
+                        std::pair<float, float> newPos = getPosition();
                         std::shared_ptr<Random> random = Random::getInstance();
                         newPos.second = random->randomTeleportPlatformY(getLowerBound(), getUpperBound());
                         setPosition(newPos);
@@ -92,7 +90,7 @@ bool PlatformModel::collide(EntityModel& entityModel)
 }
 bool PlatformModel::deleteOnCollision()
 {
-        if(type == PlatformType::temporaryP){
+        if (type == PlatformType::temporaryP) {
                 return true;
         }
         return false;
@@ -119,25 +117,24 @@ void PlatformModel::movePlatform()
                         direction = !direction;
                 }
         }
-
 }
 int PlatformModel::getType() const { return type; }
 float PlatformModel::getLowerBound() const { return lowerBound; }
 float PlatformModel::getUpperBound() const { return upperBound; }
 
-BulletModel::BulletModel(float x, float y, BulletType::Type bulletType) : EntityModel(x,y){
+BulletModel::BulletModel(float x, float y, BulletType::Type bulletType) : EntityModel(x, y)
+{
         width = 0.04f;
         height = 0.04f;
-        if(bulletType == BulletType::friendly){
+        if (bulletType == BulletType::friendly) {
                 speedY = 1.2f;
-        }
-        else if (bulletType == BulletType::enemy){
+        } else if (bulletType == BulletType::enemy) {
                 speedY = -0.8f;
         }
 }
 bool BulletModel::collide(EntityModel& entityModel)
 {
-        //returns true if it hits appropriate entity and deals damage to its HP
+        // returns true if it hits appropriate entity and deals damage to its HP
         return entityModel.getsHit(damage);
 }
 void BulletModel::move()
@@ -145,66 +142,62 @@ void BulletModel::move()
         float timePerFrame = Stopwatch::getInstance()->getTimePerFrame();
         position.second += speedY * timePerFrame;
 }
-bool BulletModel::deleteOnCollision() {return true;}
+bool BulletModel::deleteOnCollision() { return true; }
 bool LivingEntityModel::isDead()
 {
-        if(HP == 0){
+        if (HP == 0) {
                 return true;
         }
         return false;
 }
 bool LivingEntityModel::getsHit(int damage)
 {
-        if(!isImmune()){
-                notify(Alert::decreaseScore, std::pair<int, int>(1000*damage, 0));
+        if (!isImmune()) {
+                notify(Alert::decreaseScore, std::pair<int, int>(1000 * damage, 0));
                 decreaseHP(damage);
                 grantImmunity();
                 return true;
         }
         return false;
 }
-void LivingEntityModel::grantImmunity() {
-        currentImmunityFrames = immunityFrames;
-
-}
+void LivingEntityModel::grantImmunity() { currentImmunityFrames = immunityFrames; }
 void LivingEntityModel::updateImmunity()
 {
-        if(currentImmunityFrames>0){
+        if (currentImmunityFrames > 0) {
                 currentImmunityFrames--;
         }
 }
 bool LivingEntityModel::isImmune()
 {
-        if(currentImmunityFrames>0){
+        if (currentImmunityFrames > 0) {
                 return true;
-        }
-        else return false;
+        } else
+                return false;
 }
 void LivingEntityModel::increaseHP(int value)
 {
-        if (HP<maxHP && HP >0){
+        if (HP < maxHP && HP > 0) {
                 notify(Alert::increaseHP, std::pair<int, int>(value, 0));
                 HP += value;
         }
-
 }
 void LivingEntityModel::decreaseHP(int value)
 {
-        if (HP>0){
+        if (HP > 0) {
                 notify(Alert::decreaseHP, std::pair<int, int>(value, 0));
                 HP -= value;
         }
 }
 int LivingEntityModel::getMaxHp() const { return maxHP; }
 EnemyModel::EnemyModel(const std::unique_ptr<PlatformModel>& platform, EnemyType::Type etype)
-    : LivingEntityModel(platform->getPosition().first, platform->getPosition().second){
+    : LivingEntityModel(platform->getPosition().first, platform->getPosition().second)
+{
         width = 0.1f;
         height = 0.1f;
         type = etype;
-        if(type == EnemyType::weak){
+        if (type == EnemyType::weak) {
                 maxHP = 1;
-        }
-        else if (type == EnemyType::strong){
+        } else if (type == EnemyType::strong) {
                 maxHP = 3;
         }
         HP = maxHP;
@@ -215,24 +208,20 @@ bool EnemyModel::collide(EntityModel& entityModel)
         entityModel.getsHit(1);
         return false;
 }
-int EnemyModel::getType() const {
-        return type;
-}
+int EnemyModel::getType() const { return type; }
 PlayerModel::PlayerModel(float x, float y) : LivingEntityModel(x, y)
 {
         width = 0.1f;
         height = 0.1f;
         maxHP = 5;
         HP = maxHP;
-        immunityFrames = 0.75*(1.f/Stopwatch::getInstance()->getTimePerFrame());
+        immunityFrames = 0.75 * (1.f / Stopwatch::getInstance()->getTimePerFrame());
 }
 void PlayerModel::gameOver() { notify(Alert::gameOver, {0.f, 0.f}); }
-void PlayerModel::jump() {
-        currentSpeedY = jumpSpeed;
-}
+void PlayerModel::jump() { currentSpeedY = jumpSpeed; }
 void PlayerModel::movePlayer()
 {
-        updateImmunity(); //updates the immunity frames (movePlayer gets called each frame)
+        updateImmunity(); // updates the immunity frames (movePlayer gets called each frame)
 
         float timePerFrame = Stopwatch::getInstance()->getTimePerFrame();
         currentSpeedY -= gravity * timePerFrame;
@@ -246,9 +235,7 @@ void PlayerModel::movePlayer()
 }
 float PlayerModel::getCurrentSpeed() const { return currentSpeedY; }
 void PlayerModel::setCurrentSpeedY(float newSpeed) { currentSpeedY = newSpeed; }
-void PlayerModel::setPlayerDirection(PlayerMovement::Direction dir) {
-        direction = dir;
-}
+void PlayerModel::setPlayerDirection(PlayerMovement::Direction dir) { direction = dir; }
 float PlayerModel::getJumpSpeed() const { return jumpSpeed; }
 void PlayerModel::increaseScore(int scoreIncrease)
 { // entities can update score through player
@@ -289,11 +276,10 @@ bool BonusModel::collide(EntityModel& entityModel)
         float playerSpeed = entityModel.getCurrentSpeed();
         switch (btype) {
         case BonusType::spring:
-                if (fallingCollide(entityModel)){
+                if (fallingCollide(entityModel)) {
                         playerSpeed = entityModel.getJumpSpeed();
                         playerSpeed *= sqrt(5); // 5x as high jump
-                }
-                else{
+                } else {
                         return false;
                 }
                 break;
@@ -305,11 +291,10 @@ bool BonusModel::collide(EntityModel& entityModel)
                 entityModel.increaseHP(1);
                 break;
         case BonusType::spike:
-                if(fallingCollide(entityModel)){
+                if (fallingCollide(entityModel)) {
                         playerSpeed = entityModel.getJumpSpeed();
                         entityModel.decreaseHP(1);
-                }
-                else{
+                } else {
                         return false;
                 }
                 break;
@@ -320,7 +305,7 @@ bool BonusModel::collide(EntityModel& entityModel)
 }
 bool BonusModel::deleteOnCollision()
 {
-        if(btype == BonusType::heart){
+        if (btype == BonusType::heart) {
                 return true;
         }
         return false;

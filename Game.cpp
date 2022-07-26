@@ -58,7 +58,7 @@ void Game::update()
         }
         world.checkCollision();
         world.moveEntities();
-//        world.animateEntities();
+        //        world.animateEntities();
 }
 
 void Game::render()
@@ -79,8 +79,7 @@ void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
                 } else if (key == sf::Keyboard::Right || key == sf::Keyboard::D) {
                         right = true;
                         currentPlayerDirection = PlayerMovement::right;
-                }
-                else if ( key == sf::Keyboard::W || key == sf::Keyboard::Up){
+                } else if (key == sf::Keyboard::W || key == sf::Keyboard::Up) {
                         world.shootFriendlyBullet();
                 }
         } else { // key is released
@@ -98,8 +97,7 @@ void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
                         } else {
                                 currentPlayerDirection = PlayerMovement::none;
                         }
-                }
-                else if (key == sf::Keyboard::W || key == sf::Keyboard::Up){
+                } else if (key == sf::Keyboard::W || key == sf::Keyboard::Up) {
                         world.reload();
                 }
         }

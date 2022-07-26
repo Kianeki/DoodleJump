@@ -18,7 +18,7 @@ float Random::randomPlatformY(float platformHeight, float minPlatformDistance)
 { // platformHeight is the thickness of the platform
         std::uniform_real_distribution<double> distribution(3 * platformHeight * (1.0 + difficulty),
                                                             (minPlatformDistance / 2) +
-                                                            (minPlatformDistance * difficulty / 9.f));
+                                                                (minPlatformDistance * difficulty / 9.f));
         return distribution(generator);
 }
 float Random::randomTeleportPlatformY(const float lowerBound, const float upperBound)
@@ -35,15 +35,13 @@ PlatformType::Type Random::randomPlatformType()
                 return PlatformType::staticP;
         } else if (randomNumber == 4) {
                 return PlatformType::temporaryP;
-        } else if (randomNumber == 5 ) {
+        } else if (randomNumber == 5) {
                 return PlatformType::horizontalP;
-        } else if(randomNumber == 6){
+        } else if (randomNumber == 6) {
                 return PlatformType::horizontalPteleport;
-        }
-        else if (randomNumber == 7) {
+        } else if (randomNumber == 7) {
                 return PlatformType::verticalP;
-        }
-        else if (randomNumber == 8) {
+        } else if (randomNumber == 8) {
                 return PlatformType::verticalPteleport;
         }
         return PlatformType::Type(); // Need to throw exception here
@@ -54,14 +52,11 @@ BonusType::Type Random::randomBonusType()
         int randomNumber = distribution(generator);
         if (randomNumber < 10 && difficulty > 0) {
                 return BonusType::spring;
-        }
-        else if (randomNumber >=10 && randomNumber <20 && difficulty > 0) {
+        } else if (randomNumber >= 10 && randomNumber < 20 && difficulty > 0) {
                 return BonusType::heart;
-        }
-        else if (randomNumber >=20 && randomNumber <30 && difficulty > 0) {
+        } else if (randomNumber >= 20 && randomNumber < 30 && difficulty > 0) {
                 return BonusType::spike;
-        }
-        else if (randomNumber > 95 && difficulty > 1) {
+        } else if (randomNumber > 95 && difficulty > 1) {
                 return BonusType::jetpack;
         }
         return BonusType::none;
@@ -73,8 +68,7 @@ EnemyType::Type Random::randomEnemyType()
         int randomNumber = distribution(generator);
         if (randomNumber < 10 && difficulty > 0) {
                 return EnemyType::weak;
-        }
-        else if (randomNumber > 95 && difficulty > 1) {
+        } else if (randomNumber > 95 && difficulty > 1) {
                 return EnemyType::strong;
         }
         return EnemyType::none;
@@ -83,8 +77,7 @@ void Random::calcDifficulty(float currentMaxHeight)
 {
         if (currentMaxHeight > 150) {
                 difficulty = 4;
-        }
-        else if (currentMaxHeight > 80) {
+        } else if (currentMaxHeight > 80) {
                 difficulty = 3;
         } else if (currentMaxHeight > 50) {
                 difficulty = 2;

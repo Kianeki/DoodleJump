@@ -9,13 +9,13 @@
 #include <math.h>
 #include <utility>
 
-        /** We will be using a coordinate system with (0,0) as origin,
-        (-1,0) as left bound
-        (1,0) as right bound
-        (0,-1) lowest bound
-        and (0,x) as upper bound where x can go to infinity
-        (0,x-1) as lower bound at any given time
-        */
+/** We will be using a coordinate system with (0,0) as origin,
+(-1,0) as left bound
+(1,0) as right bound
+(0,-1) lowest bound
+and (0,x) as upper bound where x can go to infinity
+(0,x-1) as lower bound at any given time
+*/
 class Camera
 {
 
@@ -34,7 +34,7 @@ public:
         /**
          * returns true if the coordinates are above the camera view
          * is used to check if screen is filled with platforms
-        */
+         */
         bool screenFilled(std::pair<float, float> entityPosition) const;
 
 private:

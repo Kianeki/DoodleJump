@@ -28,7 +28,8 @@ public:
         virtual std::unique_ptr<BulletModel> createBullet(float x, float y, BulletType::Type bulletType) = 0;
 
         // Creates EnemyModel on platform and attaches EnemyView as observer
-        virtual std::unique_ptr<EnemyModel> createEnemy(const std::unique_ptr<PlatformModel>& platform, EnemyType::Type etype ) = 0;
+        virtual std::unique_ptr<EnemyModel> createEnemy(const std::unique_ptr<PlatformModel>& platform,
+                                                        EnemyType::Type etype) = 0;
 
         virtual ~AbstractFactory() = default;
 };

@@ -32,7 +32,8 @@ std::pair<bool, int> Camera::updateMaxHeight(std::pair<float, float> playerPos)
 }
 bool Camera::checkView(std::pair<float, float> position) const
 {
-        if (position.second > lowerBound - 0.2 && position.second < upperBound +0.1) { // if pos is in cameraview (with a little margin)
+        if (position.second > lowerBound - 0.2 &&
+            position.second < upperBound + 0.1) { // if pos is in cameraview (with a little margin)
                 return true;
         } else {
                 return false;

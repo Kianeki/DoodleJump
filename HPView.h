@@ -14,6 +14,7 @@ private:
         int HP_value = 0;
         std::shared_ptr<sf::RenderWindow> gameWindow = nullptr;
         sf::Text HP_display;
+
 public:
         HPView(std::pair<int, int> pos, std::shared_ptr<sf::RenderWindow>& window, sf::Font& HP_font, int playerHealth);
         ~HPView() override = default;

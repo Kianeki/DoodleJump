@@ -18,7 +18,7 @@ public:
 
         ~EntityView() override = default;
 
-        //is called by the entityModel class and tells EntityView what function it should call
+        // is called by the entityModel class and tells EntityView what function it should call
         void onNotify(Alert::Type alert, std::pair<float, float> scaledPos) override;
 
         void updatePosition(std::pair<float, float> scaledPosition);
@@ -32,14 +32,14 @@ protected:
 class BulletView : public EntityView
 {
 public:
-        BulletView(float width, float height,std::shared_ptr<sf::RenderWindow> window, BulletType::Type bulletType);
+        BulletView(float width, float height, std::shared_ptr<sf::RenderWindow> window, BulletType::Type bulletType);
         ~BulletView() override = default;
-
 };
 class PlayerView : public EntityView
 {
 public:
-        PlayerView(const sf::Texture& playerTexture, float width, float height, std::shared_ptr<sf::RenderWindow> window);
+        PlayerView(const sf::Texture& playerTexture, float width, float height,
+                   std::shared_ptr<sf::RenderWindow> window);
         ~PlayerView() override = default;
 
 private:
@@ -48,13 +48,15 @@ private:
 class EnemyView : public EntityView
 {
 public:
-        EnemyView(const sf::Texture& enemyTexture, float width, float height, EnemyType::Type etype,std::shared_ptr<sf::RenderWindow> window);
+        EnemyView(const sf::Texture& enemyTexture, float width, float height, EnemyType::Type etype,
+                  std::shared_ptr<sf::RenderWindow> window);
         ~EnemyView() override = default;
 };
 class PlatformView : public EntityView
 {
 public:
-        PlatformView(PlatformType::Type randomType, float width, float height, std::shared_ptr<sf::RenderWindow> window);
+        PlatformView(PlatformType::Type randomType, float width, float height,
+                     std::shared_ptr<sf::RenderWindow> window);
         ~PlatformView() override = default;
 
 private:
@@ -63,8 +65,7 @@ private:
 class BonusView : public EntityView
 {
 public:
-        BonusView(const sf::Texture& bonusTexture, float width, float height,
-                  std::shared_ptr<sf::RenderWindow> window);
+        BonusView(const sf::Texture& bonusTexture, float width, float height, std::shared_ptr<sf::RenderWindow> window);
         ~BonusView() override = default;
 };
 

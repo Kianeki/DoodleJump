@@ -4,7 +4,6 @@
 
 #include "World.h"
 
-
 void World::generateRandomEntities()
 {
         float platformWidth = entities.back().first->getWidth();
@@ -25,11 +24,10 @@ void World::generateRandomEntities()
                 if ((bonustype != BonusType::none) && (newPlatform->getType() != PlatformType::temporaryP)) {
                         std::unique_ptr<BonusModel> newBonus = factory->createBonus(newPlatform, bonustype);
                         entities.emplace_back(std::move(newPlatform), std::move(newBonus));
-                } else if((enemyType != EnemyType::none) && (newPlatform->getType() != PlatformType::temporaryP)){
+                } else if ((enemyType != EnemyType::none) && (newPlatform->getType() != PlatformType::temporaryP)) {
                         std::unique_ptr<EnemyModel> newEnemy = factory->createEnemy(newPlatform, enemyType);
                         entities.emplace_back(std::move(newPlatform), std::move(newEnemy));
-                }
-                else {
+                } else {
                         entities.emplace_back(std::move(newPlatform), nullptr);
                 }
         }
@@ -50,10 +48,10 @@ void World::drawEntities()
                 // needs to be drawn after platforms/bonuses
                 activeBonus->drawEntity(camera);
         }
-        for(auto& bullet: friendlyBullets){
+        for (auto& bullet : friendlyBullets) {
                 bullet->drawEntity(camera);
         }
-        for(auto& bullet: enemyBullets){
+        for (auto& bullet : enemyBullets) {
                 bullet->drawEntity(camera);
         }
 }
@@ -99,7 +97,7 @@ void World::checkEntitiesInView()
                         // if it is out of view we delete the whole row
                 }
         }
-        for(auto it = friendlyBullets.begin(); it != friendlyBullets.end();){
+        for (auto it = friendlyBullets.begin(); it != friendlyBullets.end();) {
                 if (camera.checkView((*it)->getPosition())) {
                         // we check if the position of a bullet is on screen
                         it++;
@@ -108,7 +106,7 @@ void World::checkEntitiesInView()
                         // if it is out of view we delete the bullet
                 }
         }
-        for(auto it = enemyBullets.begin(); it != enemyBullets.end();){
+        for (auto it = enemyBullets.begin(); it != enemyBullets.end();) {
                 if (camera.checkView((*it)->getPosition())) {
                         // we check if the position of a bullet is on screen
                         it++;
@@ -127,17 +125,15 @@ void World::moveEntities()
                 if (entity.second != nullptr) {
                         // will update bonus/enemy position according to platformpos
                         entity.second->moveEntityOnPlatform(*entity.first);
-
                 }
         }
-        for( auto& bullet: friendlyBullets){
+        for (auto& bullet : friendlyBullets) {
                 bullet->move();
         }
-        for( auto& bullet: enemyBullets){
+        for (auto& bullet : enemyBullets) {
                 bullet->move();
         }
 }
-
 
 bool World::checkPlayerInView()
 {
@@ -152,9 +148,8 @@ bool World::checkPlayerInView()
 
 void World::setPlayerDirection(PlayerMovement::Direction direction) { player->setPlayerDirection(direction); }
 
-
-
-bool World::globalCollision(EntityModel& livingEntity, EntityModel& staticEntity){
+bool World::globalCollision(EntityModel& livingEntity, EntityModel& staticEntity)
+{
         std::pair<float, float> staticEntityUpperLeftCorner{0, 0};
         std::pair<float, float> staticEntityUpperRightCorner{0, 0};
         std::pair<float, float> staticEntityLowerLeftCorner{0, 0};
@@ -190,9 +185,9 @@ bool World::globalCollision(EntityModel& livingEntity, EntityModel& staticEntity
         staticEntityLowerRightCorner.first = staticEntityUpperRightCorner.first;
         staticEntityLowerRightCorner.second = staticEntityPosition.second - staticEntityHeight;
         staticEntityLowerLeftCorner.second = staticEntityLowerRightCorner.second;
-        //precision softens the collision check by allowing it to be detected a little earlier when falling
+        // precision softens the collision check by allowing it to be detected a little earlier when falling
         float precision = 0.015;
-        //increase precision if collisionEntity is going slow
+        // increase precision if collisionEntity is going slow
         if (livingEntity.getCurrentSpeed() >= -0.5f) {
                 precision = 0.005f;
         }
@@ -203,7 +198,6 @@ bool World::globalCollision(EntityModel& livingEntity, EntityModel& staticEntity
                     livingEntityLowerRightCorner.first >= staticEntityUpperLeftCorner.first) {
                         // if this is true then the livingEntity is inside the staticEntity
                         return staticEntity.collide(livingEntity);
-
                 }
         } else {
                 return false;
@@ -214,75 +208,74 @@ bool World::globalCollision(EntityModel& livingEntity, EntityModel& staticEntity
 void World::checkCollision()
 {
         // no need to check collision if player has 0 hp
-        if(player->isDead()){
+        if (player->isDead()) {
                 return;
         }
         for (auto it = entities.begin(); it != entities.end();) {
                 if ((*it).second != nullptr) {
                         // first, check collision between player and entity(bonus/enemy) that is attached to platform
-                        if(globalCollision(*player, *(*it).second)){
-                                if((*it).second->getType() == BonusType::jetpack){
+                        if (globalCollision(*player, *(*it).second)) {
+                                if ((*it).second->getType() == BonusType::jetpack) {
                                         activeBonus = std::move((*it).second);
-                                        //safety
+                                        // safety
                                         (*it).second = nullptr;
                                         // the world will keep track of the activeBonus
                                         // platform no longer holds any bonus
                                 }
-                                //one time use bonuses get deleted on collision
-                                else if ((*it).second->deleteOnCollision()){
+                                // one time use bonuses get deleted on collision
+                                else if ((*it).second->deleteOnCollision()) {
                                         (*it).second.reset();
-                                        //safety
+                                        // safety
                                         (*it).second = nullptr;
                                         // platform no longer holds any bonus
                                 }
                         }
                 }
-                        //then, check collision between friendly bullets and entity(enemy) that is attached to platform
-                        for(auto itBullets = friendlyBullets.begin(); itBullets != friendlyBullets.end();){
-                                if((*it).second == nullptr) {
-                                        // if entity is already deleted, we don't have to check further collision with bullets
-                                     break;
+                // then, check collision between friendly bullets and entity(enemy) that is attached to platform
+                for (auto itBullets = friendlyBullets.begin(); itBullets != friendlyBullets.end();) {
+                        if ((*it).second == nullptr) {
+                                // if entity is already deleted, we don't have to check further collision with bullets
+                                break;
+                        }
+                        if (globalCollision(*(*it).second, *(*itBullets))) {
+                                // if a strong enemy is hit, it will shoot a bullet downwards at the player
+                                if ((*it).second->getType() == EnemyType::strong) {
+                                        shootEnemyBullet(*(*it).second);
                                 }
-                                if(globalCollision(*(*it).second,*(*itBullets))){
-                                        // if a strong enemy is hit, it will shoot a bullet downwards at the player
-                                        if((*it).second->getType() == EnemyType::strong){
-                                                shootEnemyBullet(*(*it).second);
-                                        }
-                                        //if they collide then bullet must be deleted
-                                        if((*itBullets)->deleteOnCollision()){
-                                                itBullets = friendlyBullets.erase(itBullets);
-                                        }
+                                // if they collide then bullet must be deleted
+                                if ((*itBullets)->deleteOnCollision()) {
+                                        itBullets = friendlyBullets.erase(itBullets);
+                                }
 
-                                        // check if enemy is dead
-                                        if((*it).second->isDead()){
-                                                //if enemy is dead, award player
-                                                int scoreIncrease = (*it).second->getType();
-                                                player->increaseScore(scoreIncrease);
-                                                //delete dead enemy
-                                                (*it).second.reset();
-                                                (*it).second = nullptr;
-                                        }
+                                // check if enemy is dead
+                                if ((*it).second->isDead()) {
+                                        // if enemy is dead, award player
+                                        int scoreIncrease = (*it).second->getType();
+                                        player->increaseScore(scoreIncrease);
+                                        // delete dead enemy
+                                        (*it).second.reset();
+                                        (*it).second = nullptr;
                                 }
-                                itBullets++;
+                        }
+                        itBullets++;
                 }
-                //then,check collision between player and platform
-                if(globalCollision(*player,*(*it).first)){
+                // then,check collision between player and platform
+                if (globalCollision(*player, *(*it).first)) {
                         (*it).first->fallingCollide(*player);
-                        //delete temporary platform on collision
-                        if((*it).first->deleteOnCollision()){
+                        // delete temporary platform on collision
+                        if ((*it).first->deleteOnCollision()) {
                                 it = entities.erase(it);
                         }
                 }
                 it++;
         }
-        for(auto it = enemyBullets.begin(); it != enemyBullets.end();){
-                //collision between player and enemy bullet
-                if(globalCollision(*player, *(*it))){
+        for (auto it = enemyBullets.begin(); it != enemyBullets.end();) {
+                // collision between player and enemy bullet
+                if (globalCollision(*player, *(*it))) {
                         it = enemyBullets.erase(it);
                 }
                 it++;
         }
-
 }
 
 void World::updateActiveBonus()
@@ -332,19 +325,22 @@ void World::drawBackground()
                 }
         }
 }
-void World::shootFriendlyBullet() {
-        if(reloaded){
-                std::pair<float,float> topCentrePlayer = std::pair<float,float>(player->getPosition());
+void World::shootFriendlyBullet()
+{
+        if (reloaded) {
+                std::pair<float, float> topCentrePlayer = std::pair<float, float>(player->getPosition());
                 topCentrePlayer.second += player->getHeight();
-                friendlyBullets.push_back(factory->createBullet(topCentrePlayer.first, topCentrePlayer.second, BulletType::friendly));
+                friendlyBullets.push_back(
+                    factory->createBullet(topCentrePlayer.first, topCentrePlayer.second, BulletType::friendly));
         }
         reloaded = false;
 }
-void World::shootEnemyBullet(const EntityModel& enemy) {
-        std::pair<float,float> bottomCentreEnemy = std::pair<float,float>(enemy.getPosition());
+void World::shootEnemyBullet(const EntityModel& enemy)
+{
+        std::pair<float, float> bottomCentreEnemy = std::pair<float, float>(enemy.getPosition());
         bottomCentreEnemy.second -= enemy.getHeight();
-        enemyBullets.push_back(factory->createBullet(bottomCentreEnemy.first, bottomCentreEnemy.second, BulletType::enemy));
-
+        enemyBullets.push_back(
+            factory->createBullet(bottomCentreEnemy.first, bottomCentreEnemy.second, BulletType::enemy));
 }
 void World::reload() { reloaded = true; }
 World::World(std::unique_ptr<AbstractFactory> concreteFactory, unsigned int windowWidth, unsigned int windowHeight)

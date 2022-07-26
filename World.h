@@ -62,12 +62,12 @@ public:
         void shootEnemyBullet(const EntityModel& enemy);
 
 private:
-
         std::list<std::unique_ptr<BGTileModel>> makeBackgroundRow(float currentRowY);
 
         std::list<std::pair<std::unique_ptr<PlatformModel>, std::unique_ptr<EntityModel>>> entities;
 
         bool globalCollision(EntityModel& livingEntity, EntityModel& staticEntity);
+
 private:
         std::unique_ptr<PlayerModel> player = nullptr;
         std::unique_ptr<AbstractFactory> factory;

@@ -5,15 +5,15 @@
 #include "ScoreView.h"
 ScoreView::ScoreView(std::pair<int, int> pos, std::shared_ptr<sf::RenderWindow>& window, sf::Font& scoreFont)
 {
-    gameWindow = window;
-    scoreDisplay.setFont(scoreFont);
-    scoreDisplay.setCharacterSize(26);
-    scoreDisplay.setOutlineColor(sf::Color::Black);
-    scoreDisplay.setOutlineThickness(1);
-    scoreDisplay.setPosition(pos.first, pos.second);
-    // set origin in the centre
-    sf::FloatRect bounds = scoreDisplay.getLocalBounds();
-    scoreDisplay.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
+        gameWindow = window;
+        scoreDisplay.setFont(scoreFont);
+        scoreDisplay.setCharacterSize(26);
+        scoreDisplay.setOutlineColor(sf::Color::Black);
+        scoreDisplay.setOutlineThickness(1);
+        scoreDisplay.setPosition(pos.first, pos.second);
+        // set origin in the centre
+        sf::FloatRect bounds = scoreDisplay.getLocalBounds();
+        scoreDisplay.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
 }
 void ScoreView::onNotify(Alert::Type alert, std::pair<float, float> increase)
 {

@@ -32,15 +32,17 @@ enum Type
         spike = -1000,
 }; // these int values are for score calc
 }
-namespace EnemyType{
-enum Type{
+namespace EnemyType {
+enum Type
+{
         none = 0,
         weak = 5000,
         strong = 8000
 };
 }
-namespace BulletType{
-enum Type{
+namespace BulletType {
+enum Type
+{
         friendly = 1,
         enemy = 2
 };
