@@ -16,6 +16,7 @@ class Game
 {
 public:
         Game();
+        ~Game() = default;
         // main game loop
         void run();
 

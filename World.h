@@ -15,18 +15,7 @@
 class World
 {
 public:
-        World(std::unique_ptr<AbstractFactory> concreteFactory, unsigned int windowWidth, unsigned int windowHeight)
-            : factory(std::move(concreteFactory)), camera(Camera(windowWidth, windowHeight))
-        {
-                player = std::move(factory->createPlayer(0, -0.5)); // don't spawn too high or stuff gets wonky
-                // place starter platform
-                entities.emplace_back(std::move(factory->createPlatform(0, -0.7, PlatformType::staticP)), nullptr);
-                // make bottom row of background
-                backgroundTiles.push_back(makeBackgroundRow(-1));
-                generateBackground();
-                generateRandomEntities();
-                drawEntities();
-        }
+        World(std::unique_ptr<AbstractFactory> concreteFactory, unsigned int windowWidth, unsigned int windowHeight);
         // creates platforms and bonuses to fill screen
         void generateRandomEntities();
 
@@ -67,20 +56,16 @@ public:
         void shootFriendlyBullet();
 
         // allows player to shoot again
-        bool reload();
+        void reload();
 
         // shoots a bullet from an enemy at the player
         void shootEnemyBullet(const EntityModel& enemy);
-        // world checks if hit animation should be played
-//        void animateEntities();
-private:
-        bool checkPlatformCollision(std::pair<float, float> entityPos, float width, float height);
 
-        bool checkBonusCollision(const std::unique_ptr<BonusModel>& bonus);
+private:
 
         std::list<std::unique_ptr<BGTileModel>> makeBackgroundRow(float currentRowY);
 
-        std::list<std::pair<std::shared_ptr<PlatformModel>, std::unique_ptr<EntityModel>>> entities;
+        std::list<std::pair<std::unique_ptr<PlatformModel>, std::unique_ptr<EntityModel>>> entities;
 
         bool globalCollision(EntityModel& livingEntity, EntityModel& staticEntity);
 private:

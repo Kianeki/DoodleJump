@@ -41,7 +41,6 @@ enum Type{
 }
 namespace BulletType{
 enum Type{
-        none = 0,
         friendly = 1,
         enemy = 2
 };
@@ -49,107 +48,28 @@ enum Type{
 class Random
 {
 public:
-        static std::shared_ptr<Random> getInstance()
-        {
-                static std::shared_ptr<Random> instance = std::shared_ptr<Random>(new Random());
-                return instance;
-        }
+        static std::shared_ptr<Random> getInstance();
 
         // returns X value between -1 and 1
-        float randomPlatformX(float platformWidth)
-        { //-1 is the left bound, +1 is the right bound of the screen
-                std::uniform_real_distribution<double> distribution(-1.0 + platformWidth, 1.0 - platformWidth);
-                // adding/subtracting platformwidth ensures platforms don't clip out of view
-                return distribution(generator);
-        }
+        float randomPlatformX(float platformWidth);
 
         // returns Y value depending on difficulty
-        float randomPlatformY(float platformHeight, float minPlatformDistance)
-        { // platformHeight is the thickness of the platform
-                std::uniform_real_distribution<double> distribution(3 * platformHeight * (1.0 + difficulty),
-                                                                    (minPlatformDistance / 2) +
-                                                                        (minPlatformDistance * difficulty / 9.f));
-                return distribution(generator);
-        }
+        float randomPlatformY(float platformHeight, float minPlatformDistance);
         // return random teleport Y-value for vertical platform
-        float randomTeleportPlatformY(const float lowerBound, const float upperBound){
-                std::uniform_real_distribution<double> distribution(lowerBound, upperBound);
-                return distribution(generator);
-        }
+        float randomTeleportPlatformY(const float lowerBound, const float upperBound);
         // returns a random PlatformType depending on difficulty
-        PlatformType::Type randomPlatformType()
-        {
-                std::uniform_int_distribution<int> distribution(0 + difficulty,
-                                                                4 + difficulty); // 0+difficulty <= x <= 4+difficulty
-                int randomNumber = distribution(generator);
-                if (randomNumber < 4) {
-                        return PlatformType::staticP;
-                } else if (randomNumber == 4) {
-                        return PlatformType::temporaryP;
-                } else if (randomNumber == 5 ) {
-                        return PlatformType::horizontalP;
-                } else if(randomNumber == 6){
-                        return PlatformType::horizontalPteleport;
-                }
-                else if (randomNumber == 7) {
-                        return PlatformType::verticalP;
-                }
-                else if (randomNumber == 8) {
-                        return PlatformType::verticalPteleport;
-                }
-                return PlatformType::Type(); // Need to throw exception here
-        }
+        PlatformType::Type randomPlatformType();
 
         // returns a random BonusType
-        BonusType::Type randomBonusType()
-        {
-                std::uniform_int_distribution<int> distribution(0, 100); // 0 <= x <= 100
-                int randomNumber = distribution(generator);
-                if (randomNumber < 10 && difficulty > 0) {
-                        return BonusType::spring;
-                }
-                else if (randomNumber >=10 && randomNumber <20 && difficulty > 0) {
-                        return BonusType::heart;
-                }
-                else if (randomNumber >=20 && randomNumber <30 && difficulty > 0) {
-                        return BonusType::spike;
-                }
-                else if (randomNumber > 95 && difficulty > 1) {
-                        return BonusType::jetpack;
-                }
-                return BonusType::none;
-        }
+        BonusType::Type randomBonusType();
 
         // return a random enemyType
-        EnemyType::Type randomEnemyType(){
-                std::uniform_int_distribution<int> distribution(0, 100); // 0 <= x <= 100
-                int randomNumber = distribution(generator);
-                if (randomNumber < 10 && difficulty > 0) {
-                        return EnemyType::weak;
-                }
-                else if (randomNumber > 95 && difficulty > 1) {
-                        return EnemyType::strong;
-                }
-                return EnemyType::none;
-        }
+        EnemyType::Type randomEnemyType();
         // scales difficulty(max 3) depending on camera height
-        void calcDifficulty(float currentMaxHeight)
-        {
-                if (currentMaxHeight > 150) {
-                        difficulty = 4;
-                }
-                else if (currentMaxHeight > 80) {
-                        difficulty = 3;
-                } else if (currentMaxHeight > 50) {
-                        difficulty = 2;
-                } else if (currentMaxHeight > 20) {
-                        difficulty = 1;
-                }
-        }
+        void calcDifficulty(float currentMaxHeight);
 
 private:
-        Random() { generator.seed(time(nullptr)); }
-
+        Random();
         std::default_random_engine generator;
         int difficulty = 0; // max 4
 };

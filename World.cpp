@@ -108,7 +108,15 @@ void World::checkEntitiesInView()
                         // if it is out of view we delete the bullet
                 }
         }
-
+        for(auto it = enemyBullets.begin(); it != enemyBullets.end();){
+                if (camera.checkView((*it)->getPosition())) {
+                        // we check if the position of a bullet is on screen
+                        it++;
+                } else {
+                        it = enemyBullets.erase(it);
+                        // if it is out of view we delete the bullet
+                }
+        }
 }
 
 void World::moveEntities()
@@ -134,7 +142,7 @@ void World::moveEntities()
 bool World::checkPlayerInView()
 {
         std::pair<float, float> playerpos = player->getPosition();
-        playerpos.second = playerpos.second - player->getHeight() - 0.1f; //-0.1 to counter the margin for platforms
+        playerpos.second = playerpos.second - player->getHeight() - 0.2f; //-0.2 to counter the margin for platforms
         if (camera.checkView(playerpos)) {                                // player is in view
                 return true;
         } else { // player has reached the bottom of the screen
@@ -220,8 +228,8 @@ void World::checkCollision()
                                         // the world will keep track of the activeBonus
                                         // platform no longer holds any bonus
                                 }
-                                else if (!((*it).second->getType() == BonusType::spring ||(*it).second->getType() == BonusType::spike)){
-                                        //delete bonus
+                                //one time use bonuses get deleted on collision
+                                else if ((*it).second->deleteOnCollision()){
                                         (*it).second.reset();
                                         //safety
                                         (*it).second = nullptr;
@@ -229,7 +237,6 @@ void World::checkCollision()
                                 }
                         }
                 }
-
                         //then, check collision between friendly bullets and entity(enemy) that is attached to platform
                         for(auto itBullets = friendlyBullets.begin(); itBullets != friendlyBullets.end();){
                                 if((*it).second == nullptr) {
@@ -242,7 +249,10 @@ void World::checkCollision()
                                                 shootEnemyBullet(*(*it).second);
                                         }
                                         //if they collide then bullet must be deleted
-                                        itBullets = friendlyBullets.erase(itBullets);
+                                        if((*itBullets)->deleteOnCollision()){
+                                                itBullets = friendlyBullets.erase(itBullets);
+                                        }
+
                                         // check if enemy is dead
                                         if((*it).second->isDead()){
                                                 //if enemy is dead, award player
@@ -259,7 +269,7 @@ void World::checkCollision()
                 if(globalCollision(*player,*(*it).first)){
                         (*it).first->fallingCollide(*player);
                         //delete temporary platform on collision
-                        if((*it).first->getType() == PlatformType::temporaryP){
+                        if((*it).first->deleteOnCollision()){
                                 it = entities.erase(it);
                         }
                 }
@@ -336,4 +346,16 @@ void World::shootEnemyBullet(const EntityModel& enemy) {
         enemyBullets.push_back(factory->createBullet(bottomCentreEnemy.first, bottomCentreEnemy.second, BulletType::enemy));
 
 }
-bool World::reload() { reloaded = true; }
+void World::reload() { reloaded = true; }
+World::World(std::unique_ptr<AbstractFactory> concreteFactory, unsigned int windowWidth, unsigned int windowHeight)
+    : factory(std::move(concreteFactory)), camera(Camera(windowWidth, windowHeight))
+{
+        player = std::move(factory->createPlayer(0, -0.5)); // don't spawn too high or stuff gets wonky
+        // place starter platform
+        entities.emplace_back(std::move(factory->createPlatform(0, -0.7, PlatformType::staticP)), nullptr);
+        // make bottom row of background
+        backgroundTiles.push_back(makeBackgroundRow(-1));
+        generateBackground();
+        generateRandomEntities();
+        drawEntities();
+}

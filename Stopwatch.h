@@ -10,28 +10,15 @@
 class Stopwatch
 {
 public:
-        static std::shared_ptr<Stopwatch> getInstance()
-        {
-                static std::shared_ptr<Stopwatch> instance = std::shared_ptr<Stopwatch>(new Stopwatch());
-                return instance;
-        }
+        static std::shared_ptr<Stopwatch> getInstance();
 
-        float getElapsedTime()
-        { // returns elapsed time in seconds since last call
-                std::chrono::high_resolution_clock::time_point currentTimePoint =
-                    std::chrono::high_resolution_clock::now();
-                elapsedTime =
-                    std::chrono::duration_cast<std::chrono::microseconds>(currentTimePoint - previousTimePoint)
-                        .count() /
-                    1000000.f;
-                previousTimePoint = currentTimePoint;
-                return elapsedTime;
-        }
-
-        float getTimePerFrame() const { return timePerFrame; }
+        // returns elapsed time in seconds since last call
+        float getElapsedTime();
+        // returns the amount of time one frame takes
+        float getTimePerFrame() const;
 
 private:
-        Stopwatch() { previousTimePoint = std::chrono::high_resolution_clock::now(); }
+        Stopwatch();
 
         std::chrono::high_resolution_clock::time_point previousTimePoint;
         float elapsedTime = 0.f;

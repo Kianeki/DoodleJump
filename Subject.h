@@ -14,15 +14,10 @@ class Subject
 {
 
 public:
-        void addObserver(std::unique_ptr<Observer> observer) { observers.push_back(std::move(observer)); }
+        void addObserver(std::unique_ptr<Observer> observer);
 
 protected:
-        void notify(Alert::Type alert, std::pair<float, float> scaledPos)
-        {
-                for (auto& observer : observers) {
-                        observer->onNotify(alert, scaledPos);
-                }
-        }
+        void notify(Alert::Type alert, std::pair<float, float> scaledPos);
 
 private:
         std::list<std::unique_ptr<Observer>> observers;
