@@ -66,7 +66,7 @@ private:
 
         std::list<std::pair<std::unique_ptr<PlatformModel>, std::unique_ptr<EntityModel>>> entities;
 
-        bool globalCollision(EntityModel& livingEntity, EntityModel& staticEntity);
+        static bool globalCollision(EntityModel& livingEntity, EntityModel& staticEntity);
 
 private:
         std::unique_ptr<PlayerModel> player = nullptr;

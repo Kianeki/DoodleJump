@@ -127,7 +127,7 @@ BulletModel::BulletModel(float x, float y, BulletType::Type bulletType) : Entity
         width = 0.04f;
         height = 0.04f;
         if (bulletType == BulletType::friendly) {
-                speedY = 1.2f;
+                speedY = 1.8f;
         } else if (bulletType == BulletType::enemy) {
                 speedY = -0.8f;
         }

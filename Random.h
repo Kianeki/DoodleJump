@@ -58,7 +58,7 @@ public:
         // returns Y value depending on difficulty
         float randomPlatformY(float platformHeight, float minPlatformDistance);
         // return random teleport Y-value for vertical platform
-        float randomTeleportPlatformY(const float lowerBound, const float upperBound);
+        float randomTeleportPlatformY(float lowerBound, float upperBound);
         // returns a random PlatformType depending on difficulty
         PlatformType::Type randomPlatformType();
 

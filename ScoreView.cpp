@@ -15,7 +15,7 @@ ScoreView::ScoreView(std::pair<int, int> pos, std::shared_ptr<sf::RenderWindow>&
         sf::FloatRect bounds = scoreDisplay.getLocalBounds();
         scoreDisplay.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
 }
-void ScoreView::onNotify(Alert::Type alert, std::pair<float, float> increase)
+void ScoreView::onNotify(Alert::Type alert, const std::pair<float, float> increase)
 {
         switch (alert) {
         case Alert::increaseScore:

@@ -3,7 +3,7 @@
 //
 
 #include "Subject.h"
-void Subject::notify(Alert::Type alert, std::pair<float, float> scaledPos)
+void Subject::notify(Alert::Type alert, const std::pair<float, float> scaledPos)
 {
         for (auto& observer : observers) {
                 observer->onNotify(alert, scaledPos);
